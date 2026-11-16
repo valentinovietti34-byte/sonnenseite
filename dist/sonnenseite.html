@@ -1042,6 +1042,15 @@ h1, h2, h3, h4 { font-stretch: 80%; }
 .ch-mask { fill-opacity: 1; }
 #map, #map.leaflet-container { background: var(--bg); }
 
+/* green land and forests blend into the topographic map instead of covering it */
+.leaflet-green-pane, .leaflet-forest-pane { mix-blend-mode: multiply; }
+/* fog switch on the map */
+.mapui-tr { align-items: flex-end; }
+.fogbtn { width: auto; padding: 0 13px 0 11px; gap: 7px; display: inline-flex; align-items: center; font: 700 14px var(--f-body); white-space: nowrap; }
+.fogbtn[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.fogbtn[aria-pressed="false"] { color: var(--muted); }
+.fogbtn[aria-pressed="false"] .ic { opacity: .55; }
+
 </style>
 </head>
 <body>
@@ -1124,6 +1133,7 @@ h1, h2, h3, h4 { font-stretch: 80%; }
       <div class="mapui mapui-tr">
         <button id="btn-layers" class="mapbtn" type="button" title="Map layers" aria-label="Map layers"><svg class="ic"><use href="#i-layers"/></svg></button>
         <button id="btn-locate" class="mapbtn" type="button" title="Show my position" aria-label="Show my position"><svg class="ic"><use href="#i-locate"/></svg></button>
+        <button id="btn-fog" class="mapbtn fogbtn" type="button" aria-pressed="true" title="Fog on the map"><svg class="ic"><use href="#i-fog"/></svg><span>Fog on</span></button>
       </div>
       <div id="layers" class="layers" hidden>
         <h3>Map</h3>
@@ -1195,7 +1205,7 @@ h1, h2, h3, h4 { font-stretch: 80%; }
     'Measured sunny nearby': 'In der Nähe sonnig gemessen', 'Saved': 'Gespeichert',
     'No places match your filters. Open Filters and widen the travel time or altitude range.': 'Keine Orte passen zu deinen Filtern. Öffne die Filter und erweitere Reisezeit oder Höhenbereich.',
     /* map */
-    'Light': 'Hell', 'Grey': 'Grau', 'Topo': 'Topo', 'Winter': 'Winter', 'Aerial': 'Luftbild', 'Sea of fog': 'Nebelmeer', 'terrain below the fog top': 'Gelände unter der Nebelobergrenze',
+    'Light': 'Hell', 'Grey': 'Grau', 'Fog on': 'Nebel an', 'Fog off': 'Nebel aus', 'Fog on the map': 'Nebel auf der Karte', 'Fog shown on the map': 'Nebel auf der Karte eingeblendet', 'Fog hidden': 'Nebel ausgeblendet', 'Topo': 'Topo', 'Winter': 'Winter', 'Aerial': 'Luftbild', 'Sea of fog': 'Nebelmeer', 'terrain below the fog top': 'Gelände unter der Nebelobergrenze',
     'Measured sunshine': 'Gemessene Sonne', 'MeteoSwiss stations, last 10 min': 'MeteoSchweiz-Stationen, letzte 10 Min.', 'Webcams': 'Webcams',
     'Set the fog top by hand': 'Nebelobergrenze von Hand setzen', 'automatic': 'automatisch', 'none': 'keine', 'full sun': 'volle Sonne',
     'Sun not visible from here right now': 'Sonne von hier aus gerade nicht sichtbar', 'Open live webcam': 'Live-Webcam öffnen',
@@ -2393,8 +2403,32 @@ window.SS_BORDER = [[46.4322,6.0746],[46.5458,6.156],[46.6107,6.1668],[46.6986,6
     aerial: { id: 'ch.swisstopo.swissimage' },
   };
   const TERRARIUM = 'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png';
+  /* elevation tiles, decoded once and shared by the fog layer and the green land layer */
+  const elevCache = new Map();
+  function loadElev(z, x, y) {
+    const key = z + '/' + x + '/' + y;
+    if (elevCache.has(key)) return elevCache.get(key);
+    const pr = new Promise((resolve) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        try {
+          const c = document.createElement('canvas'); c.width = c.height = 256;
+          const g = c.getContext('2d', { willReadFrequently: true }); g.drawImage(img, 0, 0);
+          const d = g.getImageData(0, 0, 256, 256).data, el = new Float32Array(65536);
+          for (let i = 0, o = 0; i < 65536; i++, o += 4) el[i] = d[o] * 256 + d[o + 1] + d[o + 2] / 256 - 32768;
+          resolve(el);
+        } catch (e) { resolve(null); }
+      };
+      img.onerror = () => resolve(null);
+      img.src = TERRARIUM.replace('{z}', z).replace('{x}', x).replace('{y}', y);
+    });
+    elevCache.set(key, pr);
+    if (elevCache.size > 160) elevCache.delete(elevCache.keys().next().value);
+    return pr;
+  }
   const ATTR = '&copy; <a href="https://www.swisstopo.admin.ch/" target="_blank" rel="noopener">swisstopo</a>';
-  let map, base, under, fog, gPlaces, gStations, gWebcams, homeMk, meMk, meCircle, routeLine, handlers = {};
+  let map, base, under, fog, green, forest, gPlaces, gStations, gWebcams, homeMk, meMk, meCircle, routeLine, handlers = {};
   const markers = {};
 
   const tileLat = (yn) => (Math.atan(Math.sinh(Math.PI * (1 - 2 * yn))) * 180) / Math.PI;
@@ -2402,23 +2436,9 @@ window.SS_BORDER = [[46.4322,6.0746],[46.5458,6.156],[46.6107,6.1668],[46.6986,6
   const FogLayer = L.GridLayer.extend({
     options: { minZoom: 7, maxNativeZoom: 11, tileSize: 256, pane: 'fog', updateWhenZooming: false, keepBuffer: 1, bounds: [[44.9, 4.6], [48.7, 11.8]], attribution: 'Terrain: Mapzen' },
     createTile: function (coords, done) {
-      const c = L.DomUtil.create('canvas', 'leaflet-tile');
+      const c = L.DomUtil.create('canvas', 'leaflet-tile'), self = this;
       c.width = c.height = 256; c._coords = coords;
-      const img = new Image(), self = this;
-      img.crossOrigin = 'anonymous';
-      img.onload = function () {
-        try {
-          const g = c.getContext('2d', { willReadFrequently: true });
-          g.drawImage(img, 0, 0);
-          const d = g.getImageData(0, 0, 256, 256).data, el = new Float32Array(65536);
-          for (let i = 0, o = 0; i < 65536; i++, o += 4) el[i] = d[o] * 256 + d[o + 1] + d[o + 2] / 256 - 32768;
-          c._elev = el;
-          self.paint(c);
-        } catch (e) { /* tainted canvas: leave the tile empty */ }
-        done(null, c);
-      };
-      img.onerror = function () { done(null, c); };
-      img.src = TERRARIUM.replace('{z}', coords.z).replace('{x}', coords.x).replace('{y}', coords.y);
+      loadElev(coords.z, coords.x, coords.y).then((el) => { c._elev = el; if (el) self.paint(c); done(null, c); });
       return c;
     },
     paint: function (c) {
@@ -2434,7 +2454,7 @@ window.SS_BORDER = [[46.4322,6.0746],[46.5458,6.156],[46.6107,6.1668],[46.6986,6
       const img = g.createImageData(256, 256), d = img.data;
       const dark = SS.app && SS.app.isDark && SS.app.isDark();
       const R = dark ? 206 : 252, G = dark ? 215 : 253, B = dark ? 225 : 255;
-      const aRim = dark ? 175 : 215, aMin = dark ? 55 : 85, aMax = dark ? 95 : 130;
+      const aRim = dark ? 190 : 225, aMin = dark ? 70 : 105, aMax = dark ? 115 : 155;
       for (let py = 0, i = 0, o = 0; py < 256; py++) {
         const v = (py + 0.5) / 256, tl = t00 + (t01 - t00) * v, tr = t10 + (t11 - t10) * v;
         for (let px = 0; px < 256; px++, i++, o += 4) {
@@ -2450,8 +2470,43 @@ window.SS_BORDER = [[46.4322,6.0746],[46.5458,6.156],[46.6107,6.1668],[46.6986,6
     repaint: function () { for (const k in this._tiles) this.paint(this._tiles[k].el); },
   });
 
+  /* Green land: a light green wash, multiplied over the topographic map, on land below the treeline. It fades out
+     between 1600 and 2300 m so rock, scree and glaciers keep their colours, and skips lakes (perfectly flat in the
+     elevation model). Forests come on top from the official swissTLM3D forest layer, in darker green. */
+  const GreenLayer = L.GridLayer.extend({
+    options: { minZoom: 5, maxNativeZoom: 12, tileSize: 256, pane: 'green', updateWhenZooming: false, keepBuffer: 1, bounds: [[44.9, 4.6], [48.7, 11.8]] },
+    createTile: function (coords, done) {
+      const c = L.DomUtil.create('canvas', 'leaflet-tile'), self = this;
+      c.width = c.height = 256;
+      loadElev(coords.z, coords.x, coords.y).then((el) => { c._elev = el; if (el) self.paint(c); done(null, c); });
+      return c;
+    },
+    paint: function (c) {
+      const el = c._elev, g = c.getContext('2d');
+      if (!el) return;
+      const dark = SS.app && SS.app.isDark && SS.app.isDark();
+      const R = dark ? 176 : 196, G = dark ? 214 : 226, B = dark ? 150 : 158, A = dark ? 205 : 235;
+      const img = g.createImageData(256, 256), d = img.data;
+      for (let y = 0, i = 0; y < 256; y++) {
+        const y0 = y > 0 ? -256 : 0, y1 = y < 255 ? 256 : 0;
+        for (let x = 0; x < 256; x++, i++) {
+          const h = el[i];
+          if (h > 2300) continue;
+          const x0 = x > 0 ? -1 : 0, x1 = x < 255 ? 1 : 0;
+          let mn = h, mx = h;
+          for (const dy of [y0, 0, y1]) for (const dx of [x0, 0, x1]) { const v = el[i + dy + dx]; if (v < mn) mn = v; else if (v > mx) mx = v; }
+          if (mx - mn < 0.25) continue;                       /* water */
+          const o = i * 4, f = h <= 1600 ? 1 : (2300 - h) / 700;
+          d[o] = R; d[o + 1] = G; d[o + 2] = B; d[o + 3] = Math.round(A * f);
+        }
+      }
+      g.putImageData(img, 0, 0);
+    },
+    repaint: function () { for (const k in this._tiles) this.paint(this._tiles[k].el); },
+  });
+
   const underStyle = () => (SS.app && SS.app.isDark && SS.app.isDark() ? 'dark_all' : 'light_all');
-  M.refreshTheme = function () { if (fog && map.hasLayer(fog)) fog.repaint(); };
+  M.refreshTheme = function () { if (fog && map.hasLayer(fog)) fog.repaint(); if (green && map.hasLayer(green)) green.repaint(); };
 
   M.init = function (h) {
     handlers = h || {};
@@ -2464,6 +2519,12 @@ window.SS_BORDER = [[46.4322,6.0746],[46.5458,6.156],[46.6107,6.1668],[46.6986,6
     L.control.zoom({ position: 'bottomright' }).addTo(map);
     map.attributionControl.setPrefix(false);
     map.createPane('fog').style.zIndex = 350;
+    ['green', 'forest'].forEach((n, k) => { const p = map.createPane(n); p.style.zIndex = 240 + k * 10; p.style.pointerEvents = 'none'; });
+    green = new GreenLayer();
+    forest = L.tileLayer(WMTS + 'ch.swisstopo.swisstlm3d-wald/default/current/3857/{z}/{x}/{y}.png', { pane: 'forest', opacity: 0.5, maxNativeZoom: 17, maxZoom: 18, bounds: [[45.6, 5.7], [47.95, 10.7]] });
+    /* the national map has its own detailed colours close up, so the wash fades as you zoom in */
+    const lushFade = () => { const z = map.getZoom(); green.setOpacity(z <= 11 ? 1 : z <= 12 ? 0.7 : z <= 13 ? 0.45 : 0.3); forest.setOpacity(z <= 12 ? 0.5 : 0.35); };
+    map.on('zoomend', lushFade); lushFade();
     map.createPane('mask').style.zIndex = 420;
     map.getPane('mask').style.pointerEvents = 'none';
     if (window.SS_BORDER) {
@@ -2490,6 +2551,8 @@ window.SS_BORDER = [[46.4322,6.0746],[46.5458,6.156],[46.6107,6.1668],[46.6986,6
     const b = BASES[name] || BASES.grey;
     if (base) map.removeLayer(base);
     base = L.tileLayer(WMTS + b.id + '/default/current/3857/{z}/{x}/{y}.jpeg', { attribution: ATTR, maxNativeZoom: 18, maxZoom: 18, className: b.cls || '', bounds: [[44.9, 4.6], [48.7, 11.8]], zIndex: 2 }).addTo(map);
+    const lush = name === 'color';
+    [green, forest].forEach((l) => { if (!l) return; if (lush && !map.hasLayer(l)) l.addTo(map); if (!lush && map.hasLayer(l)) map.removeLayer(l); });
   };
   M.setLayer = function (name, on) {
     const g = name === 'fog' ? fog : name === 'stations' ? gStations : gWebcams;
@@ -3136,7 +3199,8 @@ window.SS_BORDER = [[46.4322,6.0746],[46.5458,6.156],[46.6107,6.1668],[46.6986,6
   function syncLayerUi() {
     const s = A.state;
     U.$$('#base-seg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.base === s.base)));
-    $('#lay-fog').checked = s.layers.fog; $('#lay-stations').checked = s.layers.stations; $('#lay-webcams').checked = s.layers.webcams;
+    $('#lay-fog').checked = s.layers.fog;
+    $('#btn-fog').setAttribute('aria-pressed', String(!!s.layers.fog)); $('#btn-fog span').textContent = s.layers.fog ? 'Fog on' : 'Fog off'; $('#lay-stations').checked = s.layers.stations; $('#lay-webcams').checked = s.layers.webcams;
     $('#fog-manual').checked = s.fogManual != null; $('#fog-top').disabled = s.fogManual == null;
     if (s.fogManual != null) $('#fog-top').value = s.fogManual;
     $('#fog-top-label').textContent = s.fogManual != null ? U.fmtAlt(s.fogManual) : 'automatic';
@@ -3172,6 +3236,7 @@ window.SS_BORDER = [[46.4322,6.0746],[46.5458,6.156],[46.6107,6.1668],[46.6986,6
     $('#btn-view').addEventListener('click', () => setView($('#app').dataset.view === 'map' ? 'list' : 'map'));
     $('#btn-layers').addEventListener('click', () => { const p = $('#layers'); p.hidden = !p.hidden; $('#btn-layers').classList.toggle('on', !p.hidden); });
     $('#btn-locate').addEventListener('click', A.useGps);
+    $('#btn-fog').addEventListener('click', () => { const on = !A.state.layers.fog; A.state.layers.fog = on; A.save(); M.setLayer('fog', on); fogField(); syncLayerUi(); UI.toast(on ? 'Fog shown on the map' : 'Fog hidden'); });
     $('#base-seg').addEventListener('click', (e) => { const b = e.target.closest('[data-base]'); if (!b) return; A.state.base = b.dataset.base; A.state.baseChosen = true; A.save(); M.setBase(A.state.base); syncLayerUi(); });
     [['lay-fog', 'fog'], ['lay-stations', 'stations'], ['lay-webcams', 'webcams']].forEach((x) => {
       $('#' + x[0]).addEventListener('change', (e) => { A.state.layers[x[1]] = e.target.checked; A.save(); M.setLayer(x[1], e.target.checked); if (x[1] === 'fog') fogField(); if (x[1] === 'stations') M.paintStations(); });

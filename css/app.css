@@ -355,3 +355,12 @@ h1, h2, h3, h4 { font-stretch: 80%; }
 .ch-border { stroke: var(--ink); stroke-opacity: .45; }
 .ch-mask { fill-opacity: 1; }
 #map, #map.leaflet-container { background: var(--bg); }
+
+/* green land and forests blend into the topographic map instead of covering it */
+.leaflet-green-pane, .leaflet-forest-pane { mix-blend-mode: multiply; }
+/* fog switch on the map */
+.mapui-tr { align-items: flex-end; }
+.fogbtn { width: auto; padding: 0 13px 0 11px; gap: 7px; display: inline-flex; align-items: center; font: 700 14px var(--f-body); white-space: nowrap; }
+.fogbtn[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.fogbtn[aria-pressed="false"] { color: var(--muted); }
+.fogbtn[aria-pressed="false"] .ic { opacity: .55; }

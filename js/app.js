@@ -196,7 +196,8 @@
   function syncLayerUi() {
     const s = A.state;
     U.$$('#base-seg button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.base === s.base)));
-    $('#lay-fog').checked = s.layers.fog; $('#lay-stations').checked = s.layers.stations; $('#lay-webcams').checked = s.layers.webcams;
+    $('#lay-fog').checked = s.layers.fog;
+    $('#btn-fog').setAttribute('aria-pressed', String(!!s.layers.fog)); $('#btn-fog span').textContent = s.layers.fog ? 'Fog on' : 'Fog off'; $('#lay-stations').checked = s.layers.stations; $('#lay-webcams').checked = s.layers.webcams;
     $('#fog-manual').checked = s.fogManual != null; $('#fog-top').disabled = s.fogManual == null;
     if (s.fogManual != null) $('#fog-top').value = s.fogManual;
     $('#fog-top-label').textContent = s.fogManual != null ? U.fmtAlt(s.fogManual) : 'automatic';
@@ -232,6 +233,7 @@
     $('#btn-view').addEventListener('click', () => setView($('#app').dataset.view === 'map' ? 'list' : 'map'));
     $('#btn-layers').addEventListener('click', () => { const p = $('#layers'); p.hidden = !p.hidden; $('#btn-layers').classList.toggle('on', !p.hidden); });
     $('#btn-locate').addEventListener('click', A.useGps);
+    $('#btn-fog').addEventListener('click', () => { const on = !A.state.layers.fog; A.state.layers.fog = on; A.save(); M.setLayer('fog', on); fogField(); syncLayerUi(); UI.toast(on ? 'Fog shown on the map' : 'Fog hidden'); });
     $('#base-seg').addEventListener('click', (e) => { const b = e.target.closest('[data-base]'); if (!b) return; A.state.base = b.dataset.base; A.state.baseChosen = true; A.save(); M.setBase(A.state.base); syncLayerUi(); });
     [['lay-fog', 'fog'], ['lay-stations', 'stations'], ['lay-webcams', 'webcams']].forEach((x) => {
       $('#' + x[0]).addEventListener('change', (e) => { A.state.layers[x[1]] = e.target.checked; A.save(); M.setLayer(x[1], e.target.checked); if (x[1] === 'fog') fogField(); if (x[1] === 'stations') M.paintStations(); });
