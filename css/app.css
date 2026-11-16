@@ -1,15 +1,15 @@
 /* Sonnenseite - layout: a fixed header with day and hour, then a results column beside a map
    (stacked and switchable on phones). Palette: alpine slate ink on fog-white, one sun-amber accent. */
 /* Identity: the fog line. Sun and open sky above, a soft white sea of fog below. Signal yellow, the colour of Swiss
-   hiking signposts, marks where to go and nothing else. One typeface, Archivo: condensed for names, normal for text. */
+   hiking signposts, marks where to go and nothing else. One typeface, Figtree: clean and open, weight carries the hierarchy. */
 :root {
   --bg: #E7ECEF; --surface: #FFFFFF; --surface-2: #F1F4F6; --ink: #17242D; --muted: #56636E; --line: #D3DAE0;
   --sun: #F6B000; --sign: #F6B000; --sign-ink: #17242D; --sun-ink: #6B4A00; --sun-soft: #FFEDB8;
   --sky: #2F6FB3; --sky-top: #B9D6F2; --sky-low: #EAF2FA; --fog: #A3AFB9; --fogline: #C7D0D8; --fogline2: #E4E9EE; --fogsea: #FFFFFF;
   --shade: #6F6A86; --night: #2A3947; --warn: #B4440C; --warn-bg: #FCEBDD; --good: #2E7D4F;
   --radius: 18px; --shadow: 0 6px 24px rgba(23, 36, 45, .16);
-  --f-display: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;
-  --f-body: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --f-display: "Figtree", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --f-body: "Figtree", "Helvetica Neue", Arial, system-ui, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -364,3 +364,20 @@ h1, h2, h3, h4 { font-stretch: 80%; }
 .fogbtn[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
 .fogbtn[aria-pressed="false"] { color: var(--muted); }
 .fogbtn[aria-pressed="false"] .ic { opacity: .55; }
+
+/* Figtree: one clean, open typeface at normal width; weight and size carry the hierarchy */
+h1, h2, h3, h4, .brief h2, .hero h2, .row-main b, .row-sun b, .sign-dest b, .sign-time, .day b, .fact b, .daymini b { font-stretch: 100%; }
+body { font-size: 15px; letter-spacing: 0; }
+.brand h1 { font-size: 20px; font-weight: 800; letter-spacing: -.01em; }
+.brief h2 { font-size: 26px; font-weight: 800; letter-spacing: -.015em; line-height: 1.12; }
+.hero h2 { font-size: 28px; font-weight: 800; letter-spacing: -.015em; line-height: 1.1; }
+.listhead h2 { font-size: 18px; font-weight: 750; letter-spacing: -.005em; }
+.card h3 { font-weight: 700; }
+.row-main b { font-size: 17px; font-weight: 700; }
+.row-sun b { font-size: 20px; font-weight: 800; }
+.sign-dest b { font-size: 20px; font-weight: 800; letter-spacing: -.01em; }
+.sign-time { font-size: 20px; font-weight: 800; }
+.fact b { font-weight: 700; }
+.tag { font-weight: 600; }
+.facts { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
+.fact b { white-space: nowrap; font-size: 16.5px; }
