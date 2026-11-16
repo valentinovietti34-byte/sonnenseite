@@ -275,3 +275,22 @@ svg.chart { display: block; width: 100%; height: auto; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
 .toast { position: fixed; z-index: 2000; left: 50%; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--surface); padding: 9px 16px; border-radius: 999px; font-size: 14px; box-shadow: var(--shadow); max-width: calc(100% - 32px); text-align: center; }
+
+/* ---------- confidence, lift and webcam labels, tomorrow card ---------- */
+.tag.t-conf.t-likely { background: color-mix(in srgb, var(--good) 15%, var(--surface)); color: var(--good); }
+.tag.t-conf.t-maybe { background: var(--sun-soft); color: var(--sun-ink); }
+.tag.t-conf.t-unlikely { background: var(--surface-2); color: var(--muted); }
+.tag.t-cam-blue { background: color-mix(in srgb, var(--sky) 14%, var(--surface)); color: var(--sky); }
+.tag.t-cam-fog { background: var(--surface-2); color: var(--muted); }
+.confline { grid-column: 1 / -1; font-size: 13.5px; padding: 8px 11px; border-radius: 10px; background: var(--surface-2); color: var(--muted); }
+.confline.c-likely { background: color-mix(in srgb, var(--good) 12%, var(--surface)); color: var(--good); }
+.confline.c-maybe { background: var(--sun-soft); color: var(--sun-ink); }
+.camimg { position: relative; display: block; }
+.cambadge { position: absolute; left: 6px; bottom: 6px; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 999px; background: rgba(20, 33, 43, .8); color: #fff; }
+.cambadge.c-blue { background: rgba(31, 101, 184, .92); }
+.tomorrow { display: flex; align-items: center; gap: 12px; padding: 11px 16px; border: 0; border-top: 1px solid var(--line); background: var(--surface-2); width: 100%; text-align: left; }
+.tomorrow .ic { color: var(--sun); width: 22px; height: 22px; }
+.tomorrow b { font: 600 15px var(--f-display); display: block; }
+.tomorrow small { color: var(--muted); font-size: 13px; }
+.tomorrow .go { margin-left: auto; font-weight: 600; color: var(--sky); white-space: nowrap; }
+.pop-btns { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }

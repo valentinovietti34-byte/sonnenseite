@@ -7,7 +7,7 @@
   const DEFAULTS = {
     home: { lat: 47.3769, lon: 8.5417, name: 'Zürich', ele: 408, gps: false },
     units: 'metric', theme: 'auto', model: 'best_match', sort: 'best', maxTravel: 150, altMin: 0, altMax: 4000,
-    kinds: { peak: true, hill: true, village: true, pass: true, town: true }, hideClosed: true, favOnly: false, favs: {}, reluctance: 1,
+    kinds: { peak: true, hill: true, village: true, pass: true, town: true }, hideClosed: true, favOnly: false, favs: {}, reluctance: 1, mode: 'car',
     base: 'grey', layers: { fog: true, stations: true, webcams: false }, fogManual: null, archive: null,
   };
   const saved = U.load(KEY, {}) || {};
@@ -26,13 +26,69 @@
     const r = document.documentElement;
     if (A.state.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', A.state.theme);
     if (M.refreshTheme && M.leaflet) M.refreshTheme();
+    if (SS.native) SS.native.setBars(A.isDark());
   }
 
   /* ---------------------------------------------------------------- derive and render */
   function rank() {
     const s = A.state;
-    A.ranked = E.rank({ dayStart: A.sel.dayStart, nowMs: E.now(), atMs: A.sel.atMs, maxTravel: s.maxTravel, altMin: s.altMin, altMax: s.altMax, kinds: s.kinds, sort: s.sort, hideClosed: s.hideClosed, favOnly: s.favOnly, favs: s.favs, reluctance: s.reluctance });
+    E.mode = s.mode === 'train' ? 'train' : 'car';
+    const opts = { dayStart: A.sel.dayStart, nowMs: E.now(), atMs: A.sel.atMs, maxTravel: s.maxTravel, altMin: s.altMin, altMax: s.altMax, kinds: s.kinds, sort: s.sort, hideClosed: s.hideClosed, favOnly: s.favOnly, favs: s.favs, reluctance: s.reluctance };
+    A.ranked = E.rank(opts);
+    /* tomorrow at a glance: from midday on, point out a clear-cut sunny trip for the next day */
+    A.tomorrow = null;
+    const now = E.now();
+    if (!E.fc.archive && T.dayStart(now) === A.sel.dayStart && T.hour(now) >= 12) {
+      const d1 = E.days().find((d) => d > A.sel.dayStart);
+      if (d1) {
+        const best = E.rank(Object.assign({}, opts, { dayStart: d1, atMs: d1 + 12 * 3600000, sort: 'best' })).find((r) => !r.closed && !r.liftClosed && r.day.conf === 'likely' && r.sunMin >= 120);
+        if (best) A.tomorrow = { dayStart: d1, p: best.p, conf: best.day.conf, sunMin: best.sunMin, total: best.travel.total };
+      }
+    }
   }
+  /* after each render: check lifts, train times and webcams for the places on screen, then render again once */
+  let followTimer = 0;
+  const rerenderSoon = () => { clearTimeout(followTimer); followTimer = setTimeout(A.render, 400); };
+  function followUp() {
+    if (!E.fc || E.fc.archive) return;
+    const rows = A.ranked || [], ds = A.sel.dayStart, sel = A.selPlace ? E.byId[A.selPlace] : null;
+    const top = rows.slice(0, 25).map((r) => r.p);
+    E.checkLifts((sel ? [sel] : []).concat(top), ds).then((ch) => { if (ch) rerenderSoon(); });
+    if (A.tomorrow) E.checkLifts([A.tomorrow.p], A.tomorrow.dayStart).then((ch) => { if (ch) rerenderSoon(); });
+    if (A.state.mode === 'train' && E.driveHome) {
+      const today = T.dayStart(E.now()) === ds;
+      E.loadPt(A.home, top.slice(0, 24).concat(sel ? [sel] : []), ds, today ? null : ds + 8 * 3600000).then((ch) => { if (ch) rerenderSoon(); });
+    }
+    if (T.dayStart(E.now()) === ds) {
+      const cams = rows.slice(0, 12).map((r) => E.bestCam(r.p));
+      if (sel) E.webcamsNear(sel, 6).forEach((w) => { if (w.p === 'roundshot' && w.i) cams.push(w); });
+      E.checkCams(cams).then((ch) => { if (ch) rerenderSoon(); });
+    }
+  }
+  /* forecast for any point tapped on the map */
+  async function pointForecast(ll) {
+    if (!E.fc || !ll) return;
+    const lat = ll.lat, lon = ll.lng;
+    if (lat < 45.75 || lat > 47.9 || lon < 5.9 || lon > 10.55) return;
+    M.popup(ll, '<b>This spot</b><br><span class="muted">Looking up the height…</span>');
+    const z0 = await E.elevationAt(lat, lon), z = z0 == null ? null : Math.max(0, z0);
+    const h = E.hourIndex(A.sel.atMs), est = z == null ? null : E.atPoint(lat, lon, z, h), day = z == null ? null : E.pointDay(lat, lon, z, A.sel.dayStart);
+    const today = T.dayStart(E.now()) === A.sel.dayStart;
+    const word = !est ? 'No estimate here' : !est.up ? 'Sun below the horizon' : est.sun >= 0.6 ? 'Sunny' : est.sun >= 0.4 ? 'Mostly sunny' : est.sun >= 0.2 ? 'Some sun' : est.low >= 0.6 ? 'Fog or low cloud' : 'Cloudy';
+    let near = null, nd = 1e9;
+    E.places.forEach((q) => { const d = U.haversine(lat, lon, q.la, q.lo); if (d < nd) { nd = d; near = q; } });
+    const html = '<b>' + U.esc(word) + '</b> <span class="muted">at ' + T.hm(A.sel.atMs) + '</span><br>'
+      + (z == null ? 'Height unknown' : U.fmtAlt(z)) + (day && day.known ? ' · about ' + U.fmtSunHours(day.sunMin) + ' of sun ' + (today ? 'today' : 'that day') : '')
+      + '<br><span class="muted" style="font-size:12px">Estimated from the regional forecast. Mountains around this point are not taken into account, so in a valley it can look too sunny.</span>'
+      + '<div class="pop-btns"><button type="button" class="pop-btn" data-pt="home">Start from here</button><a class="pop-btn" href="https://www.google.com/maps/dir/?api=1&destination=' + lat.toFixed(5) + ',' + lon.toFixed(5) + '" target="_blank" rel="noopener">Navigate</a></div>';
+    M.popup(ll, html, (e) => {
+      if (!e.target.closest('[data-pt="home"]')) return;
+      M.closePopup();
+      A.setHome({ lat: lat, lon: lon, name: near && nd < 5 ? 'Near ' + near.n : 'Map point' });
+      UI.toast('Starting point set to this spot.');
+    });
+  }
+
   function fogField() {
     if (!A.state.layers.fog || !E.fc) { M.setFog(null); return; }
     if (A.state.fogManual != null) { const t = A.state.fogManual; M.setFog(() => t); return; }
@@ -65,6 +121,7 @@
     if (E.fc) rank();
     UI.renderWhen(); UI.renderBrief(); UI.renderList(); UI.renderCredits(); paintMap();
     if (A.selPlace && !$('#sheet').hidden) { const y = $('#sheet').scrollTop; UI.openPlace(A.selPlace); $('#sheet').scrollTop = y; }
+    followUp();
   };
 
   /* ---------------------------------------------------------------- loading */
@@ -96,7 +153,7 @@
     if (E.fc && !E.fc.archive) loadObs(); else { E.obs = null; M.paintStations(); }
   };
   async function loadObs() {
-    try { await E.loadObs(); M.paintStations(); UI.renderBrief(); UI.renderList(); UI.renderCredits(); } catch (e) { /* measurements are optional */ }
+    try { await E.loadObs(); M.paintStations(); A.render(); } catch (e) { /* measurements are optional */ }
   }
   async function loadDrive() {
     await E.loadDrive(A.home);
@@ -115,17 +172,16 @@
     await loadDrive();
   };
   A.useGps = function () {
-    if (!navigator.geolocation) { UI.toast('This browser offers no location service.'); return; }
     UI.toast('Finding your position…', 8000);
-    navigator.geolocation.getCurrentPosition((pos) => {
-      const lat = pos.coords.latitude, lon = pos.coords.longitude;
-      M.setMe(lat, lon, pos.coords.accuracy);
+    SS.native.getPosition().then((pos) => {
+      const lat = pos.lat, lon = pos.lon;
+      M.setMe(lat, lon, pos.accuracy);
       if (lat < 45.7 || lat > 47.95 || lon < 5.8 || lon > 10.6) { UI.toast('You seem to be outside Switzerland, so ' + A.home.name + ' stays the starting point.', 5000); return; }
       UI.toast('Starting point set to your position.');
       A.setHome({ lat: lat, lon: lon, name: 'My position', gps: true });
     }, (err) => {
-      UI.toast(err && err.code === 1 ? 'Location access was refused. Allow it for this page, or choose a starting point in Settings.' : 'Could not get your position. Choose a starting point in Settings.', 6000);
-    }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+      UI.toast(err && err.code === 1 ? (SS.native.is ? 'Location access is off. Turn it on for Sonnenseite in your phone settings, or choose a starting point in Settings.' : 'Location access was refused. Allow it for this page, or choose a starting point in Settings.') : 'Could not get your position. Choose a starting point in Settings.', 6000);
+    });
   };
 
   /* ---------------------------------------------------------------- events */
@@ -166,7 +222,11 @@
       if (e.target.closest('#more')) { A.listLimit += 40; UI.renderList(); return; }
       const r = e.target.closest('[data-id]'); if (r) openPlace(r.dataset.id);
     });
-    $('#brief').addEventListener('click', (e) => { const r = e.target.closest('[data-id]'); if (r) openPlace(r.getAttribute('data-id')); });
+    $('#brief').addEventListener('click', (e) => {
+      const dd = e.target.closest('[data-day]');
+      if (dd) { const d = +dd.dataset.day; A.sel.dayStart = d; A.sel.atMs = d + 12 * 3600000; A.listLimit = 40; A.render(); return; }
+      const r = e.target.closest('[data-id]'); if (r) openPlace(r.getAttribute('data-id'));
+    });
     $('#btn-view').addEventListener('click', () => setView($('#app').dataset.view === 'map' ? 'list' : 'map'));
     $('#btn-layers').addEventListener('click', () => { const p = $('#layers'); p.hidden = !p.hidden; $('#btn-layers').classList.toggle('on', !p.hidden); });
     $('#btn-locate').addEventListener('click', A.useGps);
@@ -233,19 +293,28 @@
       if (t.dataset.kind) { s.kinds[t.dataset.kind] = t.checked; changed(); }
       else if (t.id === 's-closed') { s.hideClosed = t.checked; changed(); }
       else if (t.id === 's-fav') { s.favOnly = t.checked; changed(); }
+      else if (t.id === 's-mode') { s.mode = t.value; changed(); }
       else if (t.id === 's-units') { s.units = t.value; changed(); syncLayerUi(); }
       else if (t.id === 's-theme') { s.theme = t.value; applyTheme(); changed(); }
       else if (t.id === 's-model') { s.model = t.value; A.save(); $('#model-note').textContent = (E.MODELS.find((m) => m.id === s.model) || {}).note || ''; A.loadAll(true, true); }
       else if (t.id === 's-archive') { s.archive = t.value || null; A.save(); UI.closeSettings(); A.loadAll(true); }
       else if (['s-travel', 's-rel', 's-amin', 's-amax'].indexOf(t.id) >= 0) changed();
     });
-    document.addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; if (!$('#settings').hidden) UI.closeSettings(); else if (!$('#sheet').hidden) { UI.closeSheet(); paintMap(); } else if (!$('#layers').hidden) $('#layers').hidden = true; });
+    A.back = function () {
+      if (!$('#settings').hidden) { UI.closeSettings(); return true; }
+      if (!$('#sheet').hidden) { UI.closeSheet(); paintMap(); return true; }
+      if (!$('#layers').hidden) { $('#layers').hidden = true; $('#btn-layers').classList.remove('on'); return true; }
+      if ($('#app').dataset.view === 'map' && window.innerWidth < 900) { setView('list'); return true; }
+      return false;
+    };
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') A.back(); });
+    if (SS.native) SS.native.onBack(A.back);
     document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); });
     if (window.matchMedia) { const mq = window.matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', () => { if (A.state.theme === 'auto') { M.refreshTheme(); paintMap(); } }); }
     window.addEventListener('resize', U.debounce(() => M.invalidate(), 150));
   }
   function openPlace(id) {
-    UI.openPlace(id); paintMap();
+    UI.openPlace(id); paintMap(); followUp();
     const p = E.byId[id];
     if (p && window.innerWidth >= 900) M.focus(p, 10);
   }
@@ -260,7 +329,7 @@
     applyTheme();
     E.init();
     UI.renderBrief(); UI.renderList();
-    M.init({ onPlace: openPlace });
+    M.init({ onPlace: openPlace, onMapClick: pointForecast });
     M.setBase(A.state.base); M.setHome(A.home);
     ['fog', 'stations', 'webcams'].forEach((k) => M.setLayer(k, !!A.state.layers[k]));
     M.fitAround(A.home, 75);
@@ -268,7 +337,7 @@
     A.loadAll(false);
     loadDrive();
     setInterval(tick, 5 * 60000);
-    if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) navigator.serviceWorker.register('sw.js').catch(() => {});
+    if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol) && !(SS.native && SS.native.is)) navigator.serviceWorker.register('sw.js').catch(() => {});
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', A.boot); else A.boot();
 })();

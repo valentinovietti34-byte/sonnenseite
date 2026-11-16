@@ -7,6 +7,9 @@
   const ic = (n) => '<svg class="ic"><use href="#i-' + n + '"/></svg>';
   const KIND = { peak: 'Summit', hill: 'Viewpoint', village: 'Mountain village', pass: 'Pass', town: 'Town' };
   const ACCESS = { cable: 'cable car', funi: 'funicular', cog: 'mountain railway', walk: 'walk' };
+  const CONF = { likely: 'Sun likely', maybe: '50/50', unlikely: 'Sun unlikely' };
+  const CONF_LONG = { likely: 'Sun likely: the forecast is clear-cut here.', maybe: '50/50: this spot is close to the top of the fog, or the cloud forecast is borderline. Check the webcam before you go.', unlikely: 'Sun unlikely here on this day.' };
+  const CAMWORD = { blue: 'blue sky', fog: 'fog or cloud' };
   const flatHz = new Float32Array(180);
   let toastTimer = null;
 
@@ -128,7 +131,7 @@
       else if (op.state === 'patchy') measured = 'Measured ' + t + ': sun and cloud mixed at the low stations.';
     }
     const rows = A.ranked || [];
-    const best = rows.find((r) => !r.closed && r.sunMin >= (today ? 45 : 90));
+    const best = rows.find((r) => !r.closed && !r.liftClosed && r.day.conf !== 'unlikely' && r.sunMin >= (today ? 45 : 90));
     let bb = '';
     if (best) {
       const tr = best.travel;
@@ -136,8 +139,10 @@
     } else if (rows.length) {
       bb = '<div class="bestbet">' + ic('cloud') + '<span><b>No real sunshine within reach ' + (today ? 'for the rest of today' : 'that day') + '</b><small>Try another day, or raise the travel limit in Filters.</small></span></div>';
     }
+    const T1 = A.tomorrow;
+    const tm = T1 && today ? '<button type="button" class="tomorrow" data-day="' + T1.dayStart + '">' + ic('sun') + '<span><b>Tomorrow: ' + esc(T1.p.n) + '</b><small>' + CONF[T1.conf] + ' · about ' + U.fmtSunHours(T1.sunMin) + ' of sun' + (T1.total === T1.total ? ' · ' + U.fmtDur(T1.total) + ' away' : '') + '</small></span><span class="go">Show</span></button>' : '';
     box.innerHTML = '<div class="brief-head"><div class="eyebrow">' + (E.fc.archive ? 'Replay of ' + esc(T.dateLong(A.sel.atMs)) : live ? 'Right now' : 'Forecast') + ' · ' + esc(A.home.name) + ' ' + U.fmtAlt(A.home.ele) + '</div><h2>' + esc(head) + '</h2><p>' + sub + '</p>'
-      + (measured ? '<p class="measured"><span class="dot"></span><span>' + measured + '</span></p>' : '') + '</div>' + ladderSvg(rows, prof, A.sel.dayStart) + bb;
+      + (measured ? '<p class="measured"><span class="dot"></span><span>' + measured + '</span></p>' : '') + '</div>' + ladderSvg(rows, prof, A.sel.dayStart) + bb + tm;
   };
 
   /* ------------------------------------------------------------------ list */
@@ -151,16 +156,21 @@
     const shown = rows.slice(0, A.listLimit || 40);
     ol.innerHTML = shown.map((r) => {
       const p = r.p, o = r.now, tags = [];
+      tags.push('<span class="tag t-conf t-' + r.day.conf + '">' + CONF[r.day.conf] + '</span>');
       if (r.day.fogBelowHours) tags.push('<span class="tag t-above">' + ic('sun') + 'Above the fog</span>');
       if (p.a.length === 3) tags.push('<span class="tag">' + ic(p.a[0] === 'walk' ? 'walk' : p.a[0] === 'cable' ? 'cable' : 'train') + p.a[2] + ' min ' + ACCESS[p.a[0]] + '</span>');
       if (r.closed) tags.push('<span class="tag t-warn">' + ic('warn') + 'Usually closed in winter</span>');
+      if (r.liftClosed) tags.push('<span class="tag t-warn">' + ic('warn') + 'No lift departures in the timetable</span>');
+      else if (r.lift && r.lift.n > 0 && r.lift.last) tags.push('<span class="tag t-meas">' + ic('cable') + 'Lift running, last ' + T.hm(r.lift.last) + '</span>');
+      const cr = today ? E.camResult(E.bestCam(p)) : null;
+      if (cr && cr.ts && Date.now() - cr.ts < 50 * 60000 && CAMWORD[cr.state]) tags.push('<span class="tag t-cam-' + cr.state + '">' + ic('cam') + 'Webcam ' + T.hm(cr.ts) + ': ' + CAMWORD[cr.state] + '</span>');
       if (today && E.obs && !E.fc.archive) { const s = E.nearestStation(p.la, p.lo, p.e, 6, 150); if (s && s.canSee && s.sun >= 7) tags.push('<span class="tag t-meas">Measured sunny nearby</span>'); }
       if (A.state.favs[p.id]) tags.push('<span class="tag">' + ic('star') + 'Saved</span>');
       let strip = '';
       for (let k = ha; k <= hb; k++) strip += cell(r.day.hours[k], k === curH);
-      return '<li><button type="button" class="row' + (r.closed ? ' closed' : '') + '" data-id="' + p.id + '">'
+      return '<li><button type="button" class="row' + (r.closed || r.liftClosed ? ' closed' : '') + '" data-id="' + p.id + '">'
         + '<span class="badge-sun" style="background:' + stateBg(o) + '">' + ic(stateIcon(o)) + '</span>'
-        + '<span class="row-main"><b>' + esc(p.n) + '</b><small>' + U.fmtAlt(p.e) + ' · ' + esc(p.c) + (r.travel.total === r.travel.total ? ' · ' + (r.travel.exact ? '' : '~') + U.fmtDur(r.travel.total) : '') + '</small></span>'
+        + '<span class="row-main"><b>' + esc(p.n) + '</b><small>' + U.fmtAlt(p.e) + ' · ' + esc(p.c) + (r.travel.total === r.travel.total ? ' · ' + (r.travel.exact ? '' : '~') + U.fmtDur(r.travel.total) + (r.travel.mode === 'train' ? ' by train' : '') : '') + '</small></span>'
         + '<span class="row-sun"><b class="num">' + U.fmtSunHours(r.sunMin) + '</b><small>' + (today ? 'sun left' : 'of sun') + '</small></span>'
         + '<span class="strip" title="Hour by hour, ' + ha + ':00 to ' + (hb + 1) + ':00">' + strip + '</span>'
         + (tags.length ? '<span class="tags">' + tags.join('') + '</span>' : '') + '</button></li>';
@@ -216,14 +226,14 @@
     if (!p) return;
     A.selPlace = id;
     const dayStart = A.sel.dayStart, now = E.now(), today = T.dayStart(now) === dayStart;
-    const tr = E.travel(p), d = E.day(p.i, dayStart, null), o = E.hour(p.i, E.hourIndex(A.sel.atMs)) || { state: 'nodata' };
+    const tr = E.travel(p, dayStart), d = E.day(p.i, dayStart, null), o = E.hour(p.i, E.hourIndex(A.sel.atMs)) || { state: 'nodata' };
     const closed = E.isClosedSeason(p, dayStart), curH = T.hour(A.sel.atMs), fav = !!A.state.favs[p.id];
     const win = d.window, nav = p.nav || [p.la, p.lo, p.n];
     let h = '<div class="sheet-bar"><button type="button" class="iconbtn" data-act="close" aria-label="Back to the list">' + ic('back') + '</button><h2>' + esc(p.n) + '</h2>'
       + '<button type="button" class="iconbtn" data-act="fav" aria-pressed="' + fav + '" aria-label="' + (fav ? 'Remove from saved places' : 'Save this place') + '">' + ic(fav ? 'star' : 'star-o') + '</button></div><div class="sheet-body">';
     /* hero */
     h += '<div class="card"><div class="hero"><span class="badge-sun" style="background:' + stateBg(o) + '">' + ic(stateIcon(o)) + '</span><div><h2>' + esc(p.n) + '</h2><div class="sub">' + U.fmtAlt(p.e) + ' · ' + KIND[p.k] + ' · ' + esc(p.c) + ' · ' + esc(p.r) + '</div></div>'
-      + '<div class="now"><b>' + esc(o.why || '') + '</b> <span class="muted">at ' + (today ? '' : T.dayLabel(dayStart + 43200000, now) + ' ') + T.hm(A.sel.atMs) + (o.sun === o.sun && o.state !== 'night' ? ' · about ' + Math.round(o.sun * 60) + ' min of sun in this hour' : '') + '</span></div></div>';
+      + '<div class="now"><b>' + esc(o.why || '') + '</b> <span class="muted">at ' + (today ? '' : T.dayLabel(dayStart + 43200000, now) + ' ') + T.hm(A.sel.atMs) + (o.sun === o.sun && o.state !== 'night' ? ' · about ' + Math.round(o.sun * 60) + ' min of sun in this hour' : '') + '</span></div><div class="confline c-' + d.conf + '">' + CONF_LONG[d.conf] + (o.meas === o.meas ? ' Includes sunshine measured nearby in the last 10 minutes.' : '') + '</div></div>';
     h += '<div class="facts"><div class="fact"><small>Sun ' + (today ? 'today' : 'that day') + '</small><b>' + U.fmtSunHours(d.sunAll) + '</b></div>'
       + '<div class="fact"><small>Sunny from</small><b>' + (d.first != null ? T.hm(d.first) + '–' + T.hm(d.last) : 'not expected') + '</b></div>'
       + '<div class="fact"><small>Terrain lets sun in</small><b>' + (win.first != null ? T.hm(win.first) + '–' + T.hm(win.last) : 'not at all') + '</b></div>'
@@ -231,6 +241,12 @@
       + '<div class="fact"><small>Strongest gusts</small><b>' + U.fmtWind(d.gust) + '</b></div>'
       + (o.snow === o.snow && o.snow > 0.02 ? '<div class="fact"><small>Snow depth</small><b>' + (U.units() === 'imperial' ? Math.round(o.snow * 39.37) + ' in' : Math.round(o.snow * 100) + ' cm') + '</b></div>' : '') + '</div></div>';
     if (closed) h += '<div class="note warn">' + ic('warn') + '<span>The lift or road to ' + esc(p.n) + ' is usually closed in winter. Check the operator before you go.</span></div>';
+    if (E.needsLift(p) && !E.fc.archive) {
+      const lf = E.liftFor(p, dayStart), dd = esc(T.date(dayStart + 43200000));
+      if (lf && lf.n === 0) h += '<div class="note warn">' + ic('warn') + '<span>The timetable shows no departures from ' + esc(p.st) + ' on ' + dd + '. The lift is probably not running, for example during its annual maintenance. Check with the operator.</span></div>';
+      else if (lf && lf.n > 0) h += '<div class="note">' + ic('cable') + '<span>Lift running: ' + lf.n + ' departures from ' + esc(p.st) + ' in the timetable on ' + dd + ', the last at <b>' + T.hm(lf.last) + '</b>.</span></div>';
+      else if (!lf) h += '<div class="note">' + ic('cable') + '<span>Checking the lift timetable…</span></div>';
+    }
     if (d.hours.some((x) => x.lifted && x.up > 0)) h += '<div class="note">' + ic('fog') + '<span>This spot is close to the top of the fog. The weather model places it inside the fog, but ground at this height nearby is forecast clear, so it is shown as sunny. A look at the webcam settles it.</span></div>';
     if (p.t) h += '<div class="note">' + ic('pin') + '<span>' + esc(p.t) + '</span></div>';
     /* hours */
@@ -250,9 +266,10 @@
     h += '<div class="card"><h3>' + ic('cam') + 'Webcams <small>' + (cams.length ? 'within 6 km' : '') + '</small></h3>';
     if (cams.length) {
       h += '<div class="cams">' + cams.map((w, k) => {
-        const inner = (w.i ? '<img src="' + esc(w.i) + '" alt="Latest image: ' + esc(w.n) + '" loading="lazy" referrerpolicy="no-referrer">' : '<span class="ph">' + ic('cam') + '</span>') + '<b>' + esc(w.n) + '</b><small>' + U.fmtAlt(w.e) + ' · ' + U.fmtDist(w.dist) + ' away</small>';
+        const res = E.camResult(w), badge = res && res.ts && CAMWORD[res.state] ? '<span class="cambadge c-' + res.state + '">' + (res.state === 'blue' ? 'Blue sky' : 'Fog or cloud') + ' · ' + T.hm(res.ts) + '</span>' : '';
+        const inner = '<span class="camimg">' + (w.i ? '<img src="' + esc(w.i) + '" alt="Latest image: ' + esc(w.n) + '" loading="lazy" referrerpolicy="no-referrer">' : '<span class="ph">' + ic('cam') + '</span>') + badge + '</span><b>' + esc(w.n) + '</b><small>' + U.fmtAlt(w.e) + ' · ' + U.fmtDist(w.dist) + ' away</small>';
         return w.f ? '<button type="button" class="cam" data-cam="' + k + '">' + inner + '</button>' : '<a class="cam" href="' + esc(w.u) + '" target="_blank" rel="noopener">' + inner + '</a>';
-      }).join('') + '</div><div id="camview"></div>';
+      }).join('') + '</div>' + (cams.some((w) => w.p === 'roundshot' && w.i) ? '<p class="muted small" style="margin:8px 0 0">Labels on the pictures come from an automatic check of the latest image: <b>Blue sky</b> or <b>Fog or cloud</b>. When the check cannot tell, there is no label.</p>' : '') + '<div id="camview"></div>';
     } else h += '<p class="muted small">No webcam in the built-in directory near this place.</p>';
     h += '<div class="btns" style="margin-top:10px"><a class="btn" href="https://www.google.com/search?q=' + encodeURIComponent('webcam ' + p.n) + '" target="_blank" rel="noopener">' + ic('ext') + 'Search more webcams</a></div></div>';
     /* getting there */
@@ -312,6 +329,7 @@
       + '<div class="field"><label for="q">Search a place in Switzerland</label><input id="q" type="text" placeholder="Town, village or postcode" autocomplete="off"><div id="qres"></div></div>'
       + '<div class="field"><span class="lbl">Quick picks</span><div class="btns">' + quick.map((n) => '<button type="button" class="chip" data-home="' + esc(n) + '">' + esc(n) + '</button>').join('') + '</div></div></div>'
       + '<div class="card"><h3>' + ic('car') + 'Trip</h3>'
+      + '<div class="field"><label for="s-mode">How you travel</label><select id="s-mode"><option value="car"' + (s.mode !== 'train' ? ' selected' : '') + '>By car</option><option value="train"' + (s.mode === 'train' ? ' selected' : '') + '>By public transport</option></select><small>By public transport, the best-placed spots get real times from the Swiss timetable; the rest are estimates until checked.</small></div>'
       + '<div class="field"><div class="rangehead"><label for="s-travel">Longest trip, one way</label><output id="o-travel">' + U.fmtDur(s.maxTravel) + '</output></div><input id="s-travel" type="range" min="30" max="300" step="15" value="' + s.maxTravel + '"></div>'
       + '<div class="field"><div class="rangehead"><label for="s-rel">Prefer closer places</label><output id="o-rel">' + (s.reluctance <= 0.3 ? 'sun matters most' : s.reluctance >= 1.5 ? 'strongly' : 'balanced') + '</output></div><input id="s-rel" type="range" min="0" max="2" step="0.1" value="' + s.reluctance + '"><small>Used by the "Best trip" order: each extra hour on the road has to earn this many extra hours of sun.</small></div></div>'
       + '<div class="card"><h3>' + ic('peak') + 'Places</h3>'

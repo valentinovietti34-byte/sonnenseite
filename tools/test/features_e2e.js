@@ -1,0 +1,32 @@
+// Browser check of the new features: confidence and lift labels, tomorrow card, train mode, map tap, no console errors.
+const { chromium } = require('playwright');
+const fx = require('./fixtures');
+const out = process.env.SS_SHOTS || require('path').join(__dirname, '.shots');
+require('fs').mkdirSync(out, { recursive: true });
+(async () => {
+  const browser = await chromium.launch({ proxy: { server: process.env.HTTPS_PROXY || process.env.https_proxy, bypass: 'localhost,127.0.0.1' } });
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 860 } });
+  const page = await ctx.newPage(); const issues = [];
+  page.on('console', (m) => { if (m.type() === 'error') issues.push('console: ' + m.text().slice(0, 200)); });
+  page.on('pageerror', (e) => issues.push('pageerror: ' + e.message.slice(0, 300)));
+  await page.route(/open-meteo\.com/, (r) => { const b = fx.lookup(r.request().url()); if (b) r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: b }); else r.continue(); });
+  await page.route(/router\.project-osrm\.org/, (r) => { try { const body = require('child_process').execFileSync('curl', ['-sS', '-m', '40', r.request().url()], { encoding: 'utf8', maxBuffer: 1 << 26 }); r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body }); } catch (e) { r.abort(); } });
+  await page.goto('http://localhost:8765/');
+  await page.waitForFunction(() => window.SS && SS.engine.fc && document.querySelectorAll('#results .row').length > 0, null, { timeout: 60000 });
+  await page.waitForTimeout(9000);
+  const T = async (label, fn) => { try { console.log('OK  ', label, '->', JSON.stringify(await fn())); } catch (e) { console.log('FAIL', label, '->', e.message.split('\n')[0]); issues.push(label); } };
+  await T('selected day and first rows with labels', async () => ({ day: await page.textContent('#list-title'), rows: await page.$$eval('#results .row', (r) => r.slice(0, 5).map((x) => x.querySelector('b').textContent + ' [' + [...x.querySelectorAll('.tag')].map((t) => t.textContent).join(' / ') + ']')) }));
+  await T('lift labels after the timetable check', async () => await page.$$eval('#results .tag', (t) => t.map((x) => x.textContent).filter((s) => /lift/i.test(s)).slice(0, 6)));
+  await page.screenshot({ path: out + '/feat-list.png' });
+  await T('today view shows the tomorrow card', async () => { await page.click('#days .day:nth-child(1)'); await page.waitForTimeout(4000); const t = await page.$('#brief .tomorrow'); return t ? (await t.textContent()).trim() : 'no card (no clear-cut sunny trip tomorrow, or before noon)'; });
+  await T('open Säntis: lift note and confidence line', async () => { await page.evaluate(() => { SS.ui.openPlace(SS.engine.places.find((p) => p.n === 'Säntis').id); SS.app.render(); }); await page.waitForTimeout(6000); return [(await page.textContent('#sheet .confline')).trim(), ((await page.$$eval('#sheet .note', (n) => n.map((x) => x.textContent))).find((x) => /timetable|Lift/.test(x)) || 'no lift note')]; });
+  await page.screenshot({ path: out + '/feat-sheet.png' });
+  await page.click('#sheet [data-act="close"]');
+  await T('train mode: times from the timetable', async () => { await page.click('#btn-filter'); await page.selectOption('#s-mode', 'train'); await page.click('#settings [data-act="close"]'); await page.waitForTimeout(14000); return await page.$$eval('#results .row', (r) => r.slice(0, 4).map((x) => x.querySelector('b').textContent + ': ' + x.querySelector('small').textContent)); });
+  await T('back to car', async () => { await page.click('#btn-filter'); await page.selectOption('#s-mode', 'car'); await page.click('#settings [data-act="close"]'); await page.waitForTimeout(1500); return await page.$eval('#results .row small', (x) => x.textContent); });
+  await T('tap the map: point forecast popup', async () => { const box = await page.evaluate(() => { SS.map.leaflet.setView([47.55, 8.25], 11, { animate: false }); const r = document.getElementById('map').getBoundingClientRect(), pt = SS.map.leaflet.latLngToContainerPoint([47.555, 8.21]); return [r.left + pt.x, r.top + pt.y]; }); await page.waitForTimeout(800); await page.mouse.click(box[0], box[1]); await page.waitForTimeout(3500); return (await page.textContent('.leaflet-popup-content')).trim().slice(0, 160); });
+  await page.screenshot({ path: out + '/feat-popup.png' });
+  await T('start from the tapped point', async () => { await page.click('.leaflet-popup-content [data-pt="home"]'); await page.waitForTimeout(3000); return await page.evaluate(() => SS.app.home.name + ' ' + SS.app.home.ele + ' m'); });
+  console.log(issues.length ? 'ISSUES:\n' + [...new Set(issues)].join('\n') : 'no console errors');
+  await browser.close();
+})().catch((e) => { console.error('E2E FAILED', e); process.exit(1); });

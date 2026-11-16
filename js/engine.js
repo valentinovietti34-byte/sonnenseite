@@ -167,6 +167,7 @@
     const lowH = (fc.lowH = new Float32Array(N * n)), midH = new Float32Array(N * n), highH = new Float32Array(N * n);
     const leff = (fc.leff = new Float32Array(N * n)), sun = (fc.sun = new Float32Array(N * n));
     const below = (fc.fogBelow = new Uint8Array(N * n)), lifted = (fc.lifted = new Uint8Array(N * n));
+    const fogTop = (fc.fogTop = new Float32Array(N * n).fill(NaN));
     fc.midH = midH; fc.highH = highH;
     const avg = (a, i, h) => { const v = a[i * n + h], w = h + 1 < n ? a[i * n + h + 1] : v; return v !== v ? NaN : w !== w ? v : (v + w) / 2; };
     for (let i = 0; i < N; i++) {
@@ -191,6 +192,7 @@
           }
           if (zs.length >= 5) {
             const fit = isoDown(ys, ws);
+            if (fit[0] >= 0.6) { let k = 0; while (k < fit.length && fit[k] >= 0.5) k++; if (k > 0 && k < fit.length) fogTop[idx] = (zs[k - 1] + zs[k]) / 2; }
             if (hill) {
               Le = U.clamp(L + stepAt(zs, fit, p.e) - stepAt(zs, fit, p.zc), 0, 1);
               if (L >= 0.5 && Le < 0.3) lifted[idx] = 1;
@@ -204,7 +206,9 @@
         sun[idx] = Le === Le && M === M && H === H ? terr[idx] * E.cloudFactor(Le, M, H) : NaN;
       }
     }
+    fc.sunBase = sun.slice(); fc.meas = new Float32Array(N * n).fill(NaN);
     fc.computed = Date.now();
+    if (E.obs) E.applyObs();
   }
 
   E.now = () => (E.fc && E.fc.archive ? T.dayStart(Date.parse(E.fc.archive + 'T12:00:00Z')) + 9 * 3600000 : Date.now());
@@ -222,8 +226,16 @@
     if (!fc || h < 0 || h >= n) return null;
     const x = i * n + h, o = {
       ms: fc.t0 + h * 3600000, sun: fc.sun[x], terr: fc.terr[x], up: fc.up[x], low: fc.lowH[x], leff: fc.leff[x], mid: fc.midH[x], high: fc.highH[x],
-      temp: fc.temp[x], gust: fc.gust[x], precip: fc.precip[x], vis: fc.vis[x], rh: fc.rh[x], snow: fc.snow[x], fogBelow: !!fc.fogBelow[x], lifted: !!fc.lifted[x],
+      temp: fc.temp[x], gust: fc.gust[x], precip: fc.precip[x], vis: fc.vis[x], rh: fc.rh[x], snow: fc.snow[x], fogBelow: !!fc.fogBelow[x], lifted: !!fc.lifted[x], meas: fc.meas ? fc.meas[x] : NaN, fogTop: fc.fogTop ? fc.fogTop[x] : NaN,
     };
+    /* how sure is this estimate? 0 = clear-cut, 1 = a coin toss */
+    let u = 0;
+    if (o.leff === o.leff) u = 0.8 * (1 - Math.abs(2 * o.leff - 1));
+    if (o.mid === o.mid) u = Math.max(u, 0.5 * (1 - Math.abs(2 * o.mid - 1)));
+    if (o.fogTop === o.fogTop) u = Math.max(u, Math.exp(-Math.pow((E.places[i].e - o.fogTop) / 220, 2)));
+    if (o.lifted) u = Math.max(u, 0.55);
+    if (o.meas === o.meas) u *= 0.5;
+    o.u = u;
     o.state = o.sun !== o.sun ? 'nodata' : o.up === 0 ? 'night' : o.terr === 0 ? 'shade' : o.sun >= 0.6 ? 'sun' : o.sun >= 0.4 ? 'mostly' : o.sun >= 0.2 ? 'some' : 'none';
     o.why = o.state === 'night' ? 'Night' : o.state === 'shade' ? 'Sun behind the mountains' : o.state === 'nodata' ? 'No forecast for this hour'
       : o.sun >= 0.6 ? (o.fogBelow ? 'Sunny above the fog' : 'Sunny')
@@ -235,7 +247,7 @@
   /* a local day at one place. fromMs: only count sun after this moment (arrival time). */
   E.day = function (i, dayStart, fromMs) {
     const fc = E.fc, h0 = E.hourIndex(dayStart), p = E.places[i], hours = [];
-    let sunMin = 0, sunAll = 0, first = null, last = null, tMin = Infinity, tMax = -Infinity, gust = 0, precip = 0, known = 0, light = 0;
+    let sunMin = 0, sunAll = 0, first = null, last = null, tMin = Infinity, tMax = -Infinity, gust = 0, precip = 0, known = 0, light = 0, uw = 0, us = 0, pm = 0;
     for (let k = 0; k < 24; k++) {
       const h = h0 + k, o = E.hour(i, h) || { ms: dayStart + k * 3600000, state: 'nodata', sun: NaN, up: 0, terr: 0 };
       hours.push(o);
@@ -248,10 +260,16 @@
       if (o.sun >= 0.45) { if (first == null) first = o.ms; last = o.ms + 3600000; }
       if (o.up > 0) { light++; if (o.temp === o.temp) { tMin = Math.min(tMin, o.temp); tMax = Math.max(tMax, o.temp); } if (o.gust === o.gust) gust = Math.max(gust, o.gust); }
       if (o.precip === o.precip) precip += o.precip;
+      if (o.up > 0 && o.terr > 0 && (fromMs == null || o.ms + 3600000 > fromMs)) { uw += o.terr; us += o.u * o.terr; }
+      const wf = fromMs == null || o.ms >= fromMs ? 1 : o.ms + 3600000 > fromMs ? 1 - (fromMs - o.ms) / 3600000 : 0;
+      if (o.up > 0) pm += wf * o.terr * 54;     /* the most sun the forecast could give in this hour */
     }
+    /* label: share of the possible sun that is expected, and how borderline the forecast is */
+    const uDay = uw ? us / uw : 0, ratio = pm > 0 ? sunMin / pm : 0;
+    const conf = pm < 20 ? 'unlikely' : ratio >= 0.55 && uDay < 0.4 ? 'likely' : ratio >= 0.3 || uDay >= 0.4 ? 'maybe' : 'unlikely';
     const wk = dayStart + ':' + i;
     const win = winCache[wk] || (winCache[wk] = Sun.dayWindow(p.hzArr, dayStart, p.la, p.lo));
-    return { hours: hours, sunMin: sunMin, sunAll: sunAll, first: first, last: last, tMin: isFinite(tMin) ? tMin : NaN, tMax: isFinite(tMax) ? tMax : NaN, gust: gust, precip: precip, known: known, window: win, fogBelowHours: hours.filter((o) => o.fogBelow && o.sun >= 0.45).length };
+    return { hours: hours, sunMin: sunMin, sunAll: sunAll, first: first, last: last, tMin: isFinite(tMin) ? tMin : NaN, tMax: isFinite(tMax) ? tMax : NaN, gust: gust, precip: precip, known: known, window: win, fogBelowHours: hours.filter((o) => o.fogBelow && o.sun >= 0.45).length, conf: conf, uDay: uDay };
   };
 
   /* ------------------------------------------------------------------ regional fog profile */
@@ -331,6 +349,7 @@
       s.canSee = p.alt > 4 && p.alt > (s.hzArr ? Sun.horizonAt(s.hzArr, p.az) : 0) + 1.5;
     });
     E.obs = { list: list, ts: ts, fetched: Date.now() };
+    if (E.fc) E.applyObs();
     return E.obs;
   };
   /* measured fog top around a point: stations that can see the sun, sorted by altitude */
@@ -387,11 +406,18 @@
     } catch (e) { E.drive = null; E.driveSource = 'estimate'; }
   };
   /* minutes from home to standing at the place: drive to the valley station or village, plus lift, train or walk */
-  E.travel = function (p) {
-    if (!E.crow) return { total: NaN, drive: NaN, extra: 0, exact: false };
+  E.travel = function (p, dayStart) {
+    if (!E.crow) return { total: NaN, drive: NaN, extra: 0, exact: false, mode: E.mode };
+    if (E.mode === 'train') {
+      if (!p.st) return { total: NaN, none: true, exact: false, mode: 'train' };
+      const walk = Math.round((p.sd || 0) / 75), c = dayStart != null ? E.pt[ptKey(p.st, dayStart)] : null;
+      if (c && c.min != null) return { total: c.min + walk, ride: c.min, walk: walk, exact: true, mode: 'train', dep: c.dep, arr: c.arr + walk * 60000, transfers: c.transfers };
+      if (c && c.none) return { total: NaN, none: true, exact: true, mode: 'train' };
+      return { total: Math.round(crowMinutes(E.crow[p.i]) * 1.5 + 12) + walk, exact: false, mode: 'train' };
+    }
     const d = E.drive && E.drive[p.i] != null ? E.drive[p.i] : crowMinutes(E.crow[p.i]);
     const extra = p.a.length === 3 ? p.a[2] : 0;
-    return { total: d + extra, drive: d, extra: extra, exact: !!(E.drive && E.drive[p.i] != null), km: E.driveKm && E.driveKm[p.i] != null ? E.driveKm[p.i] : E.crow[p.i] * 1.38 };
+    return { total: d + extra, drive: d, extra: extra, exact: !!(E.drive && E.drive[p.i] != null), km: E.driveKm && E.driveKm[p.i] != null ? E.driveKm[p.i] : E.crow[p.i] * 1.38, mode: 'car' };
   };
   E.route = async function (home, p) {
     const n = navPoint(p);
@@ -399,23 +425,24 @@
     if (r.code !== 'Ok' || !r.routes.length) throw new Error('No route found.');
     return { line: r.routes[0].geometry.coordinates.map((c) => [c[1], c[0]]), min: Math.round(r.routes[0].duration / 60 * 1.08), km: r.routes[0].distance / 1000 };
   };
-  /* Next public-transport connections. If the stop at the place itself has none (a lift that is not running shows up
-     like this), the valley station is tried instead and the result says so. Returns {list, to, fallback}. */
+  const pdate = (v) => Date.parse(String(v || '').replace(/([+-]\d\d)(\d\d)$/, '$1:$2'));
+  async function connQuery(home, to, whenMs, limit) {
+    const q = ['from=' + encodeURIComponent(home.lat.toFixed(5) + ',' + home.lon.toFixed(5)), 'to=' + encodeURIComponent(to), 'limit=' + (limit || 4)];
+    if (whenMs) q.push('date=' + T.iso(whenMs), 'time=' + T.hm(whenMs));
+    ['from/departure', 'from/station/name', 'to/arrival', 'to/station/name', 'duration', 'transfers', 'products'].forEach((f) => q.push('fields[]=connections/' + f));
+    const r = await U.getJSON('https://transport.opendata.ch/v1/connections?' + q.join('&'), { timeout: 25000 });
+    return (r.connections || []).map((c) => {
+      const m = /(\d+)d(\d+):(\d+)/.exec(c.duration || '');
+      return { dep: pdate(c.from.departure), arr: pdate(c.to.arrival), from: c.from.station && c.from.station.name, to: c.to.station && c.to.station.name, min: m ? +m[1] * 1440 + +m[2] * 60 + +m[3] : null, transfers: c.transfers, products: c.products || [] };
+    });
+  }
+  /* Next connections to a place. If its own stop has none (a lift that is not running shows up like this),
+     the valley station is tried instead and the result says so. Returns {list, to, fallback, wanted}. */
   E.connections = async function (home, p, whenMs) {
-    const ask = async (to) => {
-      const q = ['from=' + encodeURIComponent(home.lat.toFixed(5) + ',' + home.lon.toFixed(5)), 'to=' + encodeURIComponent(to), 'limit=4'];
-      if (whenMs) { q.push('date=' + T.iso(whenMs), 'time=' + T.hm(whenMs)); }
-      ['from/departure', 'from/station/name', 'to/arrival', 'to/station/name', 'duration', 'transfers', 'products'].forEach((f) => q.push('fields[]=connections/' + f));
-      const r = await U.getJSON('https://transport.opendata.ch/v1/connections?' + q.join('&'), { timeout: 25000 });
-      return (r.connections || []).map((c) => {
-        const m = /(\d+)d(\d+):(\d+)/.exec(c.duration || '');
-        return { dep: Date.parse(c.from.departure), arr: Date.parse(c.to.arrival), from: c.from.station && c.from.station.name, to: c.to.station && c.to.station.name, min: m ? +m[1] * 1440 + +m[2] * 60 + +m[3] : null, transfers: c.transfers, products: c.products || [] };
-      });
-    };
     const first = p.st || p.n;
-    let list = await ask(first);
+    let list = await connQuery(home, first, whenMs, 4);
     if (!list.length && p.nav && p.nav[2] && p.nav[2] !== first) {
-      list = await ask(p.nav[2]);
+      list = await connQuery(home, p.nav[2], whenMs, 4);
       return { list: list, to: p.nav[2], fallback: true, wanted: first };
     }
     return { list: list, to: first, fallback: false };
@@ -457,15 +484,17 @@
       if (opts.favOnly && !(opts.favs && opts.favs[p.id])) return;
       const closed = E.isClosedSeason(p, opts.dayStart);
       if (closed && opts.hideClosed) return;
-      const tr = E.travel(p);
+      const tr = E.travel(p, opts.dayStart);
+      if (tr.none) return;
       if (tr.total === tr.total && tr.total > opts.maxTravel) return;
-      const arrive = today ? opts.nowMs + (tr.total === tr.total ? tr.total : 0) * 60000 : null;
+      const arrive = today ? (tr.arr || opts.nowMs + (tr.total === tr.total ? tr.total : 0) * 60000) : null;
+      const lift = E.liftFor(p, opts.dayStart), liftClosed = !!(lift && lift.n === 0);
       const d = E.day(p.i, opts.dayStart, arrive);
       if (!d.known) return;
       const hNow = E.hour(p.i, E.hourIndex(opts.atMs != null ? opts.atMs : today ? opts.nowMs : opts.dayStart + 12 * 3600000));
       const hours = d.sunMin / 60, tripH = (tr.total === tr.total ? tr.total : 60) / 60;
-      const score = hours - (opts.reluctance == null ? 1 : opts.reluctance) * tripH + (d.fogBelowHours ? 0.25 : 0) - (closed ? 3 : 0);
-      out.push({ p: p, travel: tr, day: d, sunMin: d.sunMin, now: hNow, score: score, closed: closed });
+      const score = hours - (opts.reluctance == null ? 1 : opts.reluctance) * tripH + (d.fogBelowHours ? 0.25 : 0) - (closed ? 3 : 0) - (liftClosed ? 4 : 0) + (d.conf === 'likely' ? 0.3 : 0);
+      out.push({ p: p, travel: tr, day: d, sunMin: d.sunMin, now: hNow, score: score, closed: closed, lift: lift, liftClosed: liftClosed });
     });
     const s = opts.sort || 'best';
     out.sort(s === 'sun' ? (a, b) => b.sunMin - a.sunMin || a.travel.total - b.travel.total
@@ -482,5 +511,184 @@
     out.sort((a, b) => (b.i ? 1 : 0) - (a.i ? 1 : 0) || a.dist - b.dist);
     return out;
   };
+  /* ------------------------------------------------------------------ small helpers */
+  async function pool(items, k, fn) {
+    let next = 0;
+    const run = async () => { while (next < items.length) { const it = items[next++]; try { await fn(it); } catch (e) { /* one failure must not stop the rest */ } } };
+    await Promise.all(Array.from({ length: Math.min(k, items.length) }, run));
+  }
+
+  /* ------------------------------------------------------------------ live measurements correct today's estimate */
+  /* For the hours right after the latest MeteoSwiss reading, blend in the sunshine measured at stations near each place
+     and at a similar height (25 km and 180 m scales). Weight 85 % for the current hour, fading to 15 % three hours later. */
+  const MEAS_W = [0.85, 0.6, 0.35, 0.15];
+  E.applyObs = function () {
+    const fc = E.fc;
+    if (!fc || !fc.sunBase) return false;
+    fc.sun.set(fc.sunBase); fc.meas.fill(NaN);
+    const obs = E.obs;
+    if (!obs || fc.archive || !obs.ts || Date.now() - obs.ts > 45 * 60000) return false;
+    const st = obs.list.filter((s) => s.canSee && s.sun != null);
+    if (st.length < 5) return false;
+    const n = fc.n, h0 = E.hourIndex(obs.ts);
+    let touched = 0;
+    E.places.forEach((p) => {
+      let sw = 0, ss = 0, near = 0;
+      for (let k = 0; k < st.length; k++) {
+        const s = st[k], d = U.haversine(p.la, p.lo, s.la, s.lo);
+        if (d > 45) continue;
+        const dz = (s.e - p.e) / 180, w = Math.exp(-d / 25) * Math.exp(-dz * dz);
+        if (w < 0.02) continue;
+        sw += w; ss += w * U.clamp(s.sun / 10, 0, 1); if (w > 0.08) near++;
+      }
+      if (sw < 0.25 || near < 1) return;
+      const Sm = ss / sw;
+      for (let k = 0; k < MEAS_W.length; k++) {
+        const h = h0 + k;
+        if (h < 0 || h >= n) continue;
+        const idx = p.i * n + h, base = fc.sunBase[idx];
+        if (base !== base) continue;
+        fc.sun[idx] = (1 - MEAS_W[k]) * base + MEAS_W[k] * fc.terr[idx] * Sm;
+        fc.meas[idx] = Sm;
+      }
+      touched++;
+    });
+    return touched > 0;
+  };
+
+  /* ------------------------------------------------------------------ lifts: does the timetable show departures? */
+  const LIFT_ACCESS = { cable: 1, funi: 1, cog: 1 };
+  const NOT_LIFT = /^(B|BN|BUS|NFB|NFO|KB|EXB|BAT|FAE|T|TRAM|NFT|M|EXT)$/;
+  E.lifts = {};
+  E.needsLift = (p) => !!(p.st && LIFT_ACCESS[p.a[0]]);
+  const liftKey = (p, dayStart) => p.st + '|' + T.iso(dayStart + 43200000);
+  E.liftFor = function (p, dayStart) {
+    if (!E.needsLift(p)) return null;
+    const v = E.lifts[liftKey(p, dayStart)];
+    return v && !v.pending ? v : null;
+  };
+  E.checkLifts = async function (places, dayStart) {
+    const day = T.iso(dayStart + 43200000);
+    const seen = {}, todo = places.filter((p) => { const k = E.needsLift(p) && liftKey(p, dayStart); if (!k || E.lifts[k] || seen[k]) return false; seen[k] = 1; return true; }).slice(0, 30);
+    if (!todo.length) return false;
+    todo.forEach((p) => { E.lifts[liftKey(p, dayStart)] = { pending: true }; });
+    const board = async (stop, hm) => {
+      const r = await U.getJSON('https://transport.opendata.ch/v1/stationboard?limit=150&station=' + encodeURIComponent(stop) + '&datetime=' + encodeURIComponent(day + ' ' + hm), { timeout: 20000 });
+      return (r.stationboard || []).filter((x) => !NOT_LIFT.test(String(x.category || '').toUpperCase()))
+        .map((x) => (x.stop && x.stop.departureTimestamp ? x.stop.departureTimestamp * 1000 : pdate(x.stop && x.stop.departure)));
+    };
+    await pool(todo, 3, async (p) => {
+      const key = liftKey(p, dayStart);
+      try {
+        let times = await board(p.st, '06:00');
+        if (times.length >= 140) times = times.concat(await board(p.st, '15:00'));      /* busy lifts: also fetch the evening */
+        times = times.filter((t) => t === t && T.iso(t) === day).sort((a, b) => a - b);
+        E.lifts[key] = { n: times.length, first: times[0] || null, last: times[times.length - 1] || null };
+      } catch (e) { E.lifts[key] = { err: String((e && e.message) || e) }; }
+    });
+    return true;
+  };
+
+  /* ------------------------------------------------------------------ public transport travel times */
+  E.mode = 'car';
+  E.pt = {};
+  const ptKey = (st, dayStart) => (E.driveHome ? E.driveHome.lat.toFixed(3) + ',' + E.driveHome.lon.toFixed(3) : '') + '|' + st + '|' + T.iso(dayStart + 43200000);
+  E.loadPt = async function (home, places, dayStart, whenMs) {
+    const seen = {}, todo = places.filter((p) => { const k = p.st && ptKey(p.st, dayStart); if (!k || E.pt[k] || seen[k]) return false; seen[k] = 1; return true; }).slice(0, 24);
+    if (!todo.length) return false;
+    todo.forEach((p) => { E.pt[ptKey(p.st, dayStart)] = { pending: true }; });
+    await pool(todo, 3, async (p) => {
+      const key = ptKey(p.st, dayStart);
+      try {
+        const ok = (await connQuery(home, p.st, whenMs, 3)).filter((c) => c.arr === c.arr && c.min != null);
+        if (!ok.length) { E.pt[key] = { none: true }; return; }
+        const c = ok.reduce((a, b) => (b.arr < a.arr ? b : a));
+        E.pt[key] = { min: c.min, dep: c.dep, arr: c.arr, transfers: c.transfers };
+      } catch (e) { E.pt[key] = { err: true }; }
+    });
+    return true;
+  };
+
+  /* ------------------------------------------------------------------ webcam check: blue sky or inside the fog? */
+  /* Calibrated on Roundshot panoramas: fog = little detail, bright and colourless; blue sky = saturated blue in the
+     upper part. Anything else gets no label, so the check stays quiet when it cannot tell. */
+  function classifyCam(d, W, H) {
+    const skyRows = Math.round(H * 0.4), y0 = Math.round(H * 0.35), y1 = Math.round(H * 0.85), sats = [];
+    let sky = 0, blue = 0, all = 0, n = 0, gs = 0, lum = 0;
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const o = (y * W + x) * 4, r = d[o] / 255, g = d[o + 1] / 255, b = d[o + 2] / 255;
+        all += (d[o] + d[o + 1] + d[o + 2]) / 3;
+        if (y >= skyRows) continue;
+        const mx = Math.max(r, g, b), mn = Math.min(r, g, b), s = mx ? (mx - mn) / mx : 0;
+        let h = 0;
+        if (mx !== mn) { h = mx === r ? ((g - b) / (mx - mn)) % 6 : mx === g ? (b - r) / (mx - mn) + 2 : (r - g) / (mx - mn) + 4; h = (((h * 60) % 360) + 360) % 360 / 360; }
+        sky++; sats.push(s);
+        if (s >= 0.3 && h >= 0.51 && h <= 0.7 && mx >= 0.45) blue++;
+      }
+    }
+    for (let y = y0; y < y1; y++) {
+      for (let x = 0; x < W - 1; x++) {
+        const o = (y * W + x) * 4, l1 = (d[o] + d[o + 1] + d[o + 2]) / 3, l2 = (d[o + 4] + d[o + 5] + d[o + 6]) / 3;
+        const o3 = o + W * 4, l3 = y + 1 < H ? (d[o3] + d[o3 + 1] + d[o3 + 2]) / 3 : l1;
+        gs += Math.abs(l1 - l2) + Math.abs(l1 - l3); lum += l1; n++;
+      }
+    }
+    sats.sort((a, b) => a - b);
+    const blueS = blue / sky, grad = gs / n, midLum = lum / n, p90 = sats[Math.floor(sats.length * 0.9)], mean = all / (W * H);
+    const state = mean < 45 ? 'dark' : blueS >= 0.35 || (blueS >= 0.25 && grad >= 15) ? 'blue' : grad < 10 && midLum > 150 && p90 < 0.3 ? 'fog' : 'other';
+    return { state: state, blueS: blueS, grad: grad, midLum: midLum, p90: p90 };
+  }
+  E._classifyCam = classifyCam;
+  E.cams = {};
+  E.bestCam = function (p) {
+    let best = null, bd = 1e9;
+    E.webcams.forEach((w) => {
+      if (!w.i || w.p !== 'roundshot') return;
+      const d = U.haversine(p.la, p.lo, w.la, w.lo), dz = Math.abs((w.e || p.e) - p.e);
+      if (d > 4 || dz > 350) return;
+      const sc = d + dz / 100;
+      if (sc < bd) { bd = sc; best = w; }
+    });
+    return best;
+  };
+  E.camResult = (w) => { const c = w && E.cams[w.i]; return c && !c.pending ? c : null; };
+  E.checkCam = async function (w) {
+    const key = w.i;
+    E.cams[key] = { pending: true, at: Date.now() };
+    try {
+      const res = await fetch(w.i, { mode: 'cors' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const blob = await res.blob();
+      const m = /(\d{4})-(\d{2})-(\d{2})\/(\d{2})-(\d{2})-(\d{2})\//.exec(res.url || '');
+      let ts = null;
+      if (m) { const g = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]); ts = g - T.offsetMin(g) * 60000; }
+      const url = URL.createObjectURL(blob);
+      const img = await new Promise((ok, bad) => { const im = new Image(); im.onload = () => ok(im); im.onerror = bad; im.src = url; });
+      const W = 160, H = Math.max(20, Math.round((img.height * W) / img.width));
+      const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+      const g2 = cv.getContext('2d', { willReadFrequently: true });
+      g2.drawImage(img, 0, 0, W, H);
+      URL.revokeObjectURL(url);
+      E.cams[key] = Object.assign(classifyCam(g2.getImageData(0, 0, W, H).data, W, H), { ts: ts, at: Date.now() });
+    } catch (e) { E.cams[key] = { state: 'unknown', at: Date.now() }; }
+    return E.cams[key];
+  };
+  E.checkCams = async function (list) {
+    const seen = {}, todo = list.filter((w) => { if (!w || !w.i || seen[w.i]) return false; seen[w.i] = 1; const c = E.cams[w.i]; return !c || (!c.pending && Date.now() - c.at > 10 * 60000); });
+    if (!todo.length) return false;
+    todo.forEach((w) => { E.cams[w.i] = { pending: true, at: Date.now() }; });
+    await pool(todo, 4, (w) => E.checkCam(w));
+    return true;
+  };
+
+  /* ------------------------------------------------------------------ any point on the map */
+  E.pointDay = function (lat, lon, ele, dayStart) {
+    const h0 = E.hourIndex(dayStart);
+    let min = 0, known = 0;
+    for (let k = 0; k < 24; k++) { const r = E.atPoint(lat, lon, ele, h0 + k); if (!r) continue; known++; if (r.up) min += r.sun * 60; }
+    return { sunMin: min, known: known };
+  };
+
   E.clearCaches = function () { U.drop(FC_KEY); U.drop('ss.drive.v1'); };
 })();

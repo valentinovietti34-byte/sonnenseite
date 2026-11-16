@@ -97,7 +97,7 @@
     });
     const zc = () => { const z = map.getZoom(), c = map.getContainer().classList; c.toggle('z-mid', z >= 10 && z < 12); c.toggle('z-high', z >= 12); };
     map.on('zoomend', zc); zc();
-    map.on('click', () => handlers.onMapClick && handlers.onMapClick());
+    map.on('click', (e) => handlers.onMapClick && handlers.onMapClick(e.latlng));
   };
 
   M.setBase = function (name) {
@@ -168,5 +168,13 @@
     const dLat = km / 111, dLon = km / (111 * Math.cos((home.lat * Math.PI) / 180));
     map.fitBounds([[home.lat - dLat, home.lon - dLon], [home.lat + dLat, home.lon + dLon]]);
   };
+  M.popup = function (ll, html, onClick) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    if (onClick) div.addEventListener('click', onClick);
+    if (!M._pop) M._pop = L.popup({ maxWidth: 270, autoPanPadding: [40, 40] });
+    M._pop.setLatLng(ll).setContent(div).openOn(map);
+  };
+  M.closePopup = function () { if (map) map.closePopup(); };
   M.invalidate = function () { if (map) map.invalidateSize(); };
 })();
