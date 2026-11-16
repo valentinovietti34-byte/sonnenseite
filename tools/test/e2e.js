@@ -13,7 +13,7 @@ const base = process.env.SS_URL || 'http://localhost:8765/';
     const page = await ctx.newPage();
     page.on('console', (m) => { if (m.type() === 'error') issues.push(`[${name}] console: ${m.text().slice(0, 200)}`); });
     page.on('pageerror', (e) => issues.push(`[${name}] pageerror: ${e.message.slice(0, 300)}`));
-    page.on('requestfailed', (r) => { const u = r.url(); if (!/tile|wmts|terrarium|fonts|roundshot|foto-webcam/.test(u)) issues.push(`[${name}] failed: ${u.slice(0, 110)} ${r.failure() && r.failure().errorText}`); });
+    page.on('requestfailed', (r) => { const u = r.url(); if (!/tile|wmts|terrarium|fonts|roundshot|foto-webcam|cartocdn/.test(u)) issues.push(`[${name}] failed: ${u.slice(0, 110)} ${r.failure() && r.failure().errorText}`); });
     let hits = 0, misses = 0;
     await page.route(/open-meteo\.com/, (route) => { const b = fx.lookup(route.request().url()); if (b) { hits++; route.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: b }); } else { misses++; route.continue(); } });
     /* this sandbox's network proxy refuses in-page requests to the routing server; fetch them from Node instead so the app's parsing is tested on real answers */

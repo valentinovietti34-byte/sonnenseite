@@ -57,6 +57,7 @@ winter are flagged from a hand-kept list.
 | Forecast | Open-Meteo (ICON-D2 / ICON-EU by default; MeteoSwiss ICON-CH1 and CH2 selectable), CC BY 4.0 |
 | Measured sunshine, temperature, humidity | MeteoSwiss open government data |
 | Base maps, place names | swisstopo |
+| Map outside Switzerland | CARTO basemaps, OpenStreetMap data |
 | Terrain | Mapzen Terrarium tiles on AWS Open Data |
 | Road routing | OSRM demo server (OpenStreetMap data) |
 | Timetable | transport.opendata.ch |

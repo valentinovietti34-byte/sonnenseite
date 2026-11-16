@@ -25,6 +25,7 @@
   function applyTheme() {
     const r = document.documentElement;
     if (A.state.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', A.state.theme);
+    if (M.refreshTheme && M.leaflet) M.refreshTheme();
   }
 
   /* ---------------------------------------------------------------- derive and render */
@@ -240,7 +241,7 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; if (!$('#settings').hidden) UI.closeSettings(); else if (!$('#sheet').hidden) { UI.closeSheet(); paintMap(); } else if (!$('#layers').hidden) $('#layers').hidden = true; });
     document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); });
-    if (window.matchMedia) { const mq = window.matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', () => { if (A.state.theme === 'auto') paintMap(); }); }
+    if (window.matchMedia) { const mq = window.matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', () => { if (A.state.theme === 'auto') { M.refreshTheme(); paintMap(); } }); }
     window.addEventListener('resize', U.debounce(() => M.invalidate(), 150));
   }
   function openPlace(id) {

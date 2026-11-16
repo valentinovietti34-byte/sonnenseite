@@ -721,12 +721,13 @@ a { color: var(--sky); }
 .top { display: flex; align-items: center; gap: 8px; padding: 8px max(12px, env(safe-area-inset-right, 0px)) 6px max(12px, env(safe-area-inset-left, 0px)); background: var(--surface); }
 .brand { display: flex; align-items: center; gap: 9px; margin-right: auto; min-width: 0; }
 .logo { width: 34px; height: 34px; border-radius: 9px; background: var(--sky); flex: none; }
-.brand-text { min-width: 0; line-height: 1.1; }
-.brand h1 { font-size: 19px; font-weight: 700; }
-.brand span { font-size: 11.5px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+.brand-text { min-width: 0; line-height: 1.1; overflow: hidden; }
+.brand h1 { font-size: 19px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.brand span { display: block; font-size: 11.5px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-weight: 500; font-size: 13.5px; white-space: nowrap; }
 .chip:hover { border-color: var(--muted); }
 .chip-home { max-width: 44vw; }
+@media (max-width: 560px) { .top { gap: 6px; } .brand { gap: 7px; } .brand h1 { font-size: 18px; } .brand span { display: none; } .chip-home { max-width: 30vw; padding: 6px 10px; } }
 .chip-home span { overflow: hidden; text-overflow: ellipsis; }
 .chip-home .ic { color: var(--sky); }
 .iconbtn { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--line); background: var(--surface); border-radius: 50%; flex: none; }
@@ -762,7 +763,7 @@ a { color: var(--sky); }
   .pane-list { flex: 1 1 auto; }
   .app[data-view="list"] .pane-map { position: absolute; inset: 0; visibility: hidden; }
   .app[data-view="map"] .pane-list { display: none; }
-  .fab { display: inline-flex; position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 900; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 11px 20px; background: var(--ink); color: var(--surface); font: 600 15px var(--f-display); box-shadow: var(--shadow); }
+  .fab { display: inline-flex; position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(24px + env(safe-area-inset-bottom, 0px)); z-index: 900; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 11px 20px; background: var(--ink); color: var(--surface); font: 600 15px var(--f-display); box-shadow: var(--shadow); }
 }
 
 /* ---------- brief ---------- */
@@ -837,7 +838,7 @@ select { border: 1px solid var(--line); background: var(--surface); border-radiu
 .fogslider { display: flex; gap: 10px; align-items: center; }
 .fogslider input { flex: 1; accent-color: var(--sun); min-width: 0; }
 .fogslider output { font: 600 14px var(--f-display); font-variant-numeric: tabular-nums; min-width: 4.4em; text-align: right; }
-.legend { position: absolute; z-index: 790; left: max(10px, env(safe-area-inset-left, 0px)); bottom: calc(26px + env(safe-area-inset-bottom, 0px)); background: var(--surface); border-radius: 10px; box-shadow: var(--shadow); padding: 7px 10px; font-size: 11.5px; color: var(--muted); max-width: calc(100% - 20px); }
+.legend { position: absolute; z-index: 790; left: max(10px, env(safe-area-inset-left, 0px)); bottom: calc(24px + env(safe-area-inset-bottom, 0px)); background: var(--surface); border-radius: 10px; box-shadow: var(--shadow); padding: 7px 10px; font-size: 11.5px; color: var(--muted); max-width: calc(100% - 20px); }
 .legend .bar { height: 8px; width: 150px; border-radius: 4px; margin: 3px 0 2px; }
 .legend .ends { display: flex; justify-content: space-between; }
 .legend b { color: var(--ink); font-weight: 600; }
@@ -1799,14 +1800,17 @@ window.SS_STATIONS = {"ABO":{"n":"Adelboden","la":46.49219,"lo":7.56047,"e":1348
     aerial: { id: 'ch.swisstopo.swissimage' },
   };
   const TERRARIUM = 'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png';
-  const ATTR = 'Map &copy; <a href="https://www.swisstopo.admin.ch/" target="_blank" rel="noopener">swisstopo</a> &middot; Terrain: Mapzen/AWS';
-  let map, base, fog, gPlaces, gStations, gWebcams, homeMk, meMk, meCircle, routeLine, handlers = {};
+  const ATTR = '&copy; <a href="https://www.swisstopo.admin.ch/" target="_blank" rel="noopener">swisstopo</a>';
+  /* outside Switzerland the swisstopo sheets end; a plain OpenStreetMap-based layer fills the rest */
+  const UNDER = 'https://{s}.basemaps.cartocdn.com/{style}/{z}/{x}/{y}{r}.png';
+  const UNDER_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>, <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>';
+  let map, base, under, fog, gPlaces, gStations, gWebcams, homeMk, meMk, meCircle, routeLine, handlers = {};
   const markers = {};
 
   const tileLat = (yn) => (Math.atan(Math.sinh(Math.PI * (1 - 2 * yn))) * 180) / Math.PI;
 
   const FogLayer = L.GridLayer.extend({
-    options: { minZoom: 7, maxNativeZoom: 11, tileSize: 256, pane: 'fog', updateWhenZooming: false, keepBuffer: 1, bounds: [[45.6, 5.7], [47.95, 10.7]] },
+    options: { minZoom: 7, maxNativeZoom: 11, tileSize: 256, pane: 'fog', updateWhenZooming: false, keepBuffer: 1, bounds: [[45.6, 5.7], [47.95, 10.7]], attribution: 'Terrain: Mapzen' },
     createTile: function (coords, done) {
       const c = L.DomUtil.create('canvas', 'leaflet-tile');
       c.width = c.height = 256; c._coords = coords;
@@ -1856,12 +1860,16 @@ window.SS_STATIONS = {"ABO":{"n":"Adelboden","la":46.49219,"lo":7.56047,"e":1348
     repaint: function () { for (const k in this._tiles) this.paint(this._tiles[k].el); },
   });
 
+  const underStyle = () => (SS.app && SS.app.isDark && SS.app.isDark() ? 'dark_all' : 'light_all');
+  M.refreshTheme = function () { if (under && under.options.style !== underStyle()) { under.options.style = underStyle(); under.redraw(); } if (fog && map.hasLayer(fog)) fog.repaint(); };
+
   M.init = function (h) {
     handlers = h || {};
     map = L.map('map', { center: [46.82, 8.25], zoom: 8, minZoom: 7, maxZoom: 16, zoomControl: false, attributionControl: true, maxBounds: [[44.9, 4.6], [48.7, 11.8]], maxBoundsViscosity: 0.8 });
     M.leaflet = map;
     L.control.zoom({ position: 'bottomright' }).addTo(map);
     map.attributionControl.setPrefix(false);
+    under = L.tileLayer(UNDER, { style: underStyle(), subdomains: 'abcd', maxZoom: 18, attribution: UNDER_ATTR, zIndex: 1 }).addTo(map);
     map.createPane('fog').style.zIndex = 350;
     map.getPane('fog').style.pointerEvents = 'none';
     gPlaces = L.layerGroup().addTo(map); gStations = L.layerGroup(); gWebcams = L.layerGroup();
@@ -1882,8 +1890,7 @@ window.SS_STATIONS = {"ABO":{"n":"Adelboden","la":46.49219,"lo":7.56047,"e":1348
   M.setBase = function (name) {
     const b = BASES[name] || BASES.grey;
     if (base) map.removeLayer(base);
-    base = L.tileLayer(WMTS + b.id + '/default/current/3857/{z}/{x}/{y}.jpeg', { attribution: ATTR, maxNativeZoom: 18, maxZoom: 18, className: b.cls || '', bounds: [[45.6, 5.7], [47.95, 10.7]] }).addTo(map);
-    base.bringToBack();
+    base = L.tileLayer(WMTS + b.id + '/default/current/3857/{z}/{x}/{y}.jpeg', { attribution: ATTR, maxNativeZoom: 18, maxZoom: 18, className: b.cls || '', bounds: [[45.6, 5.7], [47.95, 10.7]], zIndex: 2 }).addTo(map);
   };
   M.setLayer = function (name, on) {
     const g = name === 'fog' ? fog : name === 'stations' ? gStations : gWebcams;
@@ -1908,7 +1915,7 @@ window.SS_STATIONS = {"ABO":{"n":"Adelboden","la":46.49219,"lo":7.56047,"e":1348
     gStations.clearLayers();
     if (!E.obs) return;
     E.obs.list.forEach((s) => {
-      if (s.sun == null) return;
+      if (s.sun == null || !s.canSee) return;            /* no reading is possible while the sun is below the station's skyline */
       const mk = L.marker([s.la, s.lo], { icon: L.divIcon({ className: '', html: '<div class="st' + (s.canSee ? '' : ' blind') + '" style="background:' + (s.canSee ? U.sunColor((s.sun / 10) * 0.9) : '#c9d1d8') + '"></div>', iconSize: [0, 0] }), title: s.n, zIndexOffset: -500 });
       mk.bindPopup(() => '<b>' + U.esc(s.n) + '</b><br><span class="muted">MeteoSwiss station · ' + U.fmtAlt(s.e) + '</span><br>'
         + (s.canSee ? 'Sunshine: <b>' + Math.round(s.sun) + ' of 10 min</b>' : 'Sun not visible from here right now')
@@ -2284,7 +2291,7 @@ window.SS_STATIONS = {"ABO":{"n":"Adelboden","la":46.49219,"lo":7.56047,"e":1348
       + '<div class="field"><label for="s-theme">Theme</label><select id="s-theme"><option value="auto"' + (s.theme === 'auto' ? ' selected' : '') + '>Match device</option><option value="light"' + (s.theme === 'light' ? ' selected' : '') + '>Light</option><option value="dark"' + (s.theme === 'dark' ? ' selected' : '') + '>Dark</option></select></div></div></div>'
       + '<div class="card"><h3>How it works</h3><p class="small muted" style="margin:0 0 8px">For each of ' + E.places.length + ' places the app combines three things: the low, mid and high cloud forecast; the real skyline, so it knows when mountains block the low winter sun; and the height of the fog top, read from how the low cloud changes with altitude across neighbouring places. The conversion from cloud to sunshine was calibrated on MeteoSwiss sunshine measurements.</p>'
       + '<p class="small muted" style="margin:0 0 8px">Near the top of the fog a difference of 100 m decides between grey and blue sky, and no forecast is that precise. That is why the measured sunshine and the webcams are one tap away.</p>'
-      + '<p class="small muted" style="margin:0">Data: Open-Meteo (forecast, CC BY 4.0), MeteoSwiss (measurements), swisstopo (maps, place names), OpenStreetMap contributors (webcam locations), OSRM (road routing), transport.opendata.ch (timetable), Mapzen terrain tiles on AWS. Webcam images belong to their operators.</p></div>'
+      + '<p class="small muted" style="margin:0">Data: Open-Meteo (forecast, CC BY 4.0), MeteoSwiss (measurements), swisstopo (maps, place names), OpenStreetMap contributors (webcam locations, map outside Switzerland via CARTO), OSRM (road routing), transport.opendata.ch (timetable), Mapzen terrain tiles on AWS. Webcam images belong to their operators.</p></div>'
       + '<div class="card"><div class="btns"><button type="button" class="btn" data-act="reset">Reset all settings</button><button type="button" class="btn" data-act="clear">Clear cached data</button></div></div></div>';
     sh.hidden = false; sh.scrollTop = 0;
   };
@@ -2328,6 +2335,7 @@ window.SS_STATIONS = {"ABO":{"n":"Adelboden","la":46.49219,"lo":7.56047,"e":1348
   function applyTheme() {
     const r = document.documentElement;
     if (A.state.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', A.state.theme);
+    if (M.refreshTheme && M.leaflet) M.refreshTheme();
   }
 
   /* ---------------------------------------------------------------- derive and render */
@@ -2543,7 +2551,7 @@ window.SS_STATIONS = {"ABO":{"n":"Adelboden","la":46.49219,"lo":7.56047,"e":1348
     });
     document.addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; if (!$('#settings').hidden) UI.closeSettings(); else if (!$('#sheet').hidden) { UI.closeSheet(); paintMap(); } else if (!$('#layers').hidden) $('#layers').hidden = true; });
     document.addEventListener('visibilitychange', () => { if (!document.hidden) tick(); });
-    if (window.matchMedia) { const mq = window.matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', () => { if (A.state.theme === 'auto') paintMap(); }); }
+    if (window.matchMedia) { const mq = window.matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', () => { if (A.state.theme === 'auto') { M.refreshTheme(); paintMap(); } }); }
     window.addEventListener('resize', U.debounce(() => M.invalidate(), 150));
   }
   function openPlace(id) {
