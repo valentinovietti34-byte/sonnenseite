@@ -1,0 +1,5266 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.4 2390de5a",
+  "osm3s": {
+    "timestamp_osm_base": "118491",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 320195929,
+  "lat": 47.4503185,
+  "lon": 8.5620344,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/dock-b",
+    "man_made": "surveillance",
+    "name": "Dock B",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "traffic"
+  }
+},
+{
+  "type": "node",
+  "id": 370270732,
+  "lat": 46.5474611,
+  "lon": 7.9808853,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://www.jungfrau.ch/webcams/top-of-europe-jungfraujoch/#/",
+    "description": "360° Panorama Webcam auf dem Jungfraujoch 3454 Meter über Meer",
+    "ele": "3454",
+    "man_made": "surveillance",
+    "name": "Panorama-Webcam Jungfraujoch",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "tourism": "viewpoint",
+    "website": "https://www.jungfrau.ch/de-ch/live/webcams/#webcam-jungfraujoch-top-of-europe",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 419876014,
+  "lat": 47.0260217,
+  "lon": 6.9581735,
+  "tags": {
+    "contact:webcam": "https://chaumont.roundshot.com",
+    "direction": "0-360",
+    "fee": "yes",
+    "surveillance": "webcam",
+    "tourism": "viewpoint"
+  }
+},
+{
+  "type": "node",
+  "id": 420323089,
+  "lat": 47.6730624,
+  "lon": 8.1604376,
+  "tags": {
+    "direction": "200",
+    "man_made": "surveillance",
+    "name": "Jülke&Treu",
+    "surveillance": "webcam",
+    "surveillance:zone": "parking",
+    "webcam": "http://www.lichtwerbung.ws/webcam/index.html"
+  }
+},
+{
+  "type": "node",
+  "id": 1224214083,
+  "lat": 46.1282274,
+  "lon": 6.1730067,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/309",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "name": "Balise météo du site du Salève",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "source": "bing",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/309"
+  }
+},
+{
+  "type": "node",
+  "id": 1748253087,
+  "lat": 47.5524429,
+  "lon": 7.9492338,
+  "tags": {
+    "camera:direction": "330",
+    "camera:mount": "wall",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcam.hirsch-woelfl.de/bad-saeckingen/current_1280px.jpg",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.badsaeckingen.de/informationen-service/webcam"
+  }
+},
+{
+  "type": "node",
+  "id": 1815265600,
+  "lat": 46.9792149,
+  "lon": 8.2562411,
+  "tags": {
+    "camera:mount": "pole",
+    "contact:webcam": "https://pilatus.roundshot.com/#/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.pilatus.ch/en/webcams/"
+  }
+},
+{
+  "type": "node",
+  "id": 2174054938,
+  "lat": 46.6507181,
+  "lon": 7.7874324,
+  "tags": {
+    "check_date": "2025-05-25",
+    "contact:webcam": "https://4insiders.webcam/webcam/leissigen/8144",
+    "description": "Rest. Meielisalp mit Aussicht auf Thunersee / Niesen",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 2413756028,
+  "lat": 46.4186270,
+  "lon": 6.9511337,
+  "tags": {
+    "contact:webcam": "https://holfuy.com/fr/weather/690",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "webcam"
+  }
+},
+{
+  "type": "node",
+  "id": 2426798937,
+  "lat": 47.2177585,
+  "lon": 9.5051498,
+  "tags": {
+    "contact:webcam": "http://www.grossabuent.li/livecam.html",
+    "name": "Grossabünt.li",
+    "surveillance": "webcam"
+  }
+},
+{
+  "type": "node",
+  "id": 2585819288,
+  "lat": 46.5866144,
+  "lon": 9.5537889,
+  "tags": {
+    "camera:angle": "30",
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://www.valsurses.ch/en/webcams",
+    "man_made": "surveillance",
+    "operator": "Savognin Bergbahnen (SB)",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "website:webcam": "http://webtv.feratel.com/webtv/?design=v3&cam=4090"
+  }
+},
+{
+  "type": "node",
+  "id": 2585819313,
+  "lat": 46.5935254,
+  "lon": 9.5999690,
+  "tags": {
+    "camera:angle": "30",
+    "camera:direction": "200",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://savognin.graubuenden.ch/de/webcam/kinderland-la-nars",
+    "man_made": "surveillance",
+    "operator": "Savognin Bergbahnen (SB)",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "website:webcam": "http://www.savognin.ch/fileadmin/.mandanten/savognin/images/webcams/savognin-laibarnagn.jpg"
+  }
+},
+{
+  "type": "node",
+  "id": 2585819314,
+  "lat": 46.5957989,
+  "lon": 9.5990145,
+  "tags": {
+    "camera:angle": "30",
+    "camera:direction": "220",
+    "camera:mount": "wall",
+    "camera:type": "fixed",
+    "man_made": "surveillance",
+    "operator": "Savognin Bergbahnen (SB)",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "website:webcam": "http://www.savognin.ch/extras/webcams/viewer_overlay.php?cam=2"
+  }
+},
+{
+  "type": "node",
+  "id": 2634912373,
+  "lat": 46.6613368,
+  "lon": 6.3367019,
+  "tags": {
+    "camera:direction": "270",
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://valleedejoux.roundshot.com/",
+    "description": "L'Abbaye",
+    "ele": "1107",
+    "man_made": "surveillance",
+    "name": "Vallée de joux round shot",
+    "source:description": "MétéoFrance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 2655839311,
+  "lat": 46.6838831,
+  "lon": 6.3615706,
+  "tags": {
+    "camera:direction": "270",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.dent-de-vaulion.ch/webcam",
+    "man_made": "surveillance",
+    "name": "web cam située sur le toit du restaurant de morez et regardant vers l'ouest",
+    "surveillance": "outdoor_meteo",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.dent-de-vaulion.ch/webcam"
+  }
+},
+{
+  "type": "node",
+  "id": 3049078855,
+  "lat": 46.5078401,
+  "lon": 6.4988088,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://morgesregion.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "Port de Morges",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 4400834323,
+  "lat": 47.5037227,
+  "lon": 8.7271486,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://winterthur.roundshot.com/roterturm/#/",
+    "height": "90",
+    "man_made": "surveillance",
+    "operator": "Stadt Winterthur",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "town",
+    "website": "https://stadt.winterthur.ch/themen/die-stadt/winterthur/webcam"
+  }
+},
+{
+  "type": "node",
+  "id": 4487159167,
+  "lat": 46.6109841,
+  "lon": 7.9426430,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "panning",
+    "contact:webcam": "https://maennlichen.roundshot.com/#/",
+    "description": "360° Panorama Webcam Männlichen - Kleine Scheidegg bei der Bergstation der Gondelbahn Grindelwald - Männlichen",
+    "ele": "2225",
+    "man_made": "surveillance",
+    "name": "Panorama-Webcam Männlichen",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "website": "https://www.jungfrau.ch/webcams"
+  }
+},
+{
+  "type": "node",
+  "id": 4527980077,
+  "lat": 46.3801163,
+  "lon": 6.7253400,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "http://m.webcam-hd.com/thollon-les-memises/front-de-neige",
+    "man_made": "surveillance",
+    "name": "Front de neige",
+    "operator": "Communauté de communes Pays d'Évian Vallée d'Abondance",
+    "operator:wikidata": "Q30739288",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 4702379272,
+  "lat": 46.5774225,
+  "lon": 9.5298554,
+  "tags": {
+    "camera:angle": "30",
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://www.valsurses.ch/en/webcams",
+    "man_made": "surveillance",
+    "operator": "Savognin Bergbahnen (SB)",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "website:webcam": "http://webtv.feratel.com/webtv/?design=v3&cam=4091"
+  }
+},
+{
+  "type": "node",
+  "id": 4800768533,
+  "lat": 46.6227269,
+  "lon": 6.2499933,
+  "tags": {
+    "camera:type": "fixed",
+    "contact:webcam": "http://www.rocheray.ch/fr/webcam-fr",
+    "man_made": "surveillance",
+    "name": "Bellevue Le Rocheray",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 4803068195,
+  "lat": 46.4422918,
+  "lon": 6.9765313,
+  "tags": {
+    "contact:webcam": "http://www.rnvl.ch/meteo/balise-de-jaman",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 4803069991,
+  "lat": 46.4317880,
+  "lon": 6.9782420,
+  "tags": {
+    "camera:direction": "180",
+    "contact:webcam": "http://www.goldenpass.ch/fr/webcam-les-rochers-de-naye-sud",
+    "man_made": "surveillance",
+    "name": "rochers de naye sud",
+    "surveillance:type": "camera",
+    "surveillance:zone": "atm"
+  }
+},
+{
+  "type": "node",
+  "id": 4803069992,
+  "lat": 46.4330839,
+  "lon": 6.9763313,
+  "tags": {
+    "contact:webcam": "http://www.goldenpass.ch/fr/webcam-les-rochers-de-naye-ouest",
+    "man_made": "surveillance",
+    "name": "rochers de naye ouest",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 4803069993,
+  "lat": 46.4320264,
+  "lon": 6.9756960,
+  "tags": {
+    "contact:webcam": "http://www.goldenpass.ch/fr/webcam-les-rochers-de-naye-est",
+    "man_made": "surveillance",
+    "name": "rochers de naye est",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 4803069994,
+  "lat": 46.4823961,
+  "lon": 6.9083940,
+  "tags": {
+    "contact:webcam": "https://www.webcam-4insiders.com/de/Wetter-Les%20Pl%c3%a9iades/8179-Les%20Pl%c3%a9iades-Wetter.php",
+    "man_made": "surveillance",
+    "name": "Pléiades",
+    "surveillance": "outdoor",
+    "surveillance:type": "webcam",
+    "surveillance:zone": "lake"
+  }
+},
+{
+  "type": "node",
+  "id": 4803069995,
+  "lat": 46.3597111,
+  "lon": 7.0019028,
+  "tags": {
+    "contact:webcam": "https://tlml.roundshot.com/",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 4803069996,
+  "lat": 46.3267759,
+  "lon": 7.2038712,
+  "tags": {
+    "contact:webcam": "https://glacier3000.roundshot.com/",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 4806600479,
+  "lat": 47.0277410,
+  "lon": 9.5139000,
+  "tags": {
+    "camera:direction": "290",
+    "camera:mount": "building",
+    "camera:type": "fixed",
+    "contact:webcam": "https://grischuni.com/webcam-flaesch.html",
+    "man_made": "surveillance",
+    "name": "Webcam Fläsch",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 4956854178,
+  "lat": 46.7155981,
+  "lon": 7.5098723,
+  "tags": {
+    "camera:type": "fixed",
+    "contact:webcam": "http://www.45degrees.ch/index.php/fluginfo/webcam-moentschelen",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 5020912930,
+  "lat": 46.5119714,
+  "lon": 6.4911685,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://morgesregion.roundshot.com/ville/",
+    "man_made": "surveillance",
+    "name": "Morges",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 5590449913,
+  "lat": 46.1870985,
+  "lon": 10.1985525,
+  "tags": {
+    "camera:direction": "262",
+    "camera:type": "fixed",
+    "contact:webcam": "http://www.meteotrivigno.it/webcam/webcam.jpg",
+    "man_made": "surveillance",
+    "name": "Trivigno vista ovest",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 5590449914,
+  "lat": 46.1871000,
+  "lon": 10.1985917,
+  "tags": {
+    "camera:direction": "82",
+    "camera:type": "fixed",
+    "contact:webcam": "http://www.meteotrivigno.it/webcam/webcamd.jpg",
+    "man_made": "surveillance",
+    "name": "Trivigno Monte Padrio",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 5737193032,
+  "lat": 47.6901160,
+  "lon": 9.2773211,
+  "tags": {
+    "camera:direction": "292",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.meersburg-therme.de/media/galerie/meersburg/webcam/webcam_640.jpg",
+    "man_made": "surveillance",
+    "operator": "Meersburg Therme & Freibad",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "swimming_pool"
+  }
+},
+{
+  "type": "node",
+  "id": 5737193033,
+  "lat": 47.6897144,
+  "lon": 9.2784293,
+  "tags": {
+    "camera:direction": "247",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.meersburg-therme.de/media/galerie/meersburg/webcam/webcam_640_1.jpg",
+    "man_made": "surveillance",
+    "operator": "Meersburg Therme & Freibad",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "swimming_pool"
+  }
+},
+{
+  "type": "node",
+  "id": 5747461260,
+  "lat": 46.9955991,
+  "lon": 8.5987089,
+  "tags": {
+    "camera:direction": "180",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.swisswebcams.ch/webcam/1510953922",
+    "man_made": "surveillance",
+    "name": "Brunnen - Vierwaldstättersee - Blick nach Süden",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "park"
+  }
+},
+{
+  "type": "node",
+  "id": 5786546215,
+  "lat": 47.2837788,
+  "lon": 9.4848272,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "http://www.hoherkasten.ch/service-navigation/live-cam/livecam-1.html",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 5808900873,
+  "lat": 47.1309733,
+  "lon": 7.2410847,
+  "tags": {
+    "camera:direction": "175",
+    "camera:mount": "roof",
+    "camera:type": "webcam",
+    "contact:webcam": "https://www.campus-biel-bienne.ch/webcams/",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6080573189,
+  "lat": 47.2287334,
+  "lon": 9.1532609,
+  "tags": {
+    "camera:type": "dome",
+    "contact:webcam": "https://wolzenalp.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "wolzenalp",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "piste"
+  }
+},
+{
+  "type": "node",
+  "id": 6121785211,
+  "lat": 46.9590044,
+  "lon": 7.4289485,
+  "tags": {
+    "camera:direction": "150",
+    "camera:type": "fixed",
+    "contact:webcam": "https://gymneufeld.ch/wp-content/uploads/webcam/webcam-gymneufeld-neu.jpg",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6358312759,
+  "lat": 46.3699036,
+  "lon": 6.0184053,
+  "tags": {
+    "camera:direction": "120",
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://app.webcam-hd.com/ain/col-de-la-faucille",
+    "ele": "1310",
+    "man_made": "surveillance",
+    "name": "Col de la Faucille",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "traffic",
+    "website": "https://app.webcam-hd.com/ain/col-de-la-faucille"
+  }
+},
+{
+  "type": "node",
+  "id": 6362024612,
+  "lat": 47.2491568,
+  "lon": 9.3432249,
+  "tags": {
+    "camera:type": "public",
+    "contact:webcam": "https://saentis.roundshot.com/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "webcam"
+  }
+},
+{
+  "type": "node",
+  "id": 6387435618,
+  "lat": 47.2833282,
+  "lon": 9.4855139,
+  "tags": {
+    "camera:direction": "110",
+    "contact:webcam": "https://www.appenzeller-seilbahnen.ch/webcam/rheintal/image.jpg",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 6410901516,
+  "lat": 46.5400430,
+  "lon": 7.1128840,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/450",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "name": "Les Vanils par Gruyere-Parapente.ch",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/450"
+  }
+},
+{
+  "type": "node",
+  "id": 6410901538,
+  "lat": 46.1546670,
+  "lon": 6.1940590,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/69",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "name": "Pioupiou 69",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/69"
+  }
+},
+{
+  "type": "node",
+  "id": 6410901575,
+  "lat": 46.1562880,
+  "lon": 6.0187110,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/459",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "name": "Pioupiou 459",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/459"
+  }
+},
+{
+  "type": "node",
+  "id": 6410901590,
+  "lat": 46.1342910,
+  "lon": 6.1532020,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/124",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "name": "Collonges Diotière Pioupiou 124",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/124"
+  }
+},
+{
+  "type": "node",
+  "id": 6410901598,
+  "lat": 46.1820090,
+  "lon": 6.2728410,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/365",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "name": "Balise Pioupiou Christian",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/365"
+  }
+},
+{
+  "type": "node",
+  "id": 6410901607,
+  "lat": 46.6393610,
+  "lon": 7.1386800,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/400",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "name": "Vanil des Cours 1562",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/400"
+  }
+},
+{
+  "type": "node",
+  "id": 6410901621,
+  "lat": 46.7502200,
+  "lon": 6.3442240,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/348",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "ref": "Métabief deco Ouest - Pioupiou 348",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/348"
+  }
+},
+{
+  "type": "node",
+  "id": 6410901637,
+  "lat": 46.5914070,
+  "lon": 7.1202340,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/402",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "name": "Les grosses Ciernes, Gruyere-Parapente.ch",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/402"
+  }
+},
+{
+  "type": "node",
+  "id": 6410901670,
+  "lat": 46.1608320,
+  "lon": 6.1562750,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/104",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "name": "Attéro Club CVLG Troinex",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/104"
+  }
+},
+{
+  "type": "node",
+  "id": 6410901826,
+  "lat": 46.4688550,
+  "lon": 6.4480410,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/608",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "name": "Pioupiou 608 Saint-Prex",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/608"
+  }
+},
+{
+  "type": "node",
+  "id": 6410901831,
+  "lat": 46.6262214,
+  "lon": 7.2076358,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/619",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "name": "Sommet de Vounetse / Arrivée télécabine 1626m (231)",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/619"
+  }
+},
+{
+  "type": "node",
+  "id": 6410925765,
+  "lat": 45.9481000,
+  "lon": 6.9605600,
+  "tags": {
+    "contact:webcam": "http://www.balisemeteo.com/balise_mob.php?idBalise=173",
+    "display:digital": "yes",
+    "ele": "3295",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "operator": "FFVL",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "ref": "173",
+    "source": "http://www.ffvl.fr/",
+    "weather:anemometer": "yes",
+    "weather:thermometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "http://www.balisemeteo.com/balise_mob.php?idBalise=173"
+  }
+},
+{
+  "type": "node",
+  "id": 6410925777,
+  "lat": 46.1281000,
+  "lon": 6.1733300,
+  "tags": {
+    "contact:webcam": "http://www.balisemeteo.com/balise_mob.php?idBalise=167",
+    "display:digital": "yes",
+    "ele": "1270",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "operator": "FFVL",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "ref": "167",
+    "source": "http://www.ffvl.fr/",
+    "weather:anemometer": "yes",
+    "weather:thermometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "http://www.balisemeteo.com/balise_mob.php?idBalise=167"
+  }
+},
+{
+  "type": "node",
+  "id": 6410930602,
+  "lat": 47.0731000,
+  "lon": 6.6044000,
+  "tags": {
+    "contact:webcam": "http://www.balisemeteo.com/balise_mob.php?idBalise=148",
+    "display:digital": "yes",
+    "ele": "1140",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "operator": "FFVL",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "ref": "148",
+    "source": "http://www.ffvl.fr/",
+    "weather:anemometer": "yes",
+    "weather:thermometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "http://www.balisemeteo.com/balise_mob.php?idBalise=148"
+  }
+},
+{
+  "type": "node",
+  "id": 6410930679,
+  "lat": 46.0206000,
+  "lon": 6.9705800,
+  "tags": {
+    "contact:webcam": "http://www.balisemeteo.com/balise_mob.php?idBalise=178",
+    "display:digital": "yes",
+    "ele": "2196",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "operator": "FFVL",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "ref": "178",
+    "source": "http://www.ffvl.fr/",
+    "weather:anemometer": "yes",
+    "weather:thermometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "http://www.balisemeteo.com/balise_mob.php?idBalise=178"
+  }
+},
+{
+  "type": "node",
+  "id": 6410931428,
+  "lat": 46.2873000,
+  "lon": 5.9630600,
+  "tags": {
+    "contact:webcam": "http://www.balisemeteo.com/balise_mob.php?idBalise=17",
+    "display:digital": "yes",
+    "ele": "1660",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "operator": "FFVL",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "ref": "17",
+    "source": "http://www.ffvl.fr/",
+    "weather:anemometer": "yes",
+    "weather:thermometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "http://www.balisemeteo.com/balise_mob.php?idBalise=17"
+  }
+},
+{
+  "type": "node",
+  "id": 6419620032,
+  "lat": 47.1513231,
+  "lon": 9.1780269,
+  "tags": {
+    "camera:mount": "wall",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.amden-weesen.ch/Allgemeine-Informationen/Wetter-Webcams",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6550001829,
+  "lat": 46.6639936,
+  "lon": 8.2831719,
+  "tags": {
+    "camera:direction": "180",
+    "contact:webcam": "http://www.hostetbach.ch/webcam/hostetbach.jpg",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6665337906,
+  "lat": 46.4516360,
+  "lon": 6.8550383,
+  "tags": {
+    "camera:type": "dome",
+    "contact:webcam": "https://latourdepeilz.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "La Tour-de-Peilz",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6665337907,
+  "lat": 46.4593530,
+  "lon": 6.8430193,
+  "tags": {
+    "camera:type": "dome",
+    "contact:webcam": "https://msap.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "Musée suisse de l'appareil photographique",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6665337908,
+  "lat": 46.4969853,
+  "lon": 6.8191027,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://montpelerin.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "Mont Pèlerin",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6665337909,
+  "lat": 46.4816598,
+  "lon": 6.7804836,
+  "tags": {
+    "camera:type": "dome",
+    "contact:webcam": "https://chexbres.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "Chexbres",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6665337910,
+  "lat": 46.5424301,
+  "lon": 6.6603722,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://scopedevelopment.roundshot.com/epalinges/",
+    "man_made": "surveillance",
+    "name": "Epalinges",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6665337912,
+  "lat": 46.5365921,
+  "lon": 6.5789933,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://cffimmobilier.roundshot.com/quaiouest/",
+    "man_made": "surveillance",
+    "name": "Quai Ouest",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6665337913,
+  "lat": 46.5183736,
+  "lon": 6.5618339,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://epfl.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "EPFL",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6665337914,
+  "lat": 46.3164321,
+  "lon": 6.1935267,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://coppet.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "Coppet",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 6665337915,
+  "lat": 46.3806021,
+  "lon": 6.2414765,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://nyon-tourisme.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "Nyon",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7016502525,
+  "lat": 46.7783542,
+  "lon": 6.6408422,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://yverdon.roundshot.com/ville/",
+    "man_made": "surveillance",
+    "name": "Ville",
+    "operator": "Roundshot",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7045905429,
+  "lat": 46.3085011,
+  "lon": 9.7418605,
+  "tags": {
+    "camera:type": "fixed",
+    "contact:webcam": "http://www.caisovico.it/rifugio/webcam/webcam.html",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7130527272,
+  "lat": 46.9508972,
+  "lon": 7.4605054,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://berntourismus.roundshot.com/rosengarten/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7135842537,
+  "lat": 47.3494907,
+  "lon": 8.4914453,
+  "tags": {
+    "camera:type": "panning",
+    "check_date": "2025-10-18",
+    "contact:webcam": "https://uetliberg.roundshot.com/",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7136813370,
+  "lat": 47.3693083,
+  "lon": 8.5416334,
+  "tags": {
+    "camera:type": "dome",
+    "check_date": "2026-04-27",
+    "contact:webcam": "https://zuerichtourismus.roundshot.com/stadthaus/",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7137167555,
+  "lat": 47.4173853,
+  "lon": 8.5597530,
+  "tags": {
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.feratel.com/webcams/schweiz/zuerich.html",
+    "man_made": "surveillance",
+    "operator": "Schweizer Radio und Fernsehen",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "building"
+  }
+},
+{
+  "type": "node",
+  "id": 7484381296,
+  "lat": 46.6251154,
+  "lon": 9.7561179,
+  "tags": {
+    "camera:direction": "NW",
+    "camera:mount": "building",
+    "camera:type": "fixed",
+    "contact:webcam": "https://berguen-filisur.graubuenden.ch/de/webcam/berguen",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 7484405429,
+  "lat": 46.6282411,
+  "lon": 9.7329655,
+  "tags": {
+    "camera:direction": "E",
+    "camera:mount": "building",
+    "camera:type": "fixed",
+    "contact:webcam": "https://berguen-filisur.graubuenden.ch/de/webcam/piz-darlux",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 7532971177,
+  "lat": 46.0560180,
+  "lon": 6.9950113,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://valleedutrient.roundshot.com/trient/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7556448143,
+  "lat": 46.1222101,
+  "lon": 7.2121701,
+  "tags": {
+    "camera:type": "360",
+    "contact:webcam": "https://verbier.roundshot.com/savoleyres/",
+    "man_made": "surveillance",
+    "name": "savoleyres",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7556486031,
+  "lat": 45.9891212,
+  "lon": 7.6989436,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://zbag.roundshot.com/hirli/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7556486032,
+  "lat": 46.0215528,
+  "lon": 7.7973958,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://zbag.roundshot.com/rothorn/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7556486033,
+  "lat": 46.0173886,
+  "lon": 7.7700640,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://zbag.roundshot.com/sunnegga/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7556486035,
+  "lat": 46.0192839,
+  "lon": 7.7461036,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "dome",
+    "contact:webcam": "https://zermatt.roundshot.com/zermatterhof/",
+    "man_made": "surveillance",
+    "name": "webcam Zermatterhof",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7556486036,
+  "lat": 46.0669831,
+  "lon": 7.7786597,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://zermatt.roundshot.com/taesch/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7556486037,
+  "lat": 46.1397301,
+  "lon": 7.9908354,
+  "tags": {
+    "camera:type": "360",
+    "contact:webcam": "https://hohsaas.roundshot.com/3200/",
+    "man_made": "surveillance",
+    "name": "Hohsaas 3200m",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "view"
+  }
+},
+{
+  "type": "node",
+  "id": 7556486038,
+  "lat": 46.1398629,
+  "lon": 7.9650322,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://hohsaas.roundshot.com/kreuzboden/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7556486039,
+  "lat": 46.4347863,
+  "lon": 7.8620877,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://blatten.roundshot.com/fafleralp/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7556486040,
+  "lat": 46.3690370,
+  "lon": 7.6486809,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://torrent.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "Ferienstation Leukerbad",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 7560016746,
+  "lat": 46.7218945,
+  "lon": 9.5110985,
+  "tags": {
+    "camera:features": "webcam",
+    "camera:type": "panning",
+    "contact:webcam": "https://lenzerheide.roundshot.com/pizscalottas/",
+    "man_made": "surveillance",
+    "name": "Piz Scalottas",
+    "operator": "Lenzerheide Bergbahnen",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7629945500,
+  "lat": 46.5574344,
+  "lon": 7.8346506,
+  "tags": {
+    "camera:mount": "gantry",
+    "camera:type": "panning",
+    "contact:webcam": "https://schilthorn.ch/en/Infos/Live#livecam",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7635161141,
+  "lat": 46.5848582,
+  "lon": 7.9604158,
+  "tags": {
+    "camera:direction": "90",
+    "camera:mount": "street_lamp",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.bergfex.cz/jungfrau-grindelwald-wengen/webcams/c2880/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 7635188592,
+  "lat": 46.6972704,
+  "lon": 7.8516499,
+  "tags": {
+    "camera:mount": "street_lamp",
+    "camera:type": "360",
+    "contact:webcam": "https://www.jungfrau.ch/webcams/interlaken-harderkulm/",
+    "man_made": "surveillance",
+    "name": "interlaken harderkulm",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "view"
+  }
+},
+{
+  "type": "node",
+  "id": 8108663308,
+  "lat": 47.3736150,
+  "lon": 7.6999445,
+  "tags": {
+    "camera:type": "fixed",
+    "contact:webcam": "https://wasserfallenbahn.roundshot.com/",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 8503754847,
+  "lat": 46.1512725,
+  "lon": 8.7721671,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://castello-seeschloss.roundshot.com/",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8531410881,
+  "lat": 46.7384876,
+  "lon": 7.3924631,
+  "tags": {
+    "contact:webcam": "http://www.lzgwebcam.com/",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8531410882,
+  "lat": 46.7261854,
+  "lon": 7.4412556,
+  "tags": {
+    "contact:webcam": "https://www.lzgwebcam.com/",
+    "man_made": "surveillance",
+    "name": "Webcam's Langlaufzentrum Gantrisch",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8531410883,
+  "lat": 46.7434860,
+  "lon": 7.3891307,
+  "tags": {
+    "contact:webcam": "www.selital.ch",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8531410884,
+  "lat": 46.7444990,
+  "lon": 7.3898443,
+  "tags": {
+    "contact:webcam": "www.schneeselital.ch",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8872509984,
+  "lat": 47.3161080,
+  "lon": 8.5280170,
+  "tags": {
+    "camera:direction": "40",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.webcam-4insiders.com/de/Wetter-Adliswil-Webcam/17263-Webcam-Adliswil-Wetter.php",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "website": "https://www.webcam-4insiders.com/de/Wetter-Adliswil-Webcam/17263-Webcam-Adliswil-Wetter.php"
+  }
+},
+{
+  "type": "node",
+  "id": 8872509985,
+  "lat": 47.3135676,
+  "lon": 8.5272317,
+  "tags": {
+    "camera:direction": "140",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.webcam-4insiders.com/de/Wetter-Adliswil-Webcam/17011-Webcam-Adliswil-Wetter.php",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "website": "https://www.webcam-4insiders.com/de/Wetter-Adliswil-Webcam/17011-Webcam-Adliswil-Wetter.php"
+  }
+},
+{
+  "type": "node",
+  "id": 8872509986,
+  "lat": 47.3101738,
+  "lon": 8.5075309,
+  "tags": {
+    "camera:direction": "80",
+    "camera:type": "fixed",
+    "contact:webcam": "https://laf.roundshot.com/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "website": "https://laf.roundshot.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 8874392791,
+  "lat": 46.5199674,
+  "lon": 7.6196234,
+  "tags": {
+    "contact:webcam": "https://elsigen-metsch.ch/photopoint-sommer/",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8890419048,
+  "lat": 47.3431946,
+  "lon": 9.1276600,
+  "tags": {
+    "contact:phone": "+41 71 565 73 51",
+    "contact:webcam": "https://www.kamerasau.ch",
+    "contact:website": "https://www.adelbach-hof.ch",
+    "name": "Adelbach Hof",
+    "opening_hours": "24/7",
+    "operator": "Köbi und Leandra Hagmann-Barmettler",
+    "organic": "yes",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:credit_cards": "yes",
+    "payment:twint": "yes",
+    "shop": "farm",
+    "vending": "pork;egg;yoghurt;milk;Wachteleier"
+  }
+},
+{
+  "type": "node",
+  "id": 8903674995,
+  "lat": 46.9911725,
+  "lon": 10.2517118,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "70",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "check_date": "2025-12-18",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam13.jpg",
+    "description": "IR night vision | Graf-Bärental West Rchtg. Ischgl B188 km 27.0",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903674996,
+  "lat": 46.9911651,
+  "lon": 10.2516874,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "228",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "check_date": "2025-12-18",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam14.jpg",
+    "description": "IR night vision | Graf-Bärental West Rchtg. Galtür B188 km 27.0",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903682674,
+  "lat": 46.9959033,
+  "lon": 10.2639340,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "70",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "check_date": "2025-12-18",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam11.jpg",
+    "description": "IR night vision | Trisannabrücke Rchtg. Ischgl B188 km 25.9",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903682675,
+  "lat": 46.9958996,
+  "lon": 10.2639261,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "215",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "check_date": "2025-12-18",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam12.jpg",
+    "description": "IR night vision | Trisannabrücke Rchtg. Galtür B188 km 25.9",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903709286,
+  "lat": 47.0013516,
+  "lon": 10.2743341,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "223",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam10.jpg",
+    "description": "IR night vision | Ulrichhof Rchtg. Galtür B188 km 24.9",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903709287,
+  "lat": 47.0013686,
+  "lon": 10.2743432,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "22",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam9.jpg",
+    "description": "IR night vision | Ulrichhof Rchtg. Ischgl B188 km 24.9",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903731552,
+  "lat": 47.0167226,
+  "lon": 10.2979626,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "70",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam7.jpg",
+    "description": "IR night vision | Ischgl Rchtg. Kappl B188 km 22.3",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903731553,
+  "lat": 47.0167107,
+  "lon": 10.2979472,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "205",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam8.jpg",
+    "description": "IR night vision | Ischgl Rchtg. B188 km 22.3",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903732609,
+  "lat": 47.0283266,
+  "lon": 10.3147753,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "50",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam3.jpg",
+    "description": "IR night vision | Waldhof Rchtg. Kappl B188 km 20.4",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903732610,
+  "lat": 47.0283147,
+  "lon": 10.3147684,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "200",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam4.jpg",
+    "description": "IR night vision | Waldhof Rchtg. Ischgl B188 km 20.4",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903737130,
+  "lat": 47.0204940,
+  "lon": 10.3048845,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "29",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "check_date": "2025-12-18",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam5.jpg",
+    "description": "IR night vision | Versahl Rchtg. Kappl B188 km 21.6",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903737131,
+  "lat": 47.0204851,
+  "lon": 10.3048680,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "234",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "check_date": "2025-12-18",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam6.jpg",
+    "description": "IR night vision | Versahl Rchtg. Ischgl B188 km 21.6",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903738113,
+  "lat": 47.0331127,
+  "lon": 10.3223846,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "59",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam1.jpg",
+    "description": "IR night vision | Tannenhof Rchtg. Kappl B188 km 19.6",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8903738114,
+  "lat": 47.0331112,
+  "lon": 10.3223753,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "266",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb188/aktuell/cam2.jpg",
+    "description": "IR night vision | Tannenhof Rchtg. Ischgl B188 km 19.6",
+    "height": "4",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8906459750,
+  "lat": 46.9552460,
+  "lon": 10.4479778,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "320",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcams.tirol.gv.at/l348/aktuell/cam1.jpg",
+    "description": "IR night vision | Annatunnel Rchtg. Schweiz L348 km 7.2",
+    "height": "5",
+    "man_made": "surveillance",
+    "operator": "Land Tirol, govt",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8906459751,
+  "lat": 46.8737578,
+  "lon": 10.5077523,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "329",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb180/aktuell/cam2.jpg",
+    "description": "IR night vision | Nauders Rchtg. Ried i.O., B180",
+    "height": "6",
+    "man_made": "surveillance",
+    "operator": "Land Tirol",
+    "operator:wikidata": "Q42880",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 8906459752,
+  "lat": 46.8737436,
+  "lon": 10.5077556,
+  "tags": {
+    "camera:angle": "5",
+    "camera:direction": "200",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcams.tirol.gv.at/ftpb180/aktuell/cam1.jpg",
+    "description": "IR night vision | Nauders Rchtg. Reschenpass, B180",
+    "height": "6",
+    "man_made": "surveillance",
+    "operator": "Land Tirol",
+    "operator:wikidata": "Q42880",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9018452639,
+  "lat": 46.6432725,
+  "lon": 8.5809134,
+  "tags": {
+    "camera:direction": "130",
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://andermatt.roundshot.com/baezberg/",
+    "direction": "130",
+    "man_made": "surveillance",
+    "manufacturer": "Roundshot / Seitz Phototechnik AG",
+    "owner": "Andermatt Swiss Alps AG",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "town"
+  }
+},
+{
+  "type": "node",
+  "id": 9057130290,
+  "lat": 46.8191447,
+  "lon": 6.7821149,
+  "tags": {
+    "contact:webcam": "http://www.pmcjoder.ch/webcam/portdecheyres/yverdon_current.jpg",
+    "direction": "270",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "webcam",
+    "surveillance:zone": "lake"
+  }
+},
+{
+  "type": "node",
+  "id": 9057130291,
+  "lat": 46.8191584,
+  "lon": 6.7821392,
+  "tags": {
+    "contact:webcam": "http://www.pmcjoder.ch/webcam/portdecheyres/neuchatel_current.jpg",
+    "direction": "0",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "webcam",
+    "surveillance:zone": "lake"
+  }
+},
+{
+  "type": "node",
+  "id": 9063273039,
+  "lat": 47.3215322,
+  "lon": 8.5303546,
+  "tags": {
+    "camera:direction": "340",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.webcam-4insiders.com/de/Wetter-Adliswil-Webcam/17158-Webcam-Adliswil-Wetter.php",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 9266707783,
+  "lat": 46.0772390,
+  "lon": 6.8403380,
+  "tags": {
+    "camera:direction": "0;90",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://m.webcam-hd.com/vallee-haut-giffre/sixt-fer-a-cheval",
+    "description": "Sixt-Fer-à-Cheval : Frenalay",
+    "ele": "950",
+    "man_made": "surveillance",
+    "source:description": "MétéoFrance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387982,
+  "lat": 46.7826100,
+  "lon": 9.3050910,
+  "tags": {
+    "camera:direction": "2",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/rheinschlucht/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/rheinschlucht/",
+    "description": "Rheinschlucht,Graubünden,Schweiz,Swizerland,Brün,Bruen",
+    "ele": "1320",
+    "man_made": "surveillance",
+    "name": "Rheinschlucht / Brün - Blick nach Norden",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387983,
+  "lat": 46.9797390,
+  "lon": 9.4367170,
+  "tags": {
+    "addr:country": "CH",
+    "camera:direction": "5",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/pizol/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/pizol/",
+    "description": "Pizol,Bad Ragatz,Schweiz",
+    "ele": "2230",
+    "man_made": "surveillance",
+    "name": "Pizol - Bad Ragaz - Wangs / Blick nach Norden",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387984,
+  "lat": 47.0728330,
+  "lon": 9.6025830,
+  "tags": {
+    "addr:country": "LI",
+    "camera:direction": "100",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/pfaelzerhuette/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/pfaelzerhuette/",
+    "description": "Pfälzerhütte,Bettlerjoch,Rätikon,Liechtenstein",
+    "ele": "2108",
+    "man_made": "surveillance",
+    "name": "Liechtensteiner Alpenverein - Pfälzerhütte",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387985,
+  "lat": 47.1589490,
+  "lon": 9.3378520,
+  "tags": {
+    "addr:country": "CH",
+    "camera:direction": "345",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/wildhaus/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/wildhaus/",
+    "description": "Wildhaus,St. Gallen,Schweiz",
+    "ele": "2076",
+    "man_made": "surveillance",
+    "name": "Bergbahnen Wildhaus - Gamserrugg mit Blick zum Säntis und Schafberg",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387986,
+  "lat": 47.3149540,
+  "lon": 9.2395250,
+  "tags": {
+    "addr:country": "CH",
+    "camera:direction": "135",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/hochhamm/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/hochhamm/",
+    "description": "Hochhamm,AppenzellSchweiz",
+    "ele": "1208",
+    "man_made": "surveillance",
+    "name": "Hochhamm - Blick nach Südosten zum Säntis",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387987,
+  "lat": 47.2838840,
+  "lon": 9.4856860,
+  "tags": {
+    "addr:country": "CH",
+    "camera:direction": "95",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/hoherkasten/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/hoherkasten/",
+    "description": "Schweiz,Hoher Kasten,Drehrestaurant",
+    "ele": "1795",
+    "image": "https://www.foto-webcam.eu/webcam/hoherkasten/infos/hoherkasten01.jpg",
+    "man_made": "surveillance",
+    "name": "Hoher Kasten / Drehrestaurant - Blick nach Südosten ins Rheintal",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387988,
+  "lat": 47.3066480,
+  "lon": 9.6181870,
+  "tags": {
+    "camera:direction": "270",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/roethis-west/current/1920.jpg",
+    "contact:website": "https://www.foto-webcam.eu/webcam/roethis-west/",
+    "description": "Röthis - METZLER GmbH & Co KG - Blick nach Westen",
+    "ele": "436",
+    "man_made": "surveillance",
+    "name": "Röthis West",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387989,
+  "lat": 47.3066490,
+  "lon": 9.6180080,
+  "tags": {
+    "camera:direction": "90",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/roethis-ost/current/1920.jpg",
+    "contact:website": "https://www.foto-webcam.eu/webcam/roethis-ost/",
+    "description": "Röthis - METZLER GmbH & Co KG - Blick nach Osten",
+    "ele": "436",
+    "man_made": "surveillance",
+    "name": "Röthis Ost",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387990,
+  "lat": 47.3880640,
+  "lon": 9.7505100,
+  "tags": {
+    "addr:country": "AT",
+    "camera:direction": "330",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/dornbirn/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/dornbirn/",
+    "description": "Dornbirn,Karren,Vorarlberg,Österreich",
+    "ele": "976",
+    "man_made": "surveillance",
+    "note": "Dornbirn / Karren - Blick nach Nordwesten zum Bodensee",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387991,
+  "lat": 47.2325750,
+  "lon": 9.5983710,
+  "tags": {
+    "camera:direction": "1",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/feldkirch/current/1920.jpg",
+    "contact:website": "https://www.foto-webcam.eu/webcam/feldkirch/",
+    "description": "Feldkirch / Blick nach Norden",
+    "ele": "614",
+    "man_made": "surveillance",
+    "name": "Feldkirch",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387995,
+  "lat": 47.0819366,
+  "lon": 9.9257658,
+  "tags": {
+    "addr:country": "AT",
+    "camera:direction": "250",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/schruns/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/schruns/",
+    "description": "Schruns,Tschagguns,Montafon,Schanze,Vorarlberg,Österreich",
+    "ele": "735",
+    "man_made": "surveillance",
+    "name": "Blick über Schruns nach Südwesten",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569387996,
+  "lat": 47.0654050,
+  "lon": 9.9124210,
+  "tags": {
+    "addr:country": "AT",
+    "camera:direction": "15",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/tschagguns/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/tschagguns/",
+    "description": "Tschagguns,Montafon,Schanze,Vorarlberg,Österreich",
+    "ele": "775",
+    "man_made": "surveillance",
+    "name": "Tschagguns / Montafon Nordic Schanzenzentrum - Blick nach NO",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569388004,
+  "lat": 46.8506750,
+  "lon": 10.1679460,
+  "tags": {
+    "addr:country": "AT",
+    "camera:direction": "300",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/jamtalferner/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/jamtalferner/",
+    "description": "Jamtalferner,Galtür,Silvretta,Tirol,Nordtirol,Österreich",
+    "ele": "2920",
+    "man_made": "surveillance",
+    "name": "Urezzasjoch - Blick nach Nordwesten zum Jamtalferner",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569407703,
+  "lat": 46.6254577,
+  "lon": 8.0969413,
+  "tags": {
+    "addr:country": "CH",
+    "camera:direction": "270",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/glecksteinhuette/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/glecksteinhuette/",
+    "description": "Glecksteinhütte,SAC,Grindelwald,Schweiz,Swiss",
+    "ele": "2317",
+    "man_made": "surveillance",
+    "name": "Glecksteinhütte - Blick nach Westen",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569407704,
+  "lat": 46.5002700,
+  "lon": 8.0534420,
+  "tags": {
+    "camera:direction": "294",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/konkordiahuette/current/1920.jpg",
+    "contact:website": "https://www.foto-webcam.eu/webcam/konkordiahuette/",
+    "description": "Konkordiahütte - Unesco Weltnaturerbe Jungfrau - Aletsch",
+    "ele": "2850",
+    "man_made": "surveillance",
+    "name": "Konkordiahütte",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569407705,
+  "lat": 46.9955710,
+  "lon": 8.5986270,
+  "tags": {
+    "camera:direction": "180",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/brunnen/current/1920.jpg",
+    "contact:website": "https://www.foto-webcam.eu/webcam/brunnen/",
+    "description": "Brunnen / Vierwaldstättersee - Blick nach Süden",
+    "ele": "438",
+    "man_made": "surveillance",
+    "name": "Brunnen",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569407714,
+  "lat": 46.7011020,
+  "lon": 10.5067970,
+  "tags": {
+    "camera:direction": "120",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/mals/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/mals/",
+    "description": "Hotel Watles,Mals,Vinschgau,Südtirol,Alto Adige,Italien,Italia",
+    "ele": "1720",
+    "man_made": "surveillance",
+    "name": "Hotel Watles - Mals / Vinschgau - Blick nach Südosten",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569407715,
+  "lat": 46.5690230,
+  "lon": 10.5115690,
+  "tags": {
+    "camera:direction": "180",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/trafoi/current/1920.jpg",
+    "contact:website": "https://www.foto-webcam.eu/webcam/trafoi/",
+    "description": "Die Gletscher des Ortlergebiets | I ghiacciai del Gruppo dell’Ortles - Trafoi, Südtirol | Valle di Trafoi, Alto Adige",
+    "ele": "2090",
+    "man_made": "surveillance",
+    "name": "Trafoi",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9569407716,
+  "lat": 46.6147990,
+  "lon": 10.4920880,
+  "tags": {
+    "camera:direction": "150",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.foto-webcam.eu/webcam/chavalatsch/",
+    "contact:website": "https://www.foto-webcam.eu/webcam/chavalatsch/",
+    "description": "Piz Chavalatsch,Vinschgau,Stilfs,Sulden,Südtirol,Alto Adige,Italien",
+    "ele": "2763",
+    "man_made": "surveillance",
+    "name": "Piz Chavalatsch - Sulden / Vinschgau - Blick nach Südosten zum Ortler  -  Monte Cavallaccio - Solda / Val Venosta - Vista a sud-est verso l'Ortles",
+    "name:de": "Piz Chavalatsch - Sulden / Vinschgau - Blick nach Südosten zum Ortler",
+    "name:it": "Monte Cavallaccio - Solda / Val Venosta - Vista a sud-est verso l'Ortles",
+    "operator": "foto-webcam.eu",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 9675341914,
+  "lat": 47.4405658,
+  "lon": 7.4860131,
+  "tags": {
+    "camera:direction": "125",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://sg-dittingen.ch/webcam/cam5/live_g.jpg",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 9773855696,
+  "lat": 46.3466550,
+  "lon": 6.6963796,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "https://app.webcam-hd.com/ot-peva/bernex-pr",
+    "description": "Bernex : Pré RIchard",
+    "ele": "1350",
+    "man_made": "surveillance",
+    "name": "TSD Pré Richard",
+    "operator": "Communauté de communes Pays d'Évian Vallée d'Abondance",
+    "operator:wikidata": "Q30739288",
+    "source:description": "MétéoFrance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 9810818798,
+  "lat": 46.1965617,
+  "lon": 6.7323279,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "https://app.webcam-hd.com/avoriaz/zore",
+    "man_made": "surveillance",
+    "name": "Zore",
+    "operator": "Avoriaz",
+    "operator:wikidata": "Q127037",
+    "operator:wikipedia": "fr:Avoriaz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 9902355706,
+  "lat": 47.5454269,
+  "lon": 9.7367494,
+  "tags": {
+    "camera:direction": "100",
+    "camera:mount": "pole",
+    "contact:webcam": "https://www.asfinag.at/verkehr-sicherheit/webcams?id=A014_000,200_0_00082454",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "parking"
+  }
+},
+{
+  "type": "node",
+  "id": 9902355711,
+  "lat": 47.5464514,
+  "lon": 9.7365458,
+  "tags": {
+    "camera:direction": "125",
+    "camera:mount": "pole",
+    "contact:webcam": "https://www.asfinag.at/verkehr-sicherheit/webcams?id=A014_000,070_0_00082450",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "traffic"
+  }
+},
+{
+  "type": "node",
+  "id": 9910011164,
+  "lat": 47.4998913,
+  "lon": 8.7320841,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://winterthur.roundshot.com/altstadt/",
+    "man_made": "surveillance",
+    "operator": "Stadt Winterthur",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 9974280175,
+  "lat": 47.3782200,
+  "lon": 8.5656584,
+  "tags": {
+    "camera:direction": "180",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/zuerich-fluntern/#/",
+    "man_made": "surveillance",
+    "name": "Wetterkamera Zürich / Fluntern",
+    "operator": "Meteoschweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.meteoschweiz.admin.ch/home/messwerte.html?param=messnetz-webcams&station=SMA"
+  }
+},
+{
+  "type": "node",
+  "id": 9974871353,
+  "lat": 46.4178131,
+  "lon": 9.8210407,
+  "tags": {
+    "camera:mount": "pole",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/pizcorvatsch/#/",
+    "man_made": "surveillance",
+    "name": "Wetterkamera Piz Corvatsch",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.meteoschweiz.admin.ch/home/messwerte.html?param=messnetz-webcams&station=COV"
+  }
+},
+{
+  "type": "node",
+  "id": 9974891639,
+  "lat": 46.5301805,
+  "lon": 9.3143389,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/spluegenpass/#/",
+    "man_made": "surveillance",
+    "name": "Splügenpass",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.meteoschweiz.admin.ch/home/messwerte.html?param=messnetz-webcams&station=SPS"
+  }
+},
+{
+  "type": "node",
+  "id": 9974896536,
+  "lat": 47.5495761,
+  "lon": 8.9101470,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/frauenfeld/#/",
+    "man_made": "surveillance",
+    "name": "Frauenfeld",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.meteoschweiz.admin.ch/home/messwerte.html?param=messnetz-webcams&station=FRF"
+  }
+},
+{
+  "type": "node",
+  "id": 9974922377,
+  "lat": 47.0232657,
+  "lon": 7.3305038,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/frienisberg/#/",
+    "man_made": "surveillance",
+    "name": "Wetterkamera Frienisberg",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.meteoschweiz.admin.ch/home/messwerte.html?param=messnetz-webcams&station=FBG"
+  }
+},
+{
+  "type": "node",
+  "id": 9974935819,
+  "lat": 45.9815742,
+  "lon": 8.9163789,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/montagnola/#/",
+    "man_made": "surveillance",
+    "name": "Wetterkamera Montagnola",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.meteoschweiz.admin.ch/home/messwerte.html?param=messnetz-webcams&station=MTG"
+  }
+},
+{
+  "type": "node",
+  "id": 9974978110,
+  "lat": 46.4247875,
+  "lon": 6.0991499,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/ladole/#/",
+    "man_made": "surveillance",
+    "name": "Wetterkamera La Dôle",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.meteoschweiz.admin.ch/service-und-publikationen/applikationen/messwerte-und-messnetze.html#param=messwerte-lufttemperatur-10min&table=false"
+  }
+},
+{
+  "type": "node",
+  "id": 9977256140,
+  "lat": 47.1666813,
+  "lon": 8.1605244,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/schenkon/#/",
+    "man_made": "surveillance",
+    "name": "Schenkon",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.meteoschweiz.admin.ch/home/messwerte.html?param=messnetz-webcams&station=SKN"
+  }
+},
+{
+  "type": "node",
+  "id": 9977258874,
+  "lat": 47.6923281,
+  "lon": 8.6131096,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/schaffhausen/#/",
+    "man_made": "surveillance",
+    "name": "Schaffhausen",
+    "operator": "MeteoSchweiz",
+    "operator:wikidata": "Q674998",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.meteoschweiz.admin.ch/home/messwerte.html?param=messnetz-webcams&station=SHA"
+  }
+},
+{
+  "type": "node",
+  "id": 9977265929,
+  "lat": 47.5819271,
+  "lon": 8.1798077,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/leibstadt/#/",
+    "man_made": "surveillance",
+    "name": "Leibstadt",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.meteoschweiz.admin.ch/home/messwerte.html?param=messnetz-webcams&station=LEI"
+  }
+},
+{
+  "type": "node",
+  "id": 9977278807,
+  "lat": 46.7065644,
+  "lon": 8.8534875,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/disentis/#/",
+    "man_made": "surveillance",
+    "name": "Wetterkamera Disentis",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.meteoschweiz.admin.ch/home/messwerte.html?param=messnetz-webcams&station=DIS"
+  }
+},
+{
+  "type": "node",
+  "id": 10009095211,
+  "lat": 46.4797621,
+  "lon": 7.1396507,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/chax/#/",
+    "man_made": "surveillance",
+    "name": "Château-d'Oex",
+    "operator": "MeteoSchweiz",
+    "operator:wikidata": "Q674998",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009137538,
+  "lat": 45.8414733,
+  "lon": 8.9700530,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/novazzano/#/",
+    "man_made": "surveillance",
+    "name": "Novazzano",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009146481,
+  "lat": 46.1055441,
+  "lon": 7.0539198,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/ravoire/#/",
+    "man_made": "surveillance",
+    "name": "Ravoire",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009147438,
+  "lat": 46.7856503,
+  "lon": 6.6498349,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/yverdon-les-bains/#/",
+    "man_made": "surveillance",
+    "name": "Yverdon-les-Bains",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009178092,
+  "lat": 46.3035310,
+  "lon": 8.0414634,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/rosswald/#/",
+    "man_made": "surveillance",
+    "name": "Rosswald",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009197619,
+  "lat": 46.1132164,
+  "lon": 7.5047419,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/evolene-villa/#/",
+    "man_made": "surveillance",
+    "name": "Evolène / Villa",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009198547,
+  "lat": 46.7479826,
+  "lon": 7.6678330,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/heiligenschwendi/#/",
+    "man_made": "surveillance",
+    "name": "Heiligenschwendi",
+    "operator": "MeteoSchweiz",
+    "operator:wikidata": "Q674998",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009211034,
+  "lat": 46.8170079,
+  "lon": 8.1776113,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/kaiserstuhl-nordost/#/",
+    "man_made": "surveillance",
+    "name": "Kaiserstuhl",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009213480,
+  "lat": 47.3639524,
+  "lon": 6.9589301,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/rochedor/#/",
+    "man_made": "surveillance",
+    "name": "Roche D'Or",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009215048,
+  "lat": 46.5631023,
+  "lon": 8.3302317,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/grimselhospiz/#/",
+    "man_made": "surveillance",
+    "name": "Grimsel Hospiz",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009217480,
+  "lat": 46.9626094,
+  "lon": 9.5625478,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/landquart/#/",
+    "man_made": "surveillance",
+    "name": "Landquart",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009224645,
+  "lat": 46.4320482,
+  "lon": 9.8234867,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/murtel/#/",
+    "man_made": "surveillance",
+    "name": "Murtel",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009231998,
+  "lat": 47.5717257,
+  "lon": 7.6870831,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://chrischona.roundshot.com/#/",
+    "man_made": "surveillance",
+    "name": "St. Chrischona",
+    "operator": "Swisscom",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009232282,
+  "lat": 47.1148095,
+  "lon": 9.1933607,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/murg/#/",
+    "man_made": "surveillance",
+    "name": "Murg",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009243196,
+  "lat": 46.4599298,
+  "lon": 9.6565232,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/bivio/#/",
+    "man_made": "surveillance",
+    "name": "Bivio",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009269583,
+  "lat": 46.5174589,
+  "lon": 8.9536684,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/olivone/#/",
+    "man_made": "surveillance",
+    "name": "Olivone",
+    "operator": "MeteoSchweiz",
+    "operator:wikidata": "Q674998",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009271736,
+  "lat": 46.7440501,
+  "lon": 9.9820908,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/flueela-ost/#/",
+    "man_made": "surveillance",
+    "name": "Flüela Ost",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009274520,
+  "lat": 46.3914225,
+  "lon": 9.6644948,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/casaccia-ost/#/",
+    "man_made": "surveillance",
+    "name": "Cassacia",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009304362,
+  "lat": 47.0484514,
+  "lon": 8.5520342,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/goldau/#/",
+    "man_made": "surveillance",
+    "name": "Goldau",
+    "operator": "MeteoSchweiz",
+    "operator:wikidata": "Q674998",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009306356,
+  "lat": 46.5230327,
+  "lon": 8.6504415,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/brugnasco/#/",
+    "man_made": "surveillance",
+    "name": "Brugnasco",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10009315312,
+  "lat": 47.1819521,
+  "lon": 7.6481638,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://meteoschweiz.roundshot.com/etziken/#/",
+    "man_made": "surveillance",
+    "name": "Etziken",
+    "operator": "MeteoSchweiz",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10166370212,
+  "lat": 47.5454540,
+  "lon": 9.7396974,
+  "tags": {
+    "camera:direction": "160",
+    "camera:mount": "pole",
+    "contact:webcam": "https://www.asfinag.at/verkehr-sicherheit/webcams?id=A014_000,490_0_00082458",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "parking"
+  }
+},
+{
+  "type": "node",
+  "id": 10177332844,
+  "lat": 47.2009354,
+  "lon": 6.8411424,
+  "tags": {
+    "camera:type": "fixed",
+    "contact:webcam": "https://app.webcam-hd.com/combe-saint-pierre/front-de-neige",
+    "description": "Station montagne : Charquemont Combe Saint Pierre",
+    "ele": "870",
+    "man_made": "surveillance",
+    "source:description": "MétéoFrance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 10185577070,
+  "lat": 47.0209681,
+  "lon": 8.7030053,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://kachelmannwetter.roundshot.com/rotenflue/#/",
+    "man_made": "surveillance",
+    "name": "Rotenflue",
+    "panoramax": "11dbee8c-2a75-412a-96aa-9d89111d2788",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10185581949,
+  "lat": 46.9571106,
+  "lon": 8.6758868,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://kachelmannwetter.roundshot.com/klingenstock/#/",
+    "man_made": "surveillance",
+    "name": "Klingenstock",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10196728002,
+  "lat": 47.0672620,
+  "lon": 8.6496795,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://kachelmannwetter.roundshot.com/sattel/#/",
+    "man_made": "surveillance",
+    "name": "Sattel/Mostelberg",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10589669571,
+  "lat": 46.4343172,
+  "lon": 6.9391620,
+  "tags": {
+    "contact:webcam": "https://briod.com/image_caux.jpg",
+    "description": "Webcam permettant de savoir l'état de la patinoire ainsi que du temps dans le village",
+    "direction": "145",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 10717823481,
+  "lat": 46.8108210,
+  "lon": 10.5379111,
+  "tags": {
+    "camera:direction": "250",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://reschenpass.it-wms.com/big_current1.jpg",
+    "man_made": "surveillance",
+    "name": "Webcam Reschenpass",
+    "name:de": "Webcam Reschenpass",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 10733054150,
+  "lat": 46.9407815,
+  "lon": 8.9999593,
+  "tags": {
+    "contact:webcam": "https://maerchenhotel.roundshot.com/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 10767001080,
+  "lat": 46.2420135,
+  "lon": 6.1474892,
+  "tags": {
+    "camera:direction": "275",
+    "camera:mount": "wall",
+    "camera:type": "dome",
+    "contact:webcam": "https://www.flickr.com/photos/197895716@N03/52774698600",
+    "height": "3",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "town"
+  }
+},
+{
+  "type": "node",
+  "id": 10767001081,
+  "lat": 46.2422759,
+  "lon": 6.1471935,
+  "tags": {
+    "camera:direction": "5",
+    "camera:mount": "wall",
+    "camera:type": "dome",
+    "contact:webcam": "https://www.flickr.com/photos/197895716@N03/52773749192/",
+    "height": "3",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "town"
+  }
+},
+{
+  "type": "node",
+  "id": 10920885227,
+  "lat": 47.0741122,
+  "lon": 9.4880377,
+  "tags": {
+    "camera:direction": "225",
+    "camera:mount": "pole",
+    "contact:webcam": "https://wdkamera.gevi.ch/cameras/63c33a24-4f9f-40b9-8fb1-0a24c354cf58.jpg",
+    "man_made": "surveillance",
+    "surveillance:type": "camera",
+    "surveillance:zone": "traffic"
+  }
+},
+{
+  "type": "node",
+  "id": 10934159860,
+  "lat": 46.4367939,
+  "lon": 6.9081004,
+  "tags": {
+    "camera:type": "dome",
+    "contact:webcam": "https://montreux.roundshot.com/#/",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 10934501840,
+  "lat": 47.4445124,
+  "lon": 8.5633945,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/werft",
+    "man_made": "surveillance",
+    "name": "Werft",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "traffic"
+  }
+},
+{
+  "type": "node",
+  "id": 10934501841,
+  "lat": 47.4613100,
+  "lon": 8.5523150,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/dock-e-midfield-cam-1",
+    "layer": "1",
+    "man_made": "surveillance",
+    "name": "Dock E – Midfield Cam 1",
+    "note": "genau über Midfield Cam 2",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "traffic"
+  }
+},
+{
+  "type": "node",
+  "id": 10934501842,
+  "lat": 47.4613100,
+  "lon": 8.5523150,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/dock-e-midfield-cam-2",
+    "man_made": "surveillance",
+    "name": "Dock E – Midfield Cam 2",
+    "note": "genau unter Midfield Cam 1",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "traffic"
+  }
+},
+{
+  "type": "node",
+  "id": 10934501843,
+  "lat": 47.4543880,
+  "lon": 8.5642120,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/operation-center",
+    "man_made": "surveillance",
+    "name": "Operation Center",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "traffic"
+  }
+},
+{
+  "type": "node",
+  "id": 10934501844,
+  "lat": 47.4666271,
+  "lon": 8.5486102,
+  "tags": {
+    "camera:mount": "mast",
+    "camera:type": "dome",
+    "contact:webcam": "https://www.flughafen-zuerich.ch/de/passagiere/erleben/erlebnisse/webcams/dock-e-snapshot-piste-16",
+    "man_made": "surveillance",
+    "name": "Dock E – Piste 16",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "traffic"
+  }
+},
+{
+  "type": "node",
+  "id": 11078051993,
+  "lat": 46.3402332,
+  "lon": 7.7243852,
+  "tags": {
+    "camera:direction": "250",
+    "camera:mount": "wall",
+    "camera:type": "fixed",
+    "contact:webcam": "https://cam.officeco.ch/cam60/snap.jpg",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 11096588620,
+  "lat": 46.3282029,
+  "lon": 7.7260323,
+  "tags": {
+    "camera:direction": "120",
+    "camera:mount": "building",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.bergfex.ch/jeizinen-engersch-gampel/webcams/c11550/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "park"
+  }
+},
+{
+  "type": "node",
+  "id": 11152465324,
+  "lat": 46.5619619,
+  "lon": 7.8577865,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://schilthorn.roundshot.com/birg/#/",
+    "man_made": "surveillance",
+    "name": "Webcam Schilthorn - Birg",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 11152465326,
+  "lat": 46.5614391,
+  "lon": 7.8968834,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "panning",
+    "contact:webcam": "https://hoteledelweiss.roundshot.com/#/",
+    "man_made": "surveillance",
+    "name": "Webcam Hotel Edelweiss Mürren",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 11152465327,
+  "lat": 46.5641696,
+  "lon": 7.8878652,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://schilthorn.roundshot.com/allmendhubel/#/",
+    "man_made": "surveillance",
+    "name": "Webcam Schilthorn - Allmendhubel",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 11347043201,
+  "lat": 47.7646875,
+  "lon": 8.8190080,
+  "tags": {
+    "camera:direction": "90",
+    "contact:webcam": "https://singen.panomax.com/hohentwiel",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 11351251983,
+  "lat": 47.0271969,
+  "lon": 9.1034186,
+  "tags": {
+    "camera:direction": "260",
+    "contact:webcam": "https://www.bergfex.ch/sommer/glarus/webcams/c19740/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 11377541258,
+  "lat": 46.1793972,
+  "lon": 6.7777925,
+  "tags": {
+    "camera:type": "dome",
+    "contact:webcam": "https://www.skaping.com/portes-du-soleil/avoriaz/arare",
+    "man_made": "surveillance",
+    "name": "Arare",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11377541259,
+  "lat": 46.1831485,
+  "lon": 6.8150804,
+  "tags": {
+    "camera:type": "dome",
+    "contact:webcam": "https://portesdusoleil.roundshot.com/",
+    "description": "Grande Conche",
+    "ele": "2133",
+    "man_made": "surveillance",
+    "name": "Sommet de Grande Conche",
+    "source:description": "MétéoFrance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11377541260,
+  "lat": 46.1652973,
+  "lon": 6.7942545,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://m.webcam-hd.com/avoriaz/fornet",
+    "man_made": "surveillance",
+    "name": "Fornet",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11377541261,
+  "lat": 46.1943251,
+  "lon": 6.7761192,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "panning",
+    "contact:webcam": "https://m.webcam-hd.com/avoriaz/tour",
+    "man_made": "surveillance",
+    "name": "Tour",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11377541262,
+  "lat": 46.2107811,
+  "lon": 6.7742479,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "panning",
+    "contact:webcam": "https://app.webcam-hd.com/vallee-d-aulps/les-lindarets",
+    "man_made": "surveillance",
+    "name": "Les Lindarets",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11377545059,
+  "lat": 46.9777101,
+  "lon": 10.3751855,
+  "tags": {
+    "camera:direction": "180-30",
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://webtv.feratel.com/webtv/?cam=4300",
+    "height": "8",
+    "man_made": "surveillance",
+    "name": "Alp Trida",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 11377615738,
+  "lat": 46.1924059,
+  "lon": 6.7736329,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "dome",
+    "contact:webcam": "https://www.skaping.com/avoriaz/station",
+    "man_made": "surveillance",
+    "name": "Centre Station",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11377615739,
+  "lat": 46.1919976,
+  "lon": 6.7788549,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.skaping.com/avoriaz/pistes",
+    "description": "Avoriaz : station (résidence Antares)",
+    "ele": "1900",
+    "man_made": "surveillance",
+    "name": "Antares",
+    "source:description": "MétéoFrance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 11378273556,
+  "lat": 46.1913842,
+  "lon": 6.7760654,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.skaping.com/avoriaz/pistes",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11378280594,
+  "lat": 46.1931204,
+  "lon": 6.7688457,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://www.skaping.com/avoriaz/amara",
+    "man_made": "surveillance",
+    "name": "Amara",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11378280603,
+  "lat": 46.2075569,
+  "lon": 6.7776207,
+  "tags": {
+    "camera:type": "panning",
+    "contact:webcam": "https://www.skaping.com/montriond/ardent",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11378641989,
+  "lat": 46.1889064,
+  "lon": 6.7760739,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "dome",
+    "contact:webcam": "https://avoriaz-dreamland.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "Avoriaz, Dreamland",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11378641990,
+  "lat": 46.1911831,
+  "lon": 6.7710094,
+  "tags": {
+    "camera:type": "dome",
+    "contact:webcam": "https://avoriaz-holidays.roundshot.com/",
+    "man_made": "surveillance",
+    "name": "Avoriaz, Holidays",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11446061625,
+  "lat": 46.1341840,
+  "lon": 6.7254983,
+  "tags": {
+    "camera:direction": "225;45;300",
+    "camera:mount": "roof",
+    "camera:type": "dome",
+    "contact:webcam": "https://m.webcam-hd.com/morzine/chamossiere",
+    "ele": "2000",
+    "man_made": "surveillance",
+    "name": "Morzine, Chamossière",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11465590216,
+  "lat": 46.1796972,
+  "lon": 6.8707997,
+  "tags": {
+    "camera:direction": "80200",
+    "camera:mount": "roof",
+    "camera:type": "panning",
+    "contact:webcam": "https://champery.roundshot.com/",
+    "ele": "1050",
+    "man_made": "surveillance",
+    "name": "Champéry",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11465609858,
+  "lat": 46.1836046,
+  "lon": 6.8341509,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "https://pds-ch.roundshot.com/lescrosets/",
+    "ele": "1660",
+    "man_made": "surveillance",
+    "name": "Porte du Soleil suisse Les Crosets",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11466023144,
+  "lat": 46.2412897,
+  "lon": 6.8623524,
+  "tags": {
+    "camera:direction": "180;270",
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://morgins.roundshot.com/",
+    "ele": "1442",
+    "man_made": "surveillance",
+    "name": "Morgins",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11466034800,
+  "lat": 46.2246144,
+  "lon": 6.8626386,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "https://pds-ch.roundshot.com/morgins/",
+    "ele": "1816",
+    "man_made": "surveillance",
+    "name": "Porte du Soleil Suisse, Morgins La Foilleuse",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11466101126,
+  "lat": 46.1521311,
+  "lon": 6.7127242,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "dome",
+    "contact:webcam": "https://www.skaping.com/portes-du-soleil/morzine",
+    "description": "Morzine : les Raverettes",
+    "ele": "1545",
+    "man_made": "surveillance",
+    "name": "Domaine Morzine Les Gets - Raverettes",
+    "source:description": "MétéoFrance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 11466749111,
+  "lat": 46.1574256,
+  "lon": 6.7125155,
+  "tags": {
+    "camera:direction": "180",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.pleney.com/webcam/nyonplateau.jpg",
+    "ele": "1430",
+    "man_made": "surveillance",
+    "name": "Morzine - Le Plateau de Nyon",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11466770831,
+  "lat": 46.2092099,
+  "lon": 6.7216213,
+  "tags": {
+    "camera:direction": "90;270",
+    "camera:type": "panning",
+    "contact:webcam": "https://www.skaping.com/montriond/lac",
+    "description": "Montriond : lac",
+    "ele": "1072",
+    "man_made": "surveillance",
+    "name": "Lac de Montriond",
+    "source:description": "MétéoFrance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11472918961,
+  "lat": 46.1786375,
+  "lon": 6.7117068,
+  "tags": {
+    "camera:direction": "240;60",
+    "camera:mount": "roof",
+    "camera:type": "panning",
+    "contact:webcam": "https://www.seemorzine.com/webcams/town-valley",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11473004035,
+  "lat": 46.1780062,
+  "lon": 6.7079066,
+  "tags": {
+    "camera:direction": "270",
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.snowpages.com/Morzine2/morzinepleneywebcam.html",
+    "man_made": "surveillance",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11473016409,
+  "lat": 46.1817818,
+  "lon": 6.7185282,
+  "tags": {
+    "contact:webcam": "https://www.snowpages.com/Morzine2/morzinenyonwebcam.html",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 11533659274,
+  "lat": 47.3086507,
+  "lon": 8.5098421,
+  "tags": {
+    "camera:direction": "90",
+    "camera:type": "fixed",
+    "contact:webcam": "https://assets2.webcam.io/w/MelVbz/latest_hd.jpg",
+    "direction": "90",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "website": "https://www.felsenegg.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 11533659275,
+  "lat": 47.3086509,
+  "lon": 8.5098215,
+  "tags": {
+    "camera:direction": "270",
+    "camera:type": "fixed",
+    "contact:webcam": "https://assets1.webcam.io/w/z5Lv7P/latest_hd.jpg",
+    "direction": "270",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "website": "https://www.felsenegg.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 11672398086,
+  "lat": 46.7364900,
+  "lon": 9.5469626,
+  "tags": {
+    "contact:webcam": "https://lenzerheide.roundshot.com/bargias/",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 11711609579,
+  "lat": 47.5442942,
+  "lon": 9.7397944,
+  "tags": {
+    "camera:direction": "330",
+    "camera:mount": "pole",
+    "contact:webcam": "https://www.asfinag.at/verkehr-sicherheit/webcams?id=A014_000,570_0_00082462",
+    "man_made": "surveillance",
+    "surveillance": "traffic",
+    "surveillance:type": "camera",
+    "surveillance:zone": "traffic"
+  }
+},
+{
+  "type": "node",
+  "id": 11711609582,
+  "lat": 47.5454279,
+  "lon": 9.7367486,
+  "tags": {
+    "camera:direction": "340",
+    "camera:mount": "pole",
+    "contact:webcam": "https://www.asfinag.at/verkehr-sicherheit/webcams?id=A014_000,200_2_00082447",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "parking"
+  }
+},
+{
+  "type": "node",
+  "id": 11711609583,
+  "lat": 47.5464596,
+  "lon": 9.7365458,
+  "tags": {
+    "camera:direction": "260",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.asfinag.at/verkehr-sicherheit/webcams?id=A014_000,070_2_00082444",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "parking"
+  }
+},
+{
+  "type": "node",
+  "id": 11711609584,
+  "lat": 47.5464619,
+  "lon": 9.7365325,
+  "tags": {
+    "camera:direction": "170",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.asfinag.at/verkehr-sicherheit/webcams?id=A014_000,070_1_00082441",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "parking"
+  }
+},
+{
+  "type": "node",
+  "id": 11795264435,
+  "lat": 47.6509001,
+  "lon": 9.4696929,
+  "tags": {
+    "camera:direction": "140",
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://www.youtube.com/watch?v=H4HNroRkXfQ",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "harbour"
+  }
+},
+{
+  "type": "node",
+  "id": 11833902333,
+  "lat": 46.9178713,
+  "lon": 10.0932964,
+  "tags": {
+    "camera:direction": "0 - 360",
+    "camera:mount": "roof",
+    "contact:webcam": "https://silvretta.panomax.com/",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12090035042,
+  "lat": 46.7604016,
+  "lon": 6.3570354,
+  "tags": {
+    "contact:webcam": "https://pioupiou.com/fr/317",
+    "display:digital": "yes",
+    "man_made": "monitoring_station",
+    "monitoring:weather": "yes",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "ref": "Métabief deco Nord - Pioupiou 317",
+    "weather:anemometer": "yes",
+    "weather:wind_vane": "yes",
+    "website": "https://pioupiou.com/fr/317"
+  }
+},
+{
+  "type": "node",
+  "id": 12105213866,
+  "lat": 46.2125428,
+  "lon": 6.7900597,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://www.chatel.com/webcams.html",
+    "description": "Chatel : Rochassons",
+    "ele": "1900",
+    "man_made": "surveillance",
+    "name": "Rochassons",
+    "operator": "Portes du Soleil",
+    "operator:wikidata": "Q264706",
+    "source:description": "MétéoFrance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12142157197,
+  "lat": 46.5756020,
+  "lon": 7.9751797,
+  "tags": {
+    "camera:direction": "360",
+    "contact:webcam": "https://jungfrau.roundshot.com/eigergletscher",
+    "man_made": "surveillance",
+    "name": "Webcam Station Eigergletscher",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12176579552,
+  "lat": 46.5953692,
+  "lon": 10.5449976,
+  "tags": {
+    "camera:direction": "90",
+    "contact:webcam": "https://webcam.myortler.it/stilfs",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12176593673,
+  "lat": 46.5276379,
+  "lon": 10.4558689,
+  "tags": {
+    "camera:direction": "0",
+    "contact:webcam": "https://webcam.myortler.it/stilfserjoch",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12176593810,
+  "lat": 46.5697879,
+  "lon": 10.5049437,
+  "tags": {
+    "camera:direction": "0 - 360",
+    "contact:webcam": "https://webcam.myortler.it/trafoi",
+    "man_made": "surveillance",
+    "name": "Webcam Furkelhütte",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12180374705,
+  "lat": 46.5983869,
+  "lon": 9.5917001,
+  "tags": {
+    "camera:angle": "60",
+    "camera:direction": "300",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.valsurses.ch/en/webcams",
+    "man_made": "surveillance",
+    "operator": "Val Surses",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "website:webcam": "https://www.guidle.com/de/webcams/savognin/webcams/kinderskiparadies-la-nars-savognin_AHtEp56"
+  }
+},
+{
+  "type": "node",
+  "id": 12180374706,
+  "lat": 46.5899177,
+  "lon": 9.5914330,
+  "tags": {
+    "camera:angle": "90",
+    "camera:direction": "350",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.valsurses.ch/en/webcams",
+    "man_made": "surveillance",
+    "operator": "Val Surses",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "website:webcam": "https://www.guidle.com/de/webcams/savognin/savognin-dorf_A5Ya9Ap"
+  }
+},
+{
+  "type": "node",
+  "id": 12180374707,
+  "lat": 46.5982742,
+  "lon": 9.5927512,
+  "tags": {
+    "camera:angle": "60",
+    "camera:direction": "190",
+    "camera:mount": "wall",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.valsurses.ch/en/webcams",
+    "man_made": "surveillance",
+    "operator": "Val Surses",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "website:webcam": "https://www.guidle.com/de/webcams/savognin/webcams/ferienresort-surses-alpin-savognin_AX8WyBp"
+  }
+},
+{
+  "type": "node",
+  "id": 12187268088,
+  "lat": 46.2009759,
+  "lon": 8.7908294,
+  "tags": {
+    "camera:direction": "225",
+    "camera:type": "panning",
+    "contact:webcam": "https://webtv.feratel.com/webtv/?cam=4225",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12187890904,
+  "lat": 47.4745094,
+  "lon": 9.5083695,
+  "tags": {
+    "camera:direction": "360",
+    "camera:type": "panning",
+    "contact:webcam": "https://computechnic.roundshot.com",
+    "man_made": "surveillance",
+    "name": "Webcam Rorschacherberg",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12317609193,
+  "lat": 46.6832483,
+  "lon": 6.3529320,
+  "tags": {
+    "camera:direction": "300",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.dent-de-vaulion.ch/webcam",
+    "man_made": "surveillance",
+    "surveillance": "outdoor_meteo",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area",
+    "website": "https://www.dent-de-vaulion.ch/webcam"
+  }
+},
+{
+  "type": "node",
+  "id": 12465535649,
+  "lat": 47.6281089,
+  "lon": 8.5694938,
+  "tags": {
+    "contact:webcam": "https://cam2.derago.com/",
+    "description:de": "Blick über Lottstetten Richtung Alpen",
+    "man_made": "surveillance",
+    "name:de": "derago Panorama Lottstetten",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12466757079,
+  "lat": 46.2830649,
+  "lon": 6.7752955,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "https://app.webcam-hd.com/ot-peva/tsd-cret-beni",
+    "man_made": "surveillance",
+    "name": "TSD Crêt Béni",
+    "operator": "Communauté de communes Pays d'Évian Vallée d'Abondance",
+    "operator:wikidata": "Q30739288",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12466757081,
+  "lat": 46.3718131,
+  "lon": 6.7422118,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "dome",
+    "contact:webcam": "https://app.webcam-hd.com/ot-peva/thollon-les-memises-sommet-parchet",
+    "description": "Thollon-les-Mémises : Parchet",
+    "ele": "1870",
+    "man_made": "surveillance",
+    "name": "Parchet",
+    "operator": "Communauté de communes Pays d'Évian Vallée d'Abondance",
+    "operator:wikidata": "Q30739288",
+    "source:description": "MétéoFrance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12467048602,
+  "lat": 47.6829505,
+  "lon": 8.1577727,
+  "tags": {
+    "contact:webcam": "https://www.gasthofwaldhaus.de/meta-navigation/webcam.html",
+    "description:de": "Blick in die Schweizer Alpen, Bannholz und Gupfen",
+    "man_made": "surveillance",
+    "name:de": "Brauereigasthof Waldhaus",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12645800961,
+  "lat": 46.6162716,
+  "lon": 10.5508398,
+  "tags": {
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.ras.bz.it/de/webcams/montoni/",
+    "man_made": "surveillance",
+    "name": "Montoni",
+    "operator": "RAS",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12645880338,
+  "lat": 46.6837182,
+  "lon": 10.4295398,
+  "tags": {
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.ras.bz.it/de/webcams/schlinig/",
+    "man_made": "surveillance",
+    "name": "Schlinig - Slingia",
+    "name:de": "Schlinig",
+    "name:it": "Slingia",
+    "operator": "RAS",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12645921776,
+  "lat": 46.5687634,
+  "lon": 10.5043459,
+  "tags": {
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.ras.bz.it/de/webcams/trafoi/",
+    "man_made": "surveillance",
+    "name": "Trafoi",
+    "operator": "RAS",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12666322745,
+  "lat": 47.3940885,
+  "lon": 7.0326180,
+  "tags": {
+    "camera:direction": "130",
+    "camera:type": "fixed",
+    "contact:webcam": "https://aerojura.ch/#webcam",
+    "description": "Aérodrome de Bressaucourt-Porrentruy",
+    "ele": "560",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12749715017,
+  "lat": 47.5437095,
+  "lon": 9.6812236,
+  "tags": {
+    "camera:direction": "60-260",
+    "camera:type": "panning",
+    "contact:webcam": "https://www.inselhalle-lindau.de/webcam/",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "website": "https://www.inselhalle-lindau.de/webcam/"
+  }
+},
+{
+  "type": "node",
+  "id": 12772764452,
+  "lat": 46.3747888,
+  "lon": 8.0156707,
+  "tags": {
+    "camera:direction": "80",
+    "camera:type": "fixed",
+    "check_date": "2025-04-21",
+    "contact:webcam": "https://webcam.aletscharena.ch/live/cam18.jpg",
+    "man_made": "surveillance",
+    "name": "Webcam Riederfurka",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12773140697,
+  "lat": 46.3810631,
+  "lon": 8.0397450,
+  "tags": {
+    "camera:direction": "270",
+    "camera:type": "fixed",
+    "check_date": "2025-04-22",
+    "contact:webcam": "https://webcam.aletscharena.ch/live/cam14.jpg",
+    "man_made": "surveillance",
+    "name": "Webcam Riederalp Dorf",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12778413915,
+  "lat": 46.3760330,
+  "lon": 8.0258172,
+  "tags": {
+    "camera:direction": "260",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcam.aletscharena.ch/live/cam25.jpg",
+    "man_made": "surveillance",
+    "name": "Webcam Riederalp West Riederfurka",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "public"
+  }
+},
+{
+  "type": "node",
+  "id": 12778413916,
+  "lat": 46.3907292,
+  "lon": 8.0455998,
+  "tags": {
+    "camera:direction": "236",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcam.aletscharena.ch/live/cam11.jpg",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "public"
+  }
+},
+{
+  "type": "node",
+  "id": 12778413917,
+  "lat": 46.3786055,
+  "lon": 8.0326151,
+  "tags": {
+    "camera:direction": "247",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.golfclub-riederalp.ch/webcam/Webcam.jpg",
+    "man_made": "surveillance",
+    "name": "Webcam Riederalp Golfplatz",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12778631792,
+  "lat": 46.3959002,
+  "lon": 8.0481633,
+  "tags": {
+    "camera:direction": "32",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcam.aletscharena.ch/live/cam13.jpg",
+    "ele": "2324",
+    "man_made": "surveillance",
+    "name": "Webcam Moosfluh-Gletscher",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "public"
+  }
+},
+{
+  "type": "node",
+  "id": 12778631793,
+  "lat": 46.3958987,
+  "lon": 8.0481616,
+  "tags": {
+    "camera:direction": "222",
+    "camera:mount": "pole",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcam.aletscharena.ch/live/cam12.jpg",
+    "ele": "2324",
+    "man_made": "surveillance",
+    "name": "Webcam Moosfluh-Piste",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12778631795,
+  "lat": 46.3959003,
+  "lon": 8.0483189,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://www.aletscharena.ch/hier-jetzt/webcams",
+    "ele": "2324",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "public"
+  }
+},
+{
+  "type": "node",
+  "id": 12846955828,
+  "lat": 46.9485451,
+  "lon": 7.4077931,
+  "tags": {
+    "camera:direction": "270",
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://bau-cam.ch/nb-homeofbeach/img.php",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "construction"
+  }
+},
+{
+  "type": "node",
+  "id": 12846955829,
+  "lat": 46.9482779,
+  "lon": 7.4093872,
+  "tags": {
+    "camera:direction": "180",
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://feed.yellow.camera/KEH5EF2YT",
+    "description": "For BFH construction site: https://www.campus-bern.bvd.be.ch/de/start/bauphase.html",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "construction"
+  }
+},
+{
+  "type": "node",
+  "id": 12846955830,
+  "lat": 46.9462971,
+  "lon": 7.4101556,
+  "tags": {
+    "camera:direction": "315",
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://api.yellow.camera/feed/BZ9YZMFJP/latest.jpg",
+    "description": "For BFH construction site: https://www.campus-bern.bvd.be.ch/de/start/bauphase.html",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "construction",
+    "website": "https://feed.yellow.camera/3VAXSC7CL"
+  }
+},
+{
+  "type": "node",
+  "id": 12860278035,
+  "lat": 46.9413919,
+  "lon": 9.6781190,
+  "tags": {
+    "camera:direction": "110",
+    "camera:type": "fixed",
+    "contact:webcam": "http://85.4.30.236",
+    "man_made": "surveillance",
+    "manufacturer": "Axis",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 12887637021,
+  "lat": 45.8838336,
+  "lon": 7.9281381,
+  "tags": {
+    "camera:direction": "300",
+    "camera:mount": "building",
+    "camera:type": "fixed",
+    "contact:webcam": "https://api.scenaridigitali.com/media/monterosa-rifugio-pastore/image.jpg",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12887729164,
+  "lat": 45.9027387,
+  "lon": 7.9099997,
+  "tags": {
+    "camera:direction": "160",
+    "camera:mount": "building",
+    "camera:type": "fixed",
+    "contact:webcam": "https://api.scenaridigitali.com/media/monterosa-rifugio-barba-ferrero/image.jpg",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12887729165,
+  "lat": 45.9269622,
+  "lon": 7.8769454,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "fixed",
+    "contact:webcam": "https://api.scenaridigitali.com/media/monterosa-capanna-regina-margherita/image.jpg",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12887729166,
+  "lat": 45.8996679,
+  "lon": 7.8499977,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "fixed",
+    "contact:webcam": "https://api.scenaridigitali.com/media/monterosa-capanna-gnifetti-sud/image.jpg",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12887729167,
+  "lat": 45.8997958,
+  "lon": 7.8499299,
+  "tags": {
+    "camera:mount": "building",
+    "camera:type": "fixed",
+    "contact:webcam": "https://api.scenaridigitali.com/media/monterosa-capanna-gnifetti-nord/image.jpg",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12887729172,
+  "lat": 45.8782603,
+  "lon": 7.8677239,
+  "tags": {
+    "camera:direction": "110",
+    "camera:mount": "building",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.monterosa2000.it/webcam/3030/024/3030.jpg",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12887729173,
+  "lat": 45.8779824,
+  "lon": 7.8696383,
+  "tags": {
+    "camera:direction": "100",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.monterosa2000.it/webcam/3030/025/3030.jpg",
+    "description": "Panorama su Taglaferro",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12887729174,
+  "lat": 45.8657251,
+  "lon": 7.9032675,
+  "tags": {
+    "camera:direction": "120",
+    "camera:mount": "building",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.monterosa2000.it/webcam/Pianalunga/001/Pianalunga.jpg",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 12976058693,
+  "lat": 47.5273105,
+  "lon": 7.6972326,
+  "tags": {
+    "camera:direction": "60",
+    "contact:webcam": "https://www.gga-pratteln.ch/ext_cams/pratteln.png",
+    "man_made": "surveillance",
+    "surveillance": "traffic",
+    "surveillance:type": "camera",
+    "surveillance:zone": "parking"
+  }
+},
+{
+  "type": "node",
+  "id": 12976094606,
+  "lat": 46.7309703,
+  "lon": 8.4280253,
+  "tags": {
+    "camera:direction": "270",
+    "contact:webcam": "https://livecam.sustenpass.ch/SteinPTZ000M.jpg",
+    "man_made": "surveillance",
+    "surveillance": "traffic",
+    "surveillance:type": "camera",
+    "surveillance:zone": "parking"
+  }
+},
+{
+  "type": "node",
+  "id": 13245834556,
+  "lat": 46.9493041,
+  "lon": 7.3998720,
+  "tags": {
+    "camera:direction": "110",
+    "camera:mount": "mast",
+    "camera:type": "fixed",
+    "contact:webcam": "https://feed.yellow.camera/T6IMQDU6U",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "construction"
+  }
+},
+{
+  "type": "node",
+  "id": 13352577644,
+  "lat": 47.7579236,
+  "lon": 9.1810956,
+  "tags": {
+    "camera:direction": "2010",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.smcue.de/live",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "public"
+  }
+},
+{
+  "type": "node",
+  "id": 13404298290,
+  "lat": 46.8353026,
+  "lon": 9.2158217,
+  "tags": {
+    "camera:direction": "270",
+    "camera:mount": "ceiling",
+    "camera:type": "dome",
+    "contact:webcam": "https://backend.roundshot.com/cams/45/full",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 13404298291,
+  "lat": 46.8345307,
+  "lon": 9.2160267,
+  "tags": {
+    "camera:direction": "270",
+    "camera:mount": "building",
+    "camera:type": "dome",
+    "contact:webcam": "backend.roundshot.com/cams/44/full",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 13404298292,
+  "lat": 46.8196383,
+  "lon": 9.2637993,
+  "tags": {
+    "camera:direction": "270",
+    "camera:mount": "building",
+    "camera:type": "dome",
+    "contact:webcam": "https://backend.roundshot.com/cams/43/full",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 13404298293,
+  "lat": 46.8344575,
+  "lon": 9.2810139,
+  "tags": {
+    "camera:direction": "355",
+    "camera:mount": "ceiling",
+    "camera:type": "dome",
+    "contact:webcam": "https://backend.roundshot.com/cams/42/full",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 13404332848,
+  "lat": 46.8422984,
+  "lon": 9.1802029,
+  "tags": {
+    "camera:direction": "355",
+    "camera:mount": "ceiling",
+    "camera:type": "dome",
+    "contact:webcam": "https://backend.roundshot.com/cam/46/full",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 13404332849,
+  "lat": 46.8731710,
+  "lon": 9.1797645,
+  "tags": {
+    "camera:direction": "355",
+    "camera:mount": "ceiling",
+    "camera:type": "dome",
+    "contact:webcam": "https://backend.roundshot.com/cams/49/full",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 13404332850,
+  "lat": 46.8806732,
+  "lon": 9.2043101,
+  "tags": {
+    "camera:direction": "355",
+    "camera:mount": "ceiling",
+    "camera:type": "dome",
+    "contact:webcam": "https://backend.roundshot.com/cams/433/full",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 13404334717,
+  "lat": 46.8679455,
+  "lon": 9.2290586,
+  "tags": {
+    "camera:direction": "355",
+    "camera:mount": "ceiling",
+    "camera:type": "dome",
+    "contact:webcam": "https://backend.roundshot.com/cams/48/full",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 13404334718,
+  "lat": 46.8676628,
+  "lon": 9.2399070,
+  "tags": {
+    "camera:direction": "355",
+    "camera:mount": "ceiling",
+    "camera:type": "dome",
+    "contact:webcam": "https://backend.roundshot.com/cams/1692/full",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 13404334719,
+  "lat": 46.8786609,
+  "lon": 9.2546583,
+  "tags": {
+    "camera:direction": "355",
+    "camera:mount": "ceiling",
+    "camera:type": "dome",
+    "contact:webcam": "backend.roundshot.com/cams/2018/full",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 13404334720,
+  "lat": 46.8619122,
+  "lon": 9.2339025,
+  "tags": {
+    "camera:direction": "355",
+    "camera:mount": "ceiling",
+    "camera:type": "dome",
+    "contact:webcam": "backend.roundshot.com/cams/47/full",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "area"
+  }
+},
+{
+  "type": "node",
+  "id": 13428209452,
+  "lat": 47.5102054,
+  "lon": 6.9693297,
+  "tags": {
+    "camera:direction": "130",
+    "camera:type": "fixed",
+    "contact:webcam": "https://webcam.dir-est.fr/",
+    "man_made": "surveillance",
+    "name": "Fêche-l'Église",
+    "surveillance": "traffic",
+    "surveillance:type": "camera",
+    "surveillance:zone": "traffic"
+  }
+},
+{
+  "type": "node",
+  "id": 13475071368,
+  "lat": 46.1080189,
+  "lon": 7.5132839,
+  "tags": {
+    "camera:direction": "230",
+    "camera:mount": "wall",
+    "camera:type": "fixed",
+    "contact:webcam": "https://www.jdbonjour.ch/webcam-villa/photo_courante.jpg",
+    "man_made": "surveillance",
+    "surveillance": "webcam",
+    "surveillance:type": "camera",
+    "surveillance:zone": "outdoor"
+  }
+},
+{
+  "type": "node",
+  "id": 13620799609,
+  "lat": 46.9463811,
+  "lon": 7.4103589,
+  "tags": {
+    "camera:direction": "40",
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://api.yellow.camera/feed/7JIEUKFXU/latest.jpg",
+    "description": "For \"Leistungssteigerung Bern West\": https://company.sbb.ch/de/bahnentwicklung/projekte/deutschschweiz/region-bern/bahnknoten-bern/bern-west/",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "construction",
+    "website": "https://avisec.com/feed/834NXDQLQ"
+  }
+},
+{
+  "type": "node",
+  "id": 13620799610,
+  "lat": 46.9459102,
+  "lon": 7.4054916,
+  "tags": {
+    "camera:direction": "350",
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://api.yellow.camera/feed/MEB8WH774/latest.jpg",
+    "description": "For Haltestelle Bern Europaplatz Nord: https://company.sbb.ch/de/bahnentwicklung/projekte/deutschschweiz/region-bern/bahnknoten-bern/bern-west/projekt/bahnhof-europaplatz-nord.html",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "construction",
+    "website": "https://avisec.com/feed/LNLGMCPJ0"
+  }
+},
+{
+  "type": "node",
+  "id": 13681873735,
+  "lat": 46.3849420,
+  "lon": 6.8568346,
+  "tags": {
+    "camera:direction": "SE",
+    "contact:webcam": "https://swissvapeur.ch/webcams/",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13681873736,
+  "lat": 46.3844088,
+  "lon": 6.8570214,
+  "tags": {
+    "camera:direction": "NW",
+    "contact:webcam": "https://swissvapeur.ch/webcams/",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13681873737,
+  "lat": 46.3849328,
+  "lon": 6.8578006,
+  "tags": {
+    "camera:direction": "NE",
+    "contact:webcam": "https://swissvapeur.ch/webcams/",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 13758187837,
+  "lat": 46.3459346,
+  "lon": 7.7197900,
+  "tags": {
+    "camera:mount": "pole",
+    "camera:type": "panning",
+    "contact:webcam": "https://jeizinen.roundshot.com/",
+    "man_made": "surveillance",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "outdoor"
+  }
+},
+{
+  "type": "node",
+  "id": 14003304973,
+  "lat": 47.1914611,
+  "lon": 7.6598309,
+  "tags": {
+    "contact:webcam": "https://www.meteomap.cloud/station/294/bolken#webcam",
+    "ele": "481",
+    "man_made": "monitoring_station",
+    "monitoring:air_pressure": "yes",
+    "monitoring:air_temperature": "yes",
+    "monitoring:precipitation": "yes",
+    "monitoring:solar_radiation": "yes",
+    "monitoring:uv_radiation": "yes",
+    "monitoring:weather": "yes",
+    "monitoring:wind_direction": "yes",
+    "monitoring:wind_speed": "yes",
+    "recording:automated": "yes",
+    "recording:remote": "yes",
+    "website": "https://www.meteomap.cloud/station/294/bolken"
+  }
+},
+{
+  "type": "node",
+  "id": 14018002529,
+  "lat": 47.3940686,
+  "lon": 7.0326454,
+  "tags": {
+    "camera:direction": "240",
+    "camera:mount": "roof",
+    "camera:type": "fixed",
+    "contact:webcam": "https://aerojura.ch/#webcam",
+    "man_made": "surveillance",
+    "surveillance": "public",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 14024231554,
+  "lat": 47.2657323,
+  "lon": 9.5446841,
+  "tags": {
+    "contact:webcam": "https://cameras.allgaeuer.at/bangs/cam02/allgaeuer003cam02.jpg",
+    "contact:website": "https://webcam.allgaeuer.at",
+    "description": "Bangs Oberried, Fresch, Drei Schwestern, Kuegrat (FL)",
+    "man_made": "Webcam",
+    "name": "Webcam Feldkirch-Bangs",
+    "operator": "Privat / www.domi.at",
+    "url": "https://webcam.allgaeuer.at"
+  }
+},
+{
+  "type": "node",
+  "id": 14024251751,
+  "lat": 47.2517698,
+  "lon": 9.5640508,
+  "tags": {
+    "contact:webcam": "https://cameras.allgaeuer.at/zollhaus/cam01/allgaeuer001cam01.jpg",
+    "contact:website": "https://webcam.allgaeuer.at",
+    "description": "Staatsgrenze Nofels, Ruggel (A/CH) Hoher Kasten, Furgglenfirst, Kamor (CH)",
+    "man_made": "Webcam",
+    "name": "Webcam Feldkirch-Nofels",
+    "operator": "Privat / www.domi.at",
+    "url": "https://webcam.allgaeuer.at"
+  }
+},
+{
+  "type": "node",
+  "id": 14024251790,
+  "lat": 47.2659283,
+  "lon": 9.5445600,
+  "tags": {
+    "contact:webcam": "https://cameras.allgaeuer.at/bangs/cam01/allgaeuer003cam01.jpg",
+    "contact:website": "https://webcam.allgaeuer.at",
+    "description": "Hoher Kasten (CH)",
+    "man_made": "Webcam",
+    "name": "Hoher Kasten (CH)",
+    "operator": "Privat / www.domi.at",
+    "url": "https://webcam.allgaeuer.at"
+  }
+},
+{
+  "type": "node",
+  "id": 14024255083,
+  "lat": 47.2518040,
+  "lon": 9.5642999,
+  "tags": {
+    "contact:webcam": "https://cameras.allgaeuer.at/zollhaus/cam02/allgaeuer001cam02.jpg",
+    "contact:website": "https://webcam.allgaeuer.at",
+    "description": "Rheintal Richtung Fraxern, Viktorsberg, Dafins / Hohe Kugel",
+    "man_made": "Webcam",
+    "name": "Webcam Feldkirch-Nofels",
+    "operator": "Privat / www.domi.at",
+    "url": "https://webcam.allgaeuer.at"
+  }
+},
+{
+  "type": "node",
+  "id": 14024276162,
+  "lat": 47.2624201,
+  "lon": 9.5961883,
+  "tags": {
+    "contact:webcam": "https://cameras.allgaeuer.at/cf10/cam02/allgaeuer007cam02.jpg",
+    "contact:website": "https://webcam.allgaeuer.at",
+    "description": "Gisingen, Tostner Burg, St. Corneli, Egg, Alvier, Fulfirst (CH)",
+    "man_made": "Webcam",
+    "name": "Webcam Feldkirch-Gisingen",
+    "operator": "Privat / www.domi.at",
+    "url": "https://webcam.allgaeuer.at"
+  }
+},
+{
+  "type": "node",
+  "id": 14024288468,
+  "lat": 47.2624161,
+  "lon": 9.5961730,
+  "tags": {
+    "contact:webcam": "https://cameras.allgaeuer.at/cf10/cam01/allgaeuer007cam01.jpg",
+    "contact:website": "https://webcam.allgaeuer.at",
+    "description": "Ortsmitte Gisingen, Ardetzenberg, Drei Schwestern, Vorderälpele (FL)",
+    "man_made": "Webcam",
+    "name": "Webcam Feldkirch-Gisingen",
+    "operator": "Privat / www.domi.at",
+    "url": "https://webcam.allgaeuer.at"
+  }
+},
+{
+  "type": "node",
+  "id": 14024296830,
+  "lat": 47.2549517,
+  "lon": 9.5915734,
+  "tags": {
+    "contact:webcam": "https://cameras.allgaeuer.at/saegerhof/cam01/allgaeuer005cam01.jpg",
+    "contact:website": "https://webcam.allgaeuer.at",
+    "description": "Gisingen nach Nofels, Hohen Kasten (CH)",
+    "man_made": "Webcam",
+    "name": "Webcam Feldkirch-Gisingen",
+    "operator": "Privat / www.domi.at",
+    "url": "https://webcam.allgaeuer.at"
+  }
+},
+{
+  "type": "node",
+  "id": 14072485567,
+  "lat": 46.9195289,
+  "lon": 7.4396301,
+  "tags": {
+    "camera:mount": "roof",
+    "camera:type": "dome",
+    "contact:webcam": "https://gurtenpark.roundshot.com/#/",
+    "man_made": "surveillance",
+    "surveillance:type": "camera"
+  }
+},
+{
+  "type": "node",
+  "id": 14212861792,
+  "lat": 47.3645589,
+  "lon": 7.3419116,
+  "tags": {
+    "addr:city": "Delémont",
+    "camera:mount": "roof",
+    "camera:type": "panning",
+    "contact:webcam": "https://juratourisme.roundshot.com/delemont-vieille-ville",
+    "man_made": "surveillance",
+    "source:name": "Jura Tourisme",
+    "surveillance": "outdoor",
+    "surveillance:type": "camera",
+    "surveillance:zone": "outdoor"
+  }
+},
+{
+  "type": "way",
+  "id": 53530191,
+  "center": {
+    "lat": 47.3041603,
+    "lon": 7.7170664
+  },
+  "tags": {
+    "addr:city": "Oensingen",
+    "addr:housenumber": "1",
+    "addr:postcode": "4702",
+    "addr:street": "Roggen",
+    "amenity": "restaurant",
+    "building": "yes",
+    "contact:webcam": "https://roggenberg.roundshot.com",
+    "cuisine": "regional",
+    "email": "info@zumroggen.ch",
+    "internet_access": "wlan",
+    "name": "Bergrestaurant zum Roggen",
+    "opening_hours": "Mo,Tu off; We-Sa 09:30-23:00; Su 09:00-21:00",
+    "outdoor_seating": "yes",
+    "payment:cards": "yes",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "payment:twint": "yes",
+    "phone": "+41 62 396 11 45",
+    "source": "http://www.sogis.ch SO!GIS Import",
+    "source:date": "20100325",
+    "website": "https://www.zumroggen.ch/",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 103893232,
+  "center": {
+    "lat": 47.0427059,
+    "lon": 8.3500791
+  },
+  "tags": {
+    "addr:city": "Luzern",
+    "addr:country": "CH",
+    "addr:housenumber": "72",
+    "addr:postcode": "6006",
+    "addr:street": "Seeburgstrasse",
+    "building": "hotel",
+    "contact:email": "welcome@hermitage.ch",
+    "contact:fax": "+41 41 3758182",
+    "contact:webcam": "http://www.hermitage-luzern.ch/index.php?section=livecam",
+    "contact:website": "https://www.hermitage.ch/",
+    "email": "welcome@hermitage.ch",
+    "internet_access": "yes",
+    "name": "Hermitage",
+    "phone": "+41 41 375 81 81",
+    "rooms": "69",
+    "source": "website",
+    "stars": "4s",
+    "tourism": "hotel",
+    "website": "https://www.hermitage.ch/",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 132556002,
+  "center": {
+    "lat": 46.0771076,
+    "lon": 8.6939586
+  },
+  "tags": {
+    "caravans": "yes",
+    "contact:email": "info@lakeview.eu",
+    "contact:phone": "+39 0323 739647",
+    "contact:webcam": "https://lakeview.eu/cannobio-webcam/",
+    "contact:website": "https://lakeview.eu/",
+    "dog": "yes",
+    "motorhome": "yes",
+    "name": "Lakeview Cannobio Camping & Resort",
+    "power_supply": "yes",
+    "power_supply:maxcurrent": "3",
+    "ref:cin": "IT103017B1LP9VZTQ2",
+    "ref:vatin": "IT02698370034",
+    "tents": "yes",
+    "tourism": "camp_site"
+  }
+},
+{
+  "type": "way",
+  "id": 253725158,
+  "center": {
+    "lat": 46.2640154,
+    "lon": 10.2016152
+  },
+  "tags": {
+    "addr:country": "IT",
+    "addr:place": "Val Saiento",
+    "building": "yes",
+    "capacity": "43",
+    "ele": "2080",
+    "email": "info@rifugioschiazzera.eu",
+    "image": "https://www.rifugioschiazzera.eu/webcam/",
+    "name": "Rifugio Schiazzera",
+    "operator": "Operazione Mato Grosso",
+    "phone": "+39 347 2608250",
+    "start_date": "2002",
+    "tourism": "alpine_hut",
+    "webcam": "https://www.rifugioschiazzera.eu/webcam/",
+    "website": "https://www.rifugioschiazzera.eu/",
+    "wikidata": "Q3935623"
+  }
+},
+{
+  "type": "relation",
+  "id": 6814689,
+  "center": {
+    "lat": -22.3530977,
+    "lon": -95.9272401
+  },
+  "tags": {
+    "addr:full": "Frazione S. Domenico, 28868 Varzo VB",
+    "addr:postcode": "28868",
+    "contact:email": "info@sandomenicoski.com",
+    "contact:facebook": "https://www.facebook.com/sandosubito/",
+    "contact:instagram": "https://www.instagram.com/sandomenicoski/",
+    "contact:phone": "+39 0324 780868",
+    "contact:tripadvisor": "https://www.tripadvisor.it/Attraction_Review-g1924728-d9983260-Reviews-San_Domenico_Ski-Varzo_Province_of_Verbano_Cusio_Ossola_Piedmont.html",
+    "contact:webcam": "https://www.sandomenicoski.com/inverno/webcam/",
+    "contact:website": "https://www.sandomenicoski.com/",
+    "contact:youtube": "https://www.youtube.com/user/sandomenicoski",
+    "name": "Skiarea San Domenico",
+    "site": "piste",
+    "source": "local knowledge",
+    "type": "site"
+  }
+}
+
+  ]
+}

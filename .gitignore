@@ -1,0 +1,8 @@
+# build-time caches (API answers, elevation tiles)
+tools/.cache/
+tools/.dem/
+__pycache__/
+*.pyc
+node_modules/
+tools/test/.fixtures/
+tools/test/.shots/

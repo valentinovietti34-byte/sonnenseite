@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sonnenseite</title>
+<meta name="description" content="Find the sun in Switzerland: above the fog, behind which mountain, and how to get there.">
+<meta name="theme-color" content="#F4A300">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5,500;87.5,600;87.5,700;100,600&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.4" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></g></symbol>
+    <symbol id="i-fog" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h13M7 12h13M4 16h10M17 16h3"/></g></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path fill="currentColor" d="M7.5 19a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18.5 11.1 4 4 0 0 1 18 19z"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+    <symbol id="i-peak" viewBox="0 0 24 24"><path fill="currentColor" d="M2 20 9 7l3.5 6L15 9.5 22 20z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
+    <symbol id="i-locate" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="6"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></g><circle cx="12" cy="12" r="2.2" fill="currentColor"/></symbol>
+    <symbol id="i-car" viewBox="0 0 24 24"><path fill="currentColor" d="M5.6 6.5A2 2 0 0 1 7.5 5h9a2 2 0 0 1 1.9 1.5L19.6 11H21v6h-2v2h-3v-2H8v2H5v-2H3v-6h1.4zM7 14.6a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8zm10 0a1.4 1.4 0 1 0 0-2.8 1.4 1.4 0 0 0 0 2.8zM6.5 10h11l-.9-3H7.4z"/></symbol>
+    <symbol id="i-train" viewBox="0 0 24 24"><path fill="currentColor" d="M8 3h8a3 3 0 0 1 3 3v9a3 3 0 0 1-2.2 2.9L18.5 21h-2.4l-1.2-2.5H9.1L7.9 21H5.500l1.7-3.100A3 3 0 0 1 5 15V6a3 3 0 0 1 3-3zm-1 4v4h10V7zm1.5 8.200a1.200 1.200 0 1 0 0-2.400 1.200 1.200 0 0 0 0 2.400zm7 0a1.200 1.200 0 1 0 0-2.400 1.200 1.200 0 0 0 0 2.400z"/></symbol>
+    <symbol id="i-cable" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 7 21 3M12 5v4"/><rect x="6" y="9" width="12" height="10" rx="2.5" fill="currentColor"/></symbol>
+    <symbol id="i-walk" viewBox="0 0 24 24"><circle cx="13" cy="4.200" r="2.200" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round" d="M9 21l2.500-6-2-2.500 1-5 4 3.500 3 1M11.500 15l3 2 .500 4M10.500 7.500 7 9.500v3"/></symbol>
+    <symbol id="i-cam" viewBox="0 0 24 24"><path fill="currentColor" d="M4 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2.300l4-2.300v10l-4-2.300V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.800 2.800 5.900 6.400.800-4.700 4.500 1.200 6.400L12 17.300l-5.700 3.100 1.200-6.400L2.800 9.500l6.400-.800z"/></symbol>
+    <symbol id="i-star-o" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.800" stroke-linejoin="round" d="m12 3.500 2.600 5.400 5.900.800-4.300 4.100 1.100 5.900L12 16.900l-5.300 2.800 1.100-5.900-4.300-4.100 5.900-.800z"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.300" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="17" r="2.300" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round" d="M20 12a8 8 0 1 1-2.500-5.800M20 4v5h-5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round" stroke-linejoin="round" d="M14.500 5.500 8 12l6.500 6.500"/></symbol>
+    <symbol id="i-go" viewBox="0 0 24 24"><path fill="currentColor" d="M21 3 3 10.500l7 2.500 2.500 7z"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M9 4 3 6.500v13.500l6-2.500 6 2.500 6-2.500V4l-6 2.500zM9 4v13.500M15 6.500V20"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" d="M8 6h12M8 12h12M8 18h12M4 6h.010M4 12h.010M4 18h.010"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="m12 3 9 5-9 5-9-5zM3 12.500l9 5 9-5M3 16.500l9 5 9-5"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round" d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.500 1.500 21h21zm-1 6.500h2v6h-2zm0 7.500h2v2h-2z"/></symbol>
+    <symbol id="i-shade" viewBox="0 0 24 24"><path fill="currentColor" d="M2 20 10 6l5 8 2-3 5 9z"/><circle cx="18.500" cy="6" r="2.800" fill="none" stroke="currentColor" stroke-width="1.800"/></symbol>
+  </defs>
+</svg>
+
+<div id="app" class="app" data-view="list">
+  <header class="top">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="15" r="9" fill="var(--sun)"/><path d="M0 24c5-3.200 8.500-3.200 13 0s8.500 3.200 13 0 8.500-3.200 14 0v16H0z" fill="var(--fogline)"/><path d="M0 31c5-3.200 8.500-3.200 13 0s8.500 3.200 13 0 8.500-3.200 14 0v9H0z" fill="var(--fogline2)"/></svg>
+      <div class="brand-text"><h1>Sonnenseite</h1><span>Swiss sun finder</span></div>
+    </div>
+    <button id="btn-home" class="chip chip-home" type="button" title="Change your starting point"><svg class="ic"><use href="#i-pin"/></svg><span id="home-name">Zürich</span></button>
+    <button id="btn-refresh" class="iconbtn" type="button" title="Refresh data" aria-label="Refresh data"><svg class="ic"><use href="#i-refresh"/></svg></button>
+    <button id="btn-settings" class="iconbtn" type="button" title="Settings" aria-label="Settings"><svg class="ic"><use href="#i-gear"/></svg></button>
+  </header>
+
+  <section class="when" aria-label="Day and time">
+    <div id="days" class="days" role="tablist"></div>
+    <div class="hourbar">
+      <label for="hour" class="sr">Hour of day</label>
+      <input id="hour" type="range" min="0" max="23" step="1" value="12">
+      <output id="hour-label" for="hour">12:00</output>
+      <button id="btn-now" class="chip" type="button">Now</button>
+    </div>
+  </section>
+
+  <div id="banner" class="banner" hidden></div>
+
+  <main class="panes">
+    <section id="pane-list" class="pane pane-list" aria-label="Sun finder">
+      <div id="brief" class="brief"></div>
+      <div class="listhead">
+        <h2 id="list-title">Where the sun is</h2>
+        <div class="listtools">
+          <label class="sr" for="sort">Sort</label>
+          <select id="sort">
+            <option value="best">Best trip</option>
+            <option value="sun">Most sun</option>
+            <option value="near">Closest</option>
+            <option value="high">Highest</option>
+            <option value="name">Name</option>
+          </select>
+          <button id="btn-filter" class="chip" type="button"><svg class="ic"><use href="#i-gear"/></svg>Filters</button>
+        </div>
+      </div>
+      <ol id="results" class="results"></ol>
+      <footer class="credits" id="credits"></footer>
+    </section>
+
+    <section id="pane-map" class="pane pane-map" aria-label="Map">
+      <div id="map"></div>
+      <div class="mapui mapui-tr">
+        <button id="btn-layers" class="mapbtn" type="button" title="Map layers" aria-label="Map layers"><svg class="ic"><use href="#i-layers"/></svg></button>
+        <button id="btn-locate" class="mapbtn" type="button" title="Show my position" aria-label="Show my position"><svg class="ic"><use href="#i-locate"/></svg></button>
+      </div>
+      <div id="layers" class="layers" hidden>
+        <h3>Map</h3>
+        <div class="seg" id="base-seg">
+          <button type="button" data-base="grey">Light</button><button type="button" data-base="color">Topo</button><button type="button" data-base="winter">Winter</button><button type="button" data-base="aerial">Aerial</button>
+        </div>
+        <label class="check"><input type="checkbox" id="lay-fog"> Sea of fog <small>terrain below the fog top</small></label>
+        <label class="check"><input type="checkbox" id="lay-stations"> Measured sunshine <small>MeteoSwiss stations, last 10 min</small></label>
+        <label class="check"><input type="checkbox" id="lay-webcams"> Webcams</label>
+        <div class="fogctl">
+          <label class="check"><input type="checkbox" id="fog-manual"> Set the fog top by hand</label>
+          <div class="fogslider"><input type="range" id="fog-top" min="400" max="2600" step="25" value="1000" disabled><output id="fog-top-label">1,000 m</output></div>
+        </div>
+      </div>
+      <div class="legend" id="legend"></div>
+    </section>
+  </main>
+
+  <button id="btn-view" class="fab" type="button"><svg class="ic"><use id="view-ic" href="#i-map"/></svg><span id="view-label">Map</span></button>
+
+  <aside id="sheet" class="sheet" hidden aria-label="Place details"></aside>
+  <aside id="settings" class="sheet sheet-settings" hidden aria-label="Settings"></aside>
+  <div id="toast" class="toast" hidden role="status"></div>
+</div>
+
+<script src="vendor/leaflet.js"></script>
+<script src="data/places.js"></script>
+<script src="data/webcams.js"></script>
+<script src="data/stations.js"></script>
+<script src="js/util.js"></script>
+<script src="js/sun.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/map.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+// Interaction checks on the archived fog day: settings, GPS start point, layers and manual fog top, place sheet actions.
+const { chromium } = require('playwright');
+const fx = require('./fixtures');
+const out = process.env.SS_SHOTS || require('path').join(__dirname, '.shots');
+require('fs').mkdirSync(out, { recursive: true });
+const base = process.env.SS_URL || 'http://localhost:8765/';
+(async () => {
+  const browser = await chromium.launch({ proxy: { server: process.env.HTTPS_PROXY || process.env.https_proxy, bypass: 'localhost,127.0.0.1' } });
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 860 }, geolocation: { latitude: 47.2267, longitude: 8.8184, accuracy: 25 }, permissions: ['geolocation'] });
+  const page = await ctx.newPage(); const issues = [];
+  page.on('console', (m) => { if (m.type() === 'error') issues.push('console: ' + m.text().slice(0, 220)); });
+  page.on('pageerror', (e) => issues.push('pageerror: ' + e.message.slice(0, 300)));
+  await page.route(/open-meteo\.com/, (route) => { const b = fx.lookup(route.request().url()); if (b) route.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: b }); else route.fulfill({ status: 429, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: '{"error":true,"reason":"Daily API request limit exceeded. Please try again tomorrow."}' }); });
+  await page.route(/router\.project-osrm\.org/, (route) => { try { const body = require('child_process').execFileSync('curl', ['-sS', '-m', '40', route.request().url()], { encoding: 'utf8', maxBuffer: 1 << 26 }); route.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body }); } catch (e) { route.abort(); } });
+  await page.addInitScript(() => { try { if (!localStorage.getItem('ss.settings.v1')) localStorage.setItem('ss.settings.v1', JSON.stringify({ archive: '2026-11-02' })); } catch (e) {} });
+  await page.goto(base); await page.waitForFunction(() => window.SS && SS.engine.fc && document.querySelectorAll('#results .row').length > 0, null, { timeout: 60000 });
+  await page.waitForTimeout(5000);
+  const T = async (label, fn) => { try { console.log('OK  ', label, '->', JSON.stringify(await fn())); } catch (e) { console.log('FAIL', label, '->', e.message.split('\n')[0]); issues.push(label); } };
+
+  await T('hour slider to 13:00 changes the brief', async () => { await page.fill('#hour', '13'); await page.dispatchEvent('#hour', 'input'); await page.waitForTimeout(400); return [await page.textContent('#hour-label'), (await page.textContent('#brief h2')).trim()]; });
+  await page.screenshot({ path: `${out}/int-1-13h.png` });
+  await T('day chip: tomorrow', async () => { await page.click('#days .day:nth-child(2)'); await page.waitForTimeout(400); return [await page.textContent('#list-title'), (await page.textContent('#brief h2')).trim(), await page.$$eval('#results .row', (r) => r.slice(0, 3).map((x) => x.querySelector('b').textContent))]; });
+  await T('back to day 1', async () => { await page.click('#days .day:nth-child(1)'); await page.waitForTimeout(300); return await page.textContent('#list-title'); });
+  await T('sort: closest', async () => { await page.selectOption('#sort', 'near'); await page.waitForTimeout(300); const r = await page.$$eval('#results .row', (r) => r.slice(0, 4).map((x) => x.querySelector('b').textContent + ' ' + x.querySelector('small').textContent.split('·').pop().trim())); await page.selectOption('#sort', 'best'); return r; });
+  await T('settings: max trip 60 min shrinks the list', async () => { const before = await page.evaluate(() => SS.app.ranked.length); await page.click('#btn-filter'); await page.fill('#s-travel', '60'); await page.dispatchEvent('#s-travel', 'input'); await page.dispatchEvent('#s-travel', 'change'); await page.waitForTimeout(300); const after = await page.evaluate(() => SS.app.ranked.length); await page.screenshot({ path: `${out}/int-2-settings.png` }); return { before, after, label: await page.textContent('#o-travel') }; });
+  await T('settings: units imperial', async () => { await page.selectOption('#s-units', 'imperial'); await page.waitForTimeout(300); const t = await page.textContent('#brief .eyebrow'); await page.selectOption('#s-units', 'metric'); return t; });
+  await T('settings: search "Stäfa" and pick', async () => { await page.fill('#q', 'Stäfa'); await page.dispatchEvent('#q', 'keyup'); await page.waitForSelector('#qres [data-res]', { timeout: 15000 }); const first = await page.textContent('#qres [data-res]'); await page.click('#qres [data-res]'); await page.waitForTimeout(3500); return { first, home: await page.evaluate(() => SS.app.home) }; });
+  await T('GPS start point (test position: Rapperswil)', async () => { await page.click('#btn-locate'); await page.waitForTimeout(5000); return await page.evaluate(() => [SS.app.home, SS.engine.driveSource]); });
+  await T('reset trip limit to 150', async () => { await page.click('#btn-filter'); await page.fill('#s-travel', '150'); await page.dispatchEvent('#s-travel', 'input'); await page.dispatchEvent('#s-travel', 'change'); await page.click('#settings [data-act="close"]'); return await page.evaluate(() => SS.app.ranked.length); });
+  await T('layers: manual fog top 900 m', async () => { await page.click('#btn-layers'); await page.check('#fog-manual'); await page.fill('#fog-top', '900'); await page.dispatchEvent('#fog-top', 'input'); await page.waitForTimeout(1500); const r = await page.evaluate(() => [SS.app.state.fogManual, Math.round(SS.map.fogFn(47.3, 8.6))]); await page.screenshot({ path: `${out}/int-3-fog900.png` }); return r; });
+  await T('layers: winter base map + webcams, then back', async () => { await page.click('[data-base="winter"]'); await page.check('#lay-webcams'); await page.waitForTimeout(2500); const n = await page.$$eval('.wc', (x) => x.length); await page.screenshot({ path: `${out}/int-4-winter.png` }); await page.click('[data-base="grey"]'); await page.uncheck('#lay-webcams'); await page.uncheck('#fog-manual'); await page.click('#btn-layers'); return { webcamMarkers: n }; });
+  await T('open Säntis from the map marker', async () => { await page.evaluate(() => SS.ui.openPlace('santis') || 1); await page.waitForTimeout(400); const ok = await page.evaluate(() => !!SS.engine.byId['santis']); if (!ok) { const id = await page.evaluate(() => SS.engine.places.find((p) => p.n === 'Säntis').id); await page.evaluate((i) => SS.ui.openPlace(i), id); } await page.waitForTimeout(1500); return [await page.textContent('#sheet .hero h2'), (await page.textContent('#sheet .now')).trim().slice(0, 80), await page.$$eval('#sheet .cam', (c) => c.map((x) => x.querySelector('b').textContent))]; });
+  await T('favourite toggle', async () => { await page.click('#sheet [data-act="fav"]'); await page.waitForTimeout(300); return await page.evaluate(() => Object.keys(SS.app.state.favs)); });
+  await T('webcam viewer opens in the app', async () => { await page.click('#sheet button.cam'); await page.waitForTimeout(2500); return await page.$eval('#camview iframe', (f) => f.src); });
+  await page.screenshot({ path: `${out}/int-5-cam.png` });
+  await T('next connections', async () => { await page.click('#sheet [data-act="conn"]'); await page.waitForSelector('#conns .conn, #conns p', { timeout: 30000 }); await page.waitForTimeout(2500); return (await page.textContent('#conns')).trim().slice(0, 170); });
+  await T('route on map', async () => { await page.click('#sheet [data-act="route"]'); await page.waitForTimeout(5000); return [await page.textContent('#toast'), await page.$$eval('path.leaflet-interactive', (p) => p.length)]; });
+  await page.screenshot({ path: `${out}/int-6-route.png` });
+  await T('settings persisted', async () => await page.evaluate(() => { const s = JSON.parse(localStorage.getItem('ss.settings.v1')); return { home: s.home.name, favs: Object.keys(s.favs), maxTravel: s.maxTravel, base: s.base }; }));
+  console.log(issues.length ? 'ISSUES:\n' + [...new Set(issues)].join('\n') : 'no console errors');
+  await browser.close();
+})().catch((e) => { console.error('INTERACT FAILED', e); process.exit(1); });
