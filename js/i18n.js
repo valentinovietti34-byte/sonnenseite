@@ -35,7 +35,7 @@
     'Measured sunny nearby': 'In der Nähe sonnig gemessen', 'Saved': 'Gespeichert',
     'No places match your filters. Open Filters and widen the travel time or altitude range.': 'Keine Orte passen zu deinen Filtern. Öffne die Filter und erweitere Reisezeit oder Höhenbereich.',
     /* map */
-    'Light': 'Hell', 'Topo': 'Topo', 'Winter': 'Winter', 'Aerial': 'Luftbild', 'Sea of fog': 'Nebelmeer', 'terrain below the fog top': 'Gelände unter der Nebelobergrenze',
+    'Light': 'Hell', 'Grey': 'Grau', 'Topo': 'Topo', 'Winter': 'Winter', 'Aerial': 'Luftbild', 'Sea of fog': 'Nebelmeer', 'terrain below the fog top': 'Gelände unter der Nebelobergrenze',
     'Measured sunshine': 'Gemessene Sonne', 'MeteoSwiss stations, last 10 min': 'MeteoSchweiz-Stationen, letzte 10 Min.', 'Webcams': 'Webcams',
     'Set the fog top by hand': 'Nebelobergrenze von Hand setzen', 'automatic': 'automatisch', 'none': 'keine', 'full sun': 'volle Sonne',
     'Sun not visible from here right now': 'Sonne von hier aus gerade nicht sichtbar', 'Open live webcam': 'Live-Webcam öffnen',

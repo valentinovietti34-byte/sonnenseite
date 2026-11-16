@@ -8,8 +8,8 @@
   const WMTS = 'https://wmts.geo.admin.ch/1.0.0/';
   const BASES = {
     grey: { id: 'ch.swisstopo.pixelkarte-grau', cls: 'base-grey' },
-    color: { id: 'ch.swisstopo.pixelkarte-farbe' },
-    winter: { id: 'ch.swisstopo.pixelkarte-farbe-winter' },
+    color: { id: 'ch.swisstopo.pixelkarte-farbe', cls: 'base-color' },
+    winter: { id: 'ch.swisstopo.pixelkarte-farbe-winter', cls: 'base-color' },
     aerial: { id: 'ch.swisstopo.swissimage' },
   };
   const TERRARIUM = 'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png';
@@ -53,8 +53,8 @@
       if (t00 <= 0 && t10 <= 0 && t01 <= 0 && t11 <= 0) return;
       const img = g.createImageData(256, 256), d = img.data;
       const dark = SS.app && SS.app.isDark && SS.app.isDark();
-      const R = dark ? 176 : 96, G = dark ? 188 : 116, B = dark ? 199 : 138;
-      const aRim = dark ? 235 : 200, aMin = dark ? 120 : 70, aMax = dark ? 192 : 128;
+      const R = dark ? 206 : 252, G = dark ? 215 : 253, B = dark ? 225 : 255;
+      const aRim = dark ? 175 : 215, aMin = dark ? 55 : 85, aMax = dark ? 95 : 130;
       for (let py = 0, i = 0, o = 0; py < 256; py++) {
         const v = (py + 0.5) / 256, tl = t00 + (t01 - t00) * v, tr = t10 + (t11 - t10) * v;
         for (let px = 0; px < 256; px++, i++, o += 4) {
@@ -75,11 +75,21 @@
 
   M.init = function (h) {
     handlers = h || {};
-    map = L.map('map', { center: [46.82, 8.25], zoom: 8, minZoom: 7, maxZoom: 16, zoomControl: false, attributionControl: true, maxBounds: [[44.9, 4.6], [48.7, 11.8]], maxBoundsViscosity: 0.8 });
+    /* Switzerland only: you cannot pan away from it or zoom out past the whole country; outside the border fades out */
+    const CH = L.latLngBounds([[45.817, 5.956], [47.808, 10.492]]);
+    map = L.map('map', { center: [46.82, 8.25], zoom: 8, minZoom: 6, maxZoom: 16, zoomSnap: 0.25, zoomDelta: 0.5, wheelPxPerZoomLevel: 100, zoomControl: false, attributionControl: true, maxBounds: CH.pad(0.06), maxBoundsViscosity: 1 });
+    const fitMin = () => { const z = map.getBoundsZoom(CH, false); if (z === z) map.setMinZoom(Math.max(5.5, z)); };
+    fitMin(); map.on('resize', fitMin);
     M.leaflet = map;
     L.control.zoom({ position: 'bottomright' }).addTo(map);
     map.attributionControl.setPrefix(false);
     map.createPane('fog').style.zIndex = 350;
+    map.createPane('mask').style.zIndex = 420;
+    map.getPane('mask').style.pointerEvents = 'none';
+    if (window.SS_BORDER) {
+      L.polygon([[[30, -20], [30, 40], [62, 40], [62, -20]], window.SS_BORDER], { pane: 'mask', className: 'ch-mask', stroke: false, interactive: false }).addTo(map);
+      L.polygon(window.SS_BORDER, { pane: 'mask', className: 'ch-border', fill: false, weight: 1.6, interactive: false }).addTo(map);
+    }
     map.getPane('fog').style.pointerEvents = 'none';
     gPlaces = L.layerGroup().addTo(map); gStations = L.layerGroup(); gWebcams = L.layerGroup();
     fog = new FogLayer(); M._fog = fog;

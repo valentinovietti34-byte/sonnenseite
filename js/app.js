@@ -8,7 +8,7 @@
     home: { lat: 47.3769, lon: 8.5417, name: 'Zürich', ele: 408, gps: false },
     units: 'metric', theme: 'auto', model: 'best_match', sort: 'best', maxTravel: 150, altMin: 0, altMax: 4000,
     kinds: { peak: true, hill: true, village: true, pass: true, town: true }, hideClosed: true, favOnly: false, favs: {}, reluctance: 1, mode: 'car',
-    base: 'grey', layers: { fog: true, stations: true, webcams: false }, fogManual: null, archive: null,
+    base: 'color', layers: { fog: true, stations: true, webcams: false }, fogManual: null, archive: null,
   };
   const saved = U.load(KEY, {}) || {};
   A.state = Object.assign({}, DEFAULTS, saved);
@@ -16,6 +16,8 @@
   A.state.layers = Object.assign({}, DEFAULTS.layers, saved.layers || {});
   A.state.favs = Object.assign({}, saved.favs || {});
   A.state.home = Object.assign({}, DEFAULTS.home, saved.home || {});
+  /* the colourful topographic map is the new default; keep grey only for people who picked it themselves */
+  if (A.state.base === 'grey' && !A.state.baseChosen) A.state.base = 'color';
   SS.state = A.state;
   A.home = A.state.home;
   A.sel = { dayStart: T.dayStart(Date.now()), atMs: Math.floor(Date.now() / 3600000) * 3600000 };
@@ -230,7 +232,7 @@
     $('#btn-view').addEventListener('click', () => setView($('#app').dataset.view === 'map' ? 'list' : 'map'));
     $('#btn-layers').addEventListener('click', () => { const p = $('#layers'); p.hidden = !p.hidden; $('#btn-layers').classList.toggle('on', !p.hidden); });
     $('#btn-locate').addEventListener('click', A.useGps);
-    $('#base-seg').addEventListener('click', (e) => { const b = e.target.closest('[data-base]'); if (!b) return; A.state.base = b.dataset.base; A.save(); M.setBase(A.state.base); syncLayerUi(); });
+    $('#base-seg').addEventListener('click', (e) => { const b = e.target.closest('[data-base]'); if (!b) return; A.state.base = b.dataset.base; A.state.baseChosen = true; A.save(); M.setBase(A.state.base); syncLayerUi(); });
     [['lay-fog', 'fog'], ['lay-stations', 'stations'], ['lay-webcams', 'webcams']].forEach((x) => {
       $('#' + x[0]).addEventListener('change', (e) => { A.state.layers[x[1]] = e.target.checked; A.save(); M.setLayer(x[1], e.target.checked); if (x[1] === 'fog') fogField(); if (x[1] === 'stations') M.paintStations(); });
     });
@@ -334,6 +336,7 @@
     M.setBase(A.state.base); M.setHome(A.home);
     ['fog', 'stations', 'webcams'].forEach((k) => M.setLayer(k, !!A.state.layers[k]));
     M.fitAround(A.home, 75);
+    if (M.leaflet.getZoom() < M.leaflet.getMinZoom()) M.leaflet.setZoom(M.leaflet.getMinZoom());
     wire(); syncLayerUi(); UI.renderWhen();
     A.loadAll(false);
     loadDrive();

@@ -345,3 +345,13 @@ h1, h2, h3, h4 { font-stretch: 80%; }
 .tomorrow { border-top: 0; margin: -4px 16px 16px; width: calc(100% - 32px); border-radius: 12px; }
 .ladder { padding: 0 8px; }
 .fab { font-weight: 700; }
+
+/* colourful map: the swisstopo topo map in full colour; in dark mode only dimmed, never inverted */
+:root[data-theme="dark"] .base-color { filter: brightness(.74) saturate(.92); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .base-color { filter: brightness(.74) saturate(.92); } }
+
+/* outside Switzerland fades into the page; a fine line traces the border */
+.ch-mask { fill: var(--bg); fill-opacity: .93; }
+.ch-border { stroke: var(--ink); stroke-opacity: .45; }
+.ch-mask { fill-opacity: 1; }
+#map, #map.leaflet-container { background: var(--bg); }
