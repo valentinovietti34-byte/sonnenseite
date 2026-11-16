@@ -294,6 +294,7 @@
       else if (t.id === 's-closed') { s.hideClosed = t.checked; changed(); }
       else if (t.id === 's-fav') { s.favOnly = t.checked; changed(); }
       else if (t.id === 's-mode') { s.mode = t.value; changed(); }
+      else if (t.id === 's-lang') { s.lang = t.value; A.save(); location.reload(); }
       else if (t.id === 's-units') { s.units = t.value; changed(); syncLayerUi(); }
       else if (t.id === 's-theme') { s.theme = t.value; applyTheme(); changed(); }
       else if (t.id === 's-model') { s.model = t.value; A.save(); $('#model-note').textContent = (E.MODELS.find((m) => m.id === s.model) || {}).note || ''; A.loadAll(true, true); }
