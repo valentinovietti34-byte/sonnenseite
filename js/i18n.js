@@ -159,7 +159,7 @@
     [/^, (.+?) m\. Travel times and the fog brief are worked out from here\.$/, ', $1 m. Reisezeiten und Nebellage werden von hier aus berechnet.'],
     [/^Loaded (\d\d:\d\d)\. The forecast refreshes by itself after an hour; measurements every 10 minutes\.$/, 'Geladen um $1. Die Prognose aktualisiert sich nach einer Stunde von selbst, die Messwerte alle 10 Minuten.'],
     [/^For each of (\d+) places the app combines three things: .*$/, 'Für jeden der $1 Orte kombiniert die App drei Dinge: die Prognose für tiefe, mittelhohe und hohe Wolken; die echte Horizontlinie, damit sie weiss, wann Berge die tiefe Wintersonne verdecken; und die Nebelobergrenze, abgeleitet daraus, wie sich die tiefen Wolken mit der Höhe über benachbarte Orte verändern. Die Umrechnung von Wolken in Sonne wurde mit Sonnenschein-Messungen von MeteoSchweiz kalibriert.'],
-    [/^Data: Open-Meteo .*$/, 'Daten: Open-Meteo (Prognose, CC BY 4.0), MeteoSchweiz (Messwerte), swisstopo (Karten, Ortsnamen), OpenStreetMap-Mitwirkende (Webcam-Standorte, Karte ausserhalb der Schweiz über CARTO), OSRM (Strassenrouting), transport.opendata.ch (Fahrplan), Mapzen-Geländedaten auf AWS. Webcambilder gehören ihren Betreibern.'],
+    [/^Data: Open-Meteo .*$/, 'Daten: Open-Meteo (Prognose, CC BY 4.0), MeteoSchweiz (Messwerte), swisstopo (Karten, Ortsnamen), OpenStreetMap-Mitwirkende (Webcam-Standorte), OSRM (Strassenrouting), transport.opendata.ch (Fahrplan), Mapzen-Geländedaten auf AWS. Webcambilder gehören ihren Betreibern.'],
     [/^Search failed: /, 'Suche fehlgeschlagen: '],
     [/^You seem to be outside Switzerland, so (.+) stays the starting point\.$/, 'Du scheinst ausserhalb der Schweiz zu sein, darum bleibt $1 der Startpunkt.'],
     [/^Starting point: (.+)$/, 'Startpunkt: $1'],

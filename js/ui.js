@@ -68,15 +68,17 @@
     const zMin = Math.floor(Math.min(A.home.ele, 400) / 100) * 100 - 100;
     const X = (m) => x0 + (m / maxT) * (x1 - x0), Y = (z) => y1 - ((U.clamp(z, zMin, zMax) - zMin) / (zMax - zMin)) * (y1 - y0);
     let fogLabel = '';
+    const edge = (yTop) => { let d = ''; for (let x = x0; x <= x1 + 0.1; x += 6) d += (d ? 'L' : 'M') + x.toFixed(1) + ' ' + (yTop + Math.sin((x - x0) / 19) * 2 + Math.sin((x - x0) / 7) * 0.8).toFixed(1); return d; };
+    /* the fog sea: filled body plus a drawn shoreline, the app's signature line */
+    const wave = (yTop) => 'M' + x0 + ' ' + y1 + 'L' + x0 + ' ' + yTop.toFixed(1) + edge(yTop).replace(/^M/, 'L') + 'L' + x1 + ' ' + y1 + 'Z" fill="url(#fg)"/><path d="' + edge(yTop) + '" fill="none" stroke="var(--fog)" stroke-width="1.4" stroke-linecap="round';
     let s = '<svg class="ladder" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Places by travel time and altitude, with the fog layer">';
-    s += '<defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--fog)" stop-opacity=".75"/><stop offset="1" stop-color="var(--fog)" stop-opacity=".32"/></linearGradient></defs>';
-    s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + (x1 - x0) + '" height="' + (y1 - y0) + '" fill="var(--surface-2)" rx="4"/>';
+    s += '<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky-top)"/><stop offset="1" stop-color="var(--sky-low)"/></linearGradient><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--fogsea)" stop-opacity=".96"/><stop offset="1" stop-color="var(--fog)" stop-opacity=".5"/></linearGradient></defs>';
+    s += '<rect x="' + x0 + '" y="' + y0 + '" width="' + (x1 - x0) + '" height="' + (y1 - y0) + '" fill="url(#sky)" rx="8"/>';
     if (prof.state === 'fog') {
-      s += '<rect x="' + x0 + '" y="' + Y(prof.top) + '" width="' + (x1 - x0) + '" height="' + (y1 - Y(prof.top)) + '" fill="url(#fg)"/>';
-      s += '<rect x="' + x0 + '" y="' + Y(prof.hi) + '" width="' + (x1 - x0) + '" height="' + Math.max(1, Y(prof.lo) - Y(prof.hi)) + '" fill="var(--fog)" opacity=".28"/>';
+      s += '<path d="' + wave(Y(prof.top)) + '" fill="url(#fg)"/>';
       fogLabel = '<text x="' + (x0 + 6) + '" y="' + (Y(prof.hi) - 5) + '" class="lbl">fog top ' + esc(U.fmtAltRound(prof.lo)) + ' to ' + esc(U.fmtAltRound(prof.hi)) + '</text>';
     } else if (prof.state === 'deck') {
-      s += '<rect x="' + x0 + '" y="' + Y(Math.min(zMax, prof.lo + 150)) + '" width="' + (x1 - x0) + '" height="' + (y1 - Y(Math.min(zMax, prof.lo + 150))) + '" fill="url(#fg)"/>';
+      s += '<path d="' + wave(Y(Math.min(zMax, prof.lo + 150))) + '" fill="url(#fg)"/>';
     }
     for (let z = Math.ceil((zMin + 1) / 500) * 500; z <= zMax; z += 500) s += '<line class="axis" x1="' + x0 + '" x2="' + x1 + '" y1="' + Y(z) + '" y2="' + Y(z) + '" stroke-dasharray="2 4"/><text x="' + (x0 - 5) + '" y="' + (Y(z) + 3.5) + '" text-anchor="end">' + esc(U.units() === 'imperial' ? Math.round(z * 3.28084 / 100) * 100 : z) + '</text>';
     const stepT = maxT > 150 ? 60 : 30;
@@ -135,9 +137,9 @@
     let bb = '';
     if (best) {
       const tr = best.travel;
-      bb = '<button type="button" class="bestbet" data-id="' + best.p.id + '">' + ic('sun') + '<span><b>' + esc(best.p.n) + ' · ' + U.fmtAlt(best.p.e) + '</b><small>' + (tr.total === tr.total ? U.fmtDur(tr.total) + ' away · ' : '') + U.fmtSunHours(best.sunMin) + ' of sun' + (today ? ' after you arrive' : '') + (best.day.fogBelowHours ? ' · above the fog' : '') + '</small></span><span class="go">Details</span></button>';
+      bb = '<button type="button" class="bestbet sign" data-id="' + best.p.id + '"><span class="sign-dest"><b>' + esc(best.p.n) + '</b><small>' + U.fmtAlt(best.p.e) + ' · ' + U.fmtSunHours(best.sunMin) + ' of sun' + (today ? ' after you arrive' : '') + (best.day.fogBelowHours ? ' · above the fog' : '') + '</small></span>' + (tr.total === tr.total ? '<span class="sign-time">' + U.fmtDur(tr.total) + '</span>' : '') + '</button>';
     } else if (rows.length) {
-      bb = '<div class="bestbet">' + ic('cloud') + '<span><b>No real sunshine within reach ' + (today ? 'for the rest of today' : 'that day') + '</b><small>Try another day, or raise the travel limit in Filters.</small></span></div>';
+      bb = '<div class="bestbet nosun">' + ic('cloud') + '<span><b>No real sunshine within reach ' + (today ? 'for the rest of today' : 'that day') + '</b><small>Try another day, or raise the travel limit in Filters.</small></span></div>';
     }
     const T1 = A.tomorrow;
     const tm = T1 && today ? '<button type="button" class="tomorrow" data-day="' + T1.dayStart + '">' + ic('sun') + '<span><b>Tomorrow: ' + esc(T1.p.n) + '</b><small>' + CONF[T1.conf] + ' · about ' + U.fmtSunHours(T1.sunMin) + ' of sun' + (T1.total === T1.total ? ' · ' + U.fmtDur(T1.total) + ' away' : '') + '</small></span><span class="go">Show</span></button>' : '';
@@ -166,6 +168,8 @@
       if (cr && cr.ts && Date.now() - cr.ts < 50 * 60000 && CAMWORD[cr.state]) tags.push('<span class="tag t-cam-' + cr.state + '">' + ic('cam') + 'Webcam ' + T.hm(cr.ts) + ': ' + CAMWORD[cr.state] + '</span>');
       if (today && E.obs && !E.fc.archive) { const s = E.nearestStation(p.la, p.lo, p.e, 6, 150); if (s && s.canSee && s.sun >= 7) tags.push('<span class="tag t-meas">Measured sunny nearby</span>'); }
       if (A.state.favs[p.id]) tags.push('<span class="tag">' + ic('star') + 'Saved</span>');
+      const lead = tags.shift(), shown3 = [lead].concat(tags.filter((t) => t.indexOf('t-warn') >= 0), tags.filter((t) => t.indexOf('t-warn') < 0)).slice(0, 3);
+      tags.length = 0; shown3.forEach((t) => tags.push(t));
       let strip = '';
       for (let k = ha; k <= hb; k++) strip += cell(r.day.hours[k], k === curH);
       return '<li><button type="button" class="row' + (r.closed || r.liftClosed ? ' closed' : '') + '" data-id="' + p.id + '">'
@@ -348,7 +352,7 @@
       + '<div class="field"><label for="s-lang">Language</label><select id="s-lang"><option value=""' + (!s.lang ? ' selected' : '') + '>Match device</option><option value="en"' + (s.lang === 'en' ? ' selected' : '') + '>English</option><option value="de"' + (s.lang === 'de' ? ' selected' : '') + '>Deutsch</option></select></div></div>'
       + '<div class="card"><h3>How it works</h3><p class="small muted" style="margin:0 0 8px">For each of ' + E.places.length + ' places the app combines three things: the low, mid and high cloud forecast; the real skyline, so it knows when mountains block the low winter sun; and the height of the fog top, read from how the low cloud changes with altitude across neighbouring places. The conversion from cloud to sunshine was calibrated on MeteoSwiss sunshine measurements.</p>'
       + '<p class="small muted" style="margin:0 0 8px">Near the top of the fog a difference of 100 m decides between grey and blue sky, and no forecast is that precise. That is why the measured sunshine and the webcams are one tap away.</p>'
-      + '<p class="small muted" style="margin:0">Data: Open-Meteo (forecast, CC BY 4.0), MeteoSwiss (measurements), swisstopo (maps, place names), OpenStreetMap contributors (webcam locations, map outside Switzerland via CARTO), OSRM (road routing), transport.opendata.ch (timetable), Mapzen terrain tiles on AWS. Webcam images belong to their operators.</p></div>'
+      + '<p class="small muted" style="margin:0">Data: Open-Meteo (forecast, CC BY 4.0), MeteoSwiss (measurements), swisstopo (maps, place names), OpenStreetMap contributors (webcam locations), OSRM (road routing), transport.opendata.ch (timetable), Mapzen terrain tiles on AWS. Webcam images belong to their operators.</p></div>'
       + '<div class="card"><div class="btns"><button type="button" class="btn" data-act="reset">Reset all settings</button><button type="button" class="btn" data-act="clear">Clear cached data</button></div></div></div>';
     sh.hidden = false; sh.scrollTop = 0;
   };

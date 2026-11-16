@@ -14,16 +14,13 @@
   };
   const TERRARIUM = 'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png';
   const ATTR = '&copy; <a href="https://www.swisstopo.admin.ch/" target="_blank" rel="noopener">swisstopo</a>';
-  /* outside Switzerland the swisstopo sheets end; a plain OpenStreetMap-based layer fills the rest */
-  const UNDER = 'https://{s}.basemaps.cartocdn.com/{style}/{z}/{x}/{y}{r}.png';
-  const UNDER_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>, <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>';
   let map, base, under, fog, gPlaces, gStations, gWebcams, homeMk, meMk, meCircle, routeLine, handlers = {};
   const markers = {};
 
   const tileLat = (yn) => (Math.atan(Math.sinh(Math.PI * (1 - 2 * yn))) * 180) / Math.PI;
 
   const FogLayer = L.GridLayer.extend({
-    options: { minZoom: 7, maxNativeZoom: 11, tileSize: 256, pane: 'fog', updateWhenZooming: false, keepBuffer: 1, bounds: [[45.6, 5.7], [47.95, 10.7]], attribution: 'Terrain: Mapzen' },
+    options: { minZoom: 7, maxNativeZoom: 11, tileSize: 256, pane: 'fog', updateWhenZooming: false, keepBuffer: 1, bounds: [[44.9, 4.6], [48.7, 11.8]], attribution: 'Terrain: Mapzen' },
     createTile: function (coords, done) {
       const c = L.DomUtil.create('canvas', 'leaflet-tile');
       c.width = c.height = 256; c._coords = coords;
@@ -74,7 +71,7 @@
   });
 
   const underStyle = () => (SS.app && SS.app.isDark && SS.app.isDark() ? 'dark_all' : 'light_all');
-  M.refreshTheme = function () { if (under && under.options.style !== underStyle()) { under.options.style = underStyle(); under.redraw(); } if (fog && map.hasLayer(fog)) fog.repaint(); };
+  M.refreshTheme = function () { if (fog && map.hasLayer(fog)) fog.repaint(); };
 
   M.init = function (h) {
     handlers = h || {};
@@ -82,7 +79,6 @@
     M.leaflet = map;
     L.control.zoom({ position: 'bottomright' }).addTo(map);
     map.attributionControl.setPrefix(false);
-    under = L.tileLayer(UNDER, { style: underStyle(), subdomains: 'abcd', maxZoom: 18, attribution: UNDER_ATTR, zIndex: 1 }).addTo(map);
     map.createPane('fog').style.zIndex = 350;
     map.getPane('fog').style.pointerEvents = 'none';
     gPlaces = L.layerGroup().addTo(map); gStations = L.layerGroup(); gWebcams = L.layerGroup();
@@ -103,7 +99,7 @@
   M.setBase = function (name) {
     const b = BASES[name] || BASES.grey;
     if (base) map.removeLayer(base);
-    base = L.tileLayer(WMTS + b.id + '/default/current/3857/{z}/{x}/{y}.jpeg', { attribution: ATTR, maxNativeZoom: 18, maxZoom: 18, className: b.cls || '', bounds: [[45.6, 5.7], [47.95, 10.7]], zIndex: 2 }).addTo(map);
+    base = L.tileLayer(WMTS + b.id + '/default/current/3857/{z}/{x}/{y}.jpeg', { attribution: ATTR, maxNativeZoom: 18, maxZoom: 18, className: b.cls || '', bounds: [[44.9, 4.6], [48.7, 11.8]], zIndex: 2 }).addTo(map);
   };
   M.setLayer = function (name, on) {
     const g = name === 'fog' ? fog : name === 'stations' ? gStations : gWebcams;
